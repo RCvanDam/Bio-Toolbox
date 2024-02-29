@@ -5,14 +5,15 @@
 To use this website and python script, the MEME suite is needed. 
 It can be compiled from source as described below. 
 Execute the folowing commands:
-
-tar zxf meme-5.5.5.tar.gz # to decompress the files /
+<p>
+tar zxf meme-5.5.5.tar.gz # to decompress the files <br />
           cd meme-5.5.5 # to move to the directory /
           ./configure --prefix=$HOME/meme --enable-build-libxml2 --enable-build-libxslt # to configure for the os /
           make # to compile /
           make install # to install /
 To add this tool to the PATH variable: /
 export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH /
+</p>
 
 **Commandline Example:**
 meme <INPUT_FILE_LOCATION> -dna -oc <OUTPUT_LOCATION> -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0 
