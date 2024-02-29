@@ -1,5 +1,5 @@
 # **Transcription factor binding site recongition tool** #
-** version 1.0 **
+**version 1.0**
 ## **Authors** ##
 <p>
 Floris Menninga: Main programmer Tool <br>
@@ -7,6 +7,7 @@ Ruben van Dam: Main Tool intergration programmer <br>
 Tai Vo: Main back-end programmer <br>
 Jarno Duiker: Main Front-end programmer 
 </p>
+
 ## **Instalation Guide** ##
 
 **System Requirements**
