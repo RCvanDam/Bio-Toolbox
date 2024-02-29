@@ -1,5 +1,5 @@
 # **Transcription factor binding site recongition tool** #
-**version 1.0**
+**version 0.05**
 ## **Authors** ##
 <p>
 Floris Menninga: Main programmer Tool <br>
