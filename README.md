@@ -29,7 +29,7 @@ Any python compatible x86 or x64 computer with the MEME Suite installed. <br />
 RAM requirements depend on the size of the input files (Motif file and the sequence that needs to be scanned) <br /> 
 </p>
 .
-
+.
 **Goal of the project**
 
 ****
