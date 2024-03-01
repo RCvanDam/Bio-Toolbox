@@ -32,7 +32,7 @@ The flags can be changed, for example: -dna can be -rna or -protein and -nmotifs
 </p>
 
 
-**System Requirements:** <br />
+## **System Requirements:** ##
 <p>
 Any python compatible x86 or x64 computer with the MEME Suite installed. <br />
 RAM requirements depend on the size of the input files (Motif file and the sequence that needs to be scanned) <br /> 
