@@ -20,7 +20,7 @@ tar zxf meme-5.5.5.tar.gz # to decompress the files <br />
          <code> ./configure --prefix=$HOME/meme --enable-build-libxml2 --enable-build-libxslt </code> # to configure for the os <br/>
          <code>  make </code> # to compile <br />
          <code> make install </code> # to install <br />
-To add this tool to the PATH variable: <br />
+**To add this tool to the PATH variable:** <br />
 export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH <br />
 </p>
 
@@ -32,11 +32,12 @@ The flags can be changed, for example: -dna can be -rna or -protein and -nmotifs
 </p>
 
 
-## **System Requirements:** ## <br />
+**System Requirements:** <br />
 <p>
 Any python compatible x86 or x64 computer with the MEME Suite installed. <br />
 RAM requirements depend on the size of the input files (Motif file and the sequence that needs to be scanned) <br /> 
 </p>
+<br>
 .
 .
 Goal of the project
