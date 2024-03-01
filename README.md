@@ -25,19 +25,19 @@ export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH <br />
 </p>
 
 <p>
-**Commandline Example:** <br /> 
+Commandline Example: <br /> 
 meme <INPUT_FILE_LOCATION> -dna -oc <OUTPUT_LOCATION> -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0 <br /> 
 The flags can be changed, for example: -dna can be -rna or -protein and -nmotifs 3 can be changed to any arbitrary number of motifs that the program should find (it stops looking when the number is reached) <br />
 </p>
 
 <p>
-**System Requirements:** <br />
+System Requirements: <br />
 Any python compatible x86 or x64 computer with the MEME Suite installed. <br />
 RAM requirements depend on the size of the input files (Motif file and the sequence that needs to be scanned) <br /> 
 </p>
 .
 .
-**Goal of the project**
+Goal of the project
 Purpose of our website and tool
 
 The purpose of our tool is that People that have a biology background but not a programming background can use our tool we are using memesuite and fimo to accomplish this. memesuit will be used to find motifs in a DNA,RNA or protein sequence. A motif is a pattern of nucleotides that fall in a certain position of the sequence, in our case its for transcriptionpatterns or the chance that a certain nucleotide is set in a certain position of the sequence the use of memesuit is recognising these patterns which can be done by using multifasta. fimo works by giving a file with a list of known motifs and the sequence to test if the motifs are in that sequence. in our case we are gonna use promoter sequences to find the transcriptionfactorbindingsites fitting to those promoters
