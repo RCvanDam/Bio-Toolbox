@@ -20,12 +20,12 @@ tar zxf meme-5.5.5.tar.gz # to decompress the files <br />
          <code> ./configure --prefix=$HOME/meme --enable-build-libxml2 --enable-build-libxslt </code> # to configure for the os <br/>
          <code>  make </code> # to compile <br />
          <code> make install </code> # to install <br />
-**To add this tool to the PATH variable:** <br />
+To add this tool to the PATH variable: <br />
 export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH <br />
 </p>
 
 
-## **Commandline Example:** ## 
+#### **Commandline Example:** #### 
 <p>
 meme <INPUT_FILE_LOCATION> -dna -oc <OUTPUT_LOCATION> -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0 <br /> 
 The flags can be changed, for example: -dna can be -rna or -protein and -nmotifs 3 can be changed to any arbitrary number of motifs that the program should find (it stops looking when the number is reached) <br />
