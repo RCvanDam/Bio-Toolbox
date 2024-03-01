@@ -16,12 +16,10 @@ Execute the folowing commands:
 Download the meme-x.x.x.tar.gz file from the following website: <br />
 https://meme-suite.org/meme/doc/download.html <br />
 tar zxf meme-5.5.5.tar.gz # to decompress the files <br />
-<code> 
          ``` cd meme-5.5.5 # to move to the directory ``` <br /> </code>
           ./configure --prefix=$HOME/meme --enable-build-libxml2 --enable-build-libxslt # to configure for the os <br/>
            make # to compile <br />
-        <code>  make install # to install <br />
-</code>
+           make install # to install <br />
 To add this tool to the PATH variable: <br />
 export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH <br />
 </p>
