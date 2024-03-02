@@ -22,7 +22,7 @@ or the chance that a certain nucleotide is set in a certain position of the sequ
 the use of memesuit is recognising these patterns which can be done by using multifasta. 
 
 fimo works by giving a file with a list of known motifs and the sequence to test if the motifs are in that sequence. 
-in our case we are gonna use promoter sequences to find the transcriptionfactorbindingsites fitting to those promoters.*
+in our case we are gonna use promoter sequences to find the transcriptionfactorbindingsites fitting to those promoters.
 
 
 
