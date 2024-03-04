@@ -1,4 +1,4 @@
-# **Transcription factor binding site recongition tool** #
+# **The MEME Sequenator** #
 **version 0.05**
 ## **Authors** ##
 <p>
