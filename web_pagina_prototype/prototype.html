@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Jarno's prototype</title>
+    <style>
+        body {background-color: rgba(204, 204, 255, 0.5)}
+        .frame {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+         padding: 5px; height: 400px; width: 400px;}
+
+         .frame2 {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+         padding: 5px; height: 400px; width: auto;}
+
+         
+         .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        }
+
+        .container_output {
+        padding-top: 50px; margin-bottom: 50px;
+        }
+
+        .text_clean { 
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 30px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .center_item { display: block; margin-left: auto; margin-right: auto;}
+    </style>
+
+</head>
+<body>
+
+    <h1 class="text_clean" style="text-align: center;">Transcription factor binding site recongition tool</h1>
+    <img class="center_item" src="eepy_cat.jpg" height="140", width="100" , title="poep" >
+
+
+    <div style="padding-left: 50px;">
+        <!--Button and input-->
+        <div >
+            <label class="text_clean">Input your fasta file here:</label>
+            <div style="margin-left: 50px;">
+                <input type="file" id="fasta" name="myfile">
+                <br>
+                <button>Find the binding sites</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- The display box-->
+    <div class="container_output">
+        <div class="frame2">
+            <H1 style="text-align: center; padding: 100px;" >INSERT WEBLOGO VAN BINDING SITES</H1>
+
+
+
+        </div>
+    </div>
+
+
+    <!-- Here is the main info body-->
+    <div class="container">
+        <div class="frame">
+            <h2 style="text-align: center;">Usage</H2>
+            <p style="text-align: center;">
+                The purpose of our tool is that people that have a biology background but not a programming background can use our tool we are using memesuite and fimo to accomplish this. <br>
+                memesuit will be used to find motifs in a DNA,RNA or protein sequence. A motif is a pattern of nucleotides that fall in a certain position of the sequence, <br>
+                in our case it's for finding transcriptionpatterns. or the chance that a certain nucleotide is set in a certain position of the sequence the use of memesuit is recognising these patterns which can be done by using multifasta. <br>
+                fimo works by giving a file with a list of known motifs and the sequence to test if the motifs are in that sequence. in our case we are gonna use promoter sequences to find the transcription factorbinding sites fitting to those promoters.
+                
+            </p>
+        </div>
+        <div class="frame">
+            <h2 style="text-align: center;">Contacts and Feedback info</h2>
+            <p style="text-align: center; line-height: 200%;" >
+                For feedback, bugs and other problems. Contact us! <br>
+
+                Tai Vo email: T.t.vo@st.hanze.nl <br>
+
+                Jarno Duiker email: j.j.duiker@st.hanze.nl <br>
+
+                Ruben van Dam email: r.vandam1000@gmail.com <br>
+
+                Floris Menninga email: f.j.a.menninga.st.hanze.nl </p>
+
+        </div>
+        <div class="frame">
+            <h2 style="text-align: center;" >Authors</h2>
+            <p style="text-align: center; line-height: 200%;">
+                Floris Menninga: Main programmer Tool <br>
+                Ruben van Dam: Main Tool intergration programmer <br>
+                Tai Vo: Main back-end programmer <br>
+                Jarno Duiker: Main Front-end programmer 
+            </p>
+        </div>
+    </div>
+</body>
+</html>
