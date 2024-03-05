@@ -1,16 +1,20 @@
 
 
-.frame {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+.frame {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: 400px;}
 
-.frame2 {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+.frame2 {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: auto;}
+
+.logo_mefim_findr {text-align: right; margin-top: 20px; margin-right: 20px; }
 
 
 .container {
 display: flex;
 justify-content: space-between;
 padding: 10px;
+position: relative;
+top: 100px;
 }
 
 .container_output {
@@ -25,5 +29,7 @@ padding-top: 50px; margin-bottom: 50px;
 }
 
 .center_item { display: block; margin-left: auto; margin-right: auto;}
+
+.hr_border {border: 1px solid black; width: 410px; position: relative; right: 7px;}
 
 body {background-color: rgba(204, 204, 255, 0.5)}
