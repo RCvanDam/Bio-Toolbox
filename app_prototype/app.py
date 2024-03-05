@@ -21,11 +21,6 @@ def allowed_file(filename):
         return True
     else:
         return False
-
-
-    # return '.' in filename and \
-    #        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
  
 # The route() function of the Flask class is a decorator, 
 # which tells the application which URL should call 
@@ -46,8 +41,8 @@ def homepage():
             filename = werkzeug.utils.secure_filename(file.filename)
             if filename == "":
                 flash("we're still working on this filename error!")
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
-            return redirect(url_for('download_file', name=filename)) # to be edited
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
+                return redirect(url_for('download_file', name=filename)) # to be edited
 
 
     return render_template("prototype.html")
