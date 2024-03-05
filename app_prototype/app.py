@@ -9,7 +9,7 @@ os.environ["FLASK_DEBUG"]="1" #turn on debug mode
  
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-UPLOAD_FOLDER = "\app_prototype\user_input_files"
+UPLOAD_FOLDER = "\\app_prototype\\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 werkzeug.secure_filename()
