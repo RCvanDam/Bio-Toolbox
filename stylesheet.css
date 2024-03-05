@@ -27,3 +27,43 @@ padding-top: 50px; margin-bottom: 50px;
 .center_item { display: block; margin-left: auto; margin-right: auto;}
 
 body {background-color: rgba(204, 204, 255, 0.5)}
+
+
+<!--For the menu-bar:-->
+<style>
+  .unordered_list_nav_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: green;
+  position: fixed;
+
+
+}
+
+li {
+  float: left;
+  background-color:  #A4A4FF;
+
+}
+
+.right_alligned {
+    text-align: right;
+
+}
+
+.hover_over_nav_bar {
+  display: block;
+  color: rgb(185, 179, 179);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: black;
+}
+
+li a:hover {
+  background-color: #274a79;
+  color: green;
+}
+</style>
