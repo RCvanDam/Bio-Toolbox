@@ -1,8 +1,8 @@
 
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template, flash, request, redirect, url_for, werkzeug
-
+from flask import Flask, render_template, flash, request, redirect, url_for # delete werkzeug and reinstall it's 2.2 version
+import werkzeug
 import os
 
 os.environ["FLASK_DEBUG"]="1" #turn on debug mode
@@ -12,7 +12,6 @@ os.environ["FLASK_DEBUG"]="1" #turn on debug mode
 UPLOAD_FOLDER = "\\app_prototype\\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
-werkzeug.secure_filename()
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
