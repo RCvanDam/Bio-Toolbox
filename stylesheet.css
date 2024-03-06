@@ -6,6 +6,10 @@ padding: 5px; height: 400px; width: 400px;}
 .frame2 {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
 padding: 5px; height: 400px; width: auto;}
 
+.frame44 {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+padding: 5px; height: 400px; width: auto;}
+
+
 
 .container {
 display: flex;
