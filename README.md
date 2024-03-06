@@ -1,5 +1,5 @@
 # **The MEME Sequenator** #
-**version 0.05**
+**version 0.01**
 ## **Authors** ##
 <p>
 Floris Menninga: Main programmer Tool <br>
