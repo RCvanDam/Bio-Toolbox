@@ -18,6 +18,8 @@ padding: 5px; height: 400px; width: auto;}
 padding: 5px; height: 400px; width: auto;}
 
 
+
+
 .logo_mefim_findr {text-align: right; margin-top: 20px; margin-right: 20px; }
 
 .frame_bottom_page {border: 2px solid black; border-radius: 5px; background-color: white;
@@ -33,6 +35,18 @@ position: relative;
 top: 100px;
 margin-bottom: 200px;
 }
+
+.container_tool {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+padding: 10px;
+position: relative;
+top: 100px;
+margin-bottom: 200px;
+}
+
+
 
 .container_output {
 padding-top: 50px; margin-bottom: 50px;
