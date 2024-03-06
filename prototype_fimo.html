@@ -12,13 +12,7 @@
 <div style="padding-left: 50px;">
             <!--Button and input-->
             <div >
-                <label class="text_clean">Input your files here:</label>
-                <div style="margin-left: 50px;">
-                    <input type="file" id="all" name="myfile">
-                    <br>
-                    <button>Find the binding sites</button>
 
-                </div>
         <h1 class="text_clean" style="text-align: center;">Fimo plugin</h1>
         <!-- The display box-->
         <div class="explanation_container">
@@ -26,18 +20,23 @@
                 <p  style="text-align: center; padding: 100px;" >fimo works by giving a file with a list of known motifs <br>
                     and the sequence to test if the motifs are in that sequence. in our case we are going to use promoter <br>
                     sequences to find the transcription factorbinding sites fitting to those promoters.</p>
-        <div class="table-responsive">
-        <table class="responsive-table__container">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                    <th>City</th>
-                    <th>Country</th>
-                </tr>
-             </thead>
-</div>
+                <form>
+                    <div class="form-group">
+                        <label for="bestand">Motif file:</label>
+                        <input type="file" id="myfile" name="motif" accept="txt, meme" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="myfile2">fasta</label>
+                        <input type="file" id="myfile2" name="enter fasta sequence" accept="fasta" />
+                    </div>
+                        <div class="form-check">
+
+                        </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                     
+                    </div>
+
     </body>
     </html>
