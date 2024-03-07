@@ -84,8 +84,8 @@ body {background-color: rgba(204, 204, 255, 0.5)}
 
 
 <!--For the menu-bar:-->
-<style>
-  .unordered_list_nav_bar {
+
+.unordered_list_nav_bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -123,4 +123,3 @@ li a:hover {
   background-color: #274a79;
   color: green;
 }
-</style>
