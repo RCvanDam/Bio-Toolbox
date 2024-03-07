@@ -16,9 +16,8 @@ padding: 5px; height: 400px; width: auto;}
 
 .logo_mefim_findr {text-align: right; margin-top: 20px; margin-right: 20px; }
 
-.frame_bottom_page {border: 2px solid black; border-radius: 5px; background-color: white;
-    padding: 5px; height: 400px; width: auto; position: relative; right: 300%;}
-
+.frame_bottom {border: 2px solid black; border-radius: 5px; background-color: white;
+    padding: 5px; height: 300px; width: 102%; position: relative; right: 10px;}
 
 .container {
 display: flex;
@@ -91,4 +90,3 @@ li a:hover {
   background-color: #274a79;
   color: green;
 }
-</style>
