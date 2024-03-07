@@ -13,7 +13,7 @@
         <li><a class="hover_over_nav_bar" href="#contact">tool_3</a></li>
         <li><a class="hover_over_nav_bar" href="#about">Visualize_tool</a></li>
         <li><a class="hover_over_nav_bar" href="#about">about students page</a></li>
-</ul>
+    </ul>
 </div>
 
     </head>
@@ -27,8 +27,6 @@
             <H1 style="text-align: center; padding: 10px;" >MEME</H1>
             <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
                     <input type="file" id="fasta" name="myfile">
-
-
                     <form>
                         <label for="nmotifs">Max amount of motifs to look for:</label>
                         <input type="text" id="nmotifs" name="nmotifs"><br>
@@ -48,33 +46,22 @@
                         <input type="radio" id="Protein" name="Seq-type" value="Protein">
                         <label for="javascript">Protein</label>
                     </form>
-                    <button>Find the binding sites</button></H1>
-                <p1>
-
-                </p1>
-
+                    <button>Find the binding sites</button>
 
         </div>
 
         <!-- The display box-->
 
             <div class="frame44">
-                <H1 style="text-align: center; padding: 10px;" >SequenceLogo output</H1>
+                <H1 style="text-align: center; padding: 10px;" >SequenceLogo</H1>
                 <p>Insert SequenceLogo here.</p>
-                <p1>Insert buttons to show SequenceLogos with a lower probability.</p1>
-
-
-
-
-
+                <p1>Insert buttons to show SequenceLogos with a lower probability.</p1><br>
+                <button>Download SequenceLogo</button>
         </div>
-
-
     </div>
 
         <!-- Here is the main info body-->
         <div class="container">
-
             <div class="frame">
                 <h2 style="text-align: center;">Input en Ouput files:</H2>
                 <p style="text-align: center;">
@@ -85,14 +72,17 @@
 
 
             <div class="frame">
-                <h2 style="text-align: center;">Sample text 2</h2>
+                <h2 style="text-align: center;">Progress</h2>
                 <p style="text-align: center;" >
-                    Sample text 3
+                    Display commandline output here if possible
             </div>
             <div class="frame">
-                <h2 style="text-align: center;" >Optionele argumenten:</h2>
+                <h2 style="text-align: center;" >Optional arguments:</h2>
                 <p style="text-align: center; line-height: 200%;">
-                To use
+                <i>Explanation of the (optional) parameters for using MEME:</i><br>
+                Max amount of motifs to look for corresponds to the "-nmotifs" command argument in the commandline version of MEME.<br>
+                Max motif size: max nucleotide lenght of motif -maxw<br>
+                Min motif size: Minimum nucleotide lenght of motif -minw<br>
                 </p>
             </div>
 

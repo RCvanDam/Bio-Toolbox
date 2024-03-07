@@ -30,15 +30,16 @@ margin-bottom: 50px;
 display: flex;
 padding: 10px;
 position: relative;
-gap: 30px;
+gap: 80px;
 top: 10px;
+padding-left: 565px;
 
 
 
 }
 
 .nav_bar {
-gap: 30px;
+gap: 80px;
 top: 100px;
 margin-bottom: 200px;
 
@@ -48,9 +49,9 @@ margin-bottom: 200px;
 display: flex;
 padding: 10px;
 position: relative;
-gap: 30px;
-top: 100px;
-margin-bottom: 100px;
+gap: 80px;
+top: 60px;
+margin-bottom: 140px;
 }
 
 
@@ -60,7 +61,7 @@ margin-bottom: 50px;
 display: flex;
 padding: 10px;
 position: relative;
-gap: 30px;
+gap: 80px;
 top: 100px;
 
 }
