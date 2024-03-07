@@ -5,14 +5,15 @@
         <meta charset="utf-8"/>
         <title>MEME Toolpage</title>
         <link rel="stylesheet" href="stylesheet.css">
-<div>
-<ul class="unordered_list_nav_bar">
-    <li><a class="hover_over_nav_bar"  href="#home">MEME</a></li>
-    <li><a class="hover_over_nav_bar" href="#news">FIMO</a></li>
-    <li><a class="hover_over_nav_bar" href="#contact">tool_3</a></li>
-    <li><a class="hover_over_nav_bar" href="#about">Visualize_tool</a></li>
-    <li><a class="hover_over_nav_bar" href="#about">about students page</a></li>
-</ul>
+
+<div class="nav_bar>
+    <ul class="unordered_list_nav_bar">
+        <li><a class="hover_over_nav_bar"  href="#home">MEME</a></li>
+        <li><a class="hover_over_nav_bar" href="#news">FIMO</a></li>
+        <li><a class="hover_over_nav_bar" href="#contact">tool_3</a></li>
+        <li><a class="hover_over_nav_bar" href="#about">Visualize_tool</a></li>
+        <li><a class="hover_over_nav_bar" href="#about">about students page</a></li>
+    </ul>
 </div>
 
     </head>
@@ -27,15 +28,35 @@
             <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
                     <input type="file" id="fasta" name="myfile">
 
+
+                    <form>
+                        <label for="nmotifs">Max amount of motifs to look for:</label>
+                        <input type="text" id="nmotifs" name="nmotifs"><br>
+
+                        <label for="lname">Max motif size:</label>
+                        <input type="text" id="lname" name="lname"><br>
+
+                        <label for="lname">Min motif size:</label>
+                        <input type="text" id="lname" name="lname"><br>
+
+                        <input type="radio" id="DNA" name="Seq-type" value="DNA">
+                        <label for="DNA">DNA</label>
+
+                        <input type="radio" id="RNA" name="Seq-type" value="RNA">
+                        <label for="css">RNA</label>
+
+                        <input type="radio" id="Protein" name="Seq-type" value="Protein">
+                        <label for="javascript">Protein</label>
+                    </form>
                     <button>Find the binding sites</button></H1>
                 <p1>
 
                 </p1>
-    </div>
+                </div>
 
-            </div>
+        </div>
 
-         <!-- The display box-->
+        <!-- The display box-->
         <div class="container_output">
             <div class="frame44">
                 <H1 style="text-align: center; padding: 10px;" >SequenceLogo output</H1>
@@ -50,6 +71,7 @@
 
 
     </div>
+
         <!-- Here is the main info body-->
         <div class="container">
             <div class="frame">
@@ -69,9 +91,9 @@
             <div class="frame">
                 <h2 style="text-align: center;" >Optionele argumenten:</h2>
                 <p style="text-align: center; line-height: 200%;">
-                 To use
+                To use
                 </p>
             </div>
-        </div>
+
     </body>
 </html>
