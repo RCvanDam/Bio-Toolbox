@@ -22,7 +22,7 @@ html,body
 .frame2 {border: 2px solid black; 
     border-radius: 5px; 
     background-color: white;
-    padding: 5px; 
+    padding: 1px; 
     height: 400px; 
     width: auto;}
 
@@ -68,9 +68,7 @@ z-index: 1;
     
     }
 
-.container_output {
-padding-top: 50px; margin-bottom: 50px;
-}
+
 
 .text_clean { 
     font-family: 'Helvetica', 'Arial', sans-serif;
