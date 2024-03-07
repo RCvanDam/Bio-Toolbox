@@ -8,16 +8,45 @@ html,body
     overflow-x: hidden; 
     
 }
-.frame {border: 2px solid black; border-radius: 5px; background-color: white;
-padding: 5px; height: 400px; width: 400px;}
 
-.frame2 {border: 2px solid black; border-radius: 5px; background-color: white;
-padding: 5px; height: 400px; width: auto;}
+/* dit is de hoofd css voor de frames  */
 
-.logo_mefim_findr {text-align: right; margin-top: 20px; margin-right: 20px; }
+.frame {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    padding: 5px; 
+    height: 400px; 
+    width: 400px;}
 
-.frame_bottom {border: 2px solid black; border-radius: 5px; background-color: white;
-    padding: 5px; height: 300px; width: 102%; position: relative; right: 10px;}
+.frame2 {border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    padding: 5px; 
+    height: 400px; 
+    width: auto;}
+
+.logo_mefim_findr {
+    text-align: right; 
+    margin-top: 20px; 
+    margin-right: 20px; }
+
+.frame_bottom {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    padding: 5px; 
+    height: 300px; 
+    width: 102%; 
+    position: relative; 
+    right: 10px;}
+
+.frame_bottom_info { 
+    padding: 5px; 
+    height: 200px; 
+    width: 400px; 
+    position: relative; 
+    right: 10px;}
 
 .container {
 display: flex;
@@ -27,7 +56,17 @@ padding: 10px;
 position: relative;
 top: 100px;
 margin-bottom: 200px;
+z-index: 1;
 }
+
+.container_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+    
+    }
 
 .container_output {
 padding-top: 50px; margin-bottom: 50px;
@@ -50,24 +89,34 @@ padding-top: 50px; margin-bottom: 50px;
 body {background-color: rgba(204, 204, 255, 0.5)}
 
 
-<!--For the menu-bar:-->
-<style>
-  .unordered_list_nav_bar {
+/* Navbar */
+
+.unordered_list_nav_bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: green;
-  position: fixed;
+  position: relative;
+  left: 10px;
+  z-index: 2;
 
+}
 
+#left_border {
+    border-left: 1px solid black;
+}
+
+#right_border {
+    border-right: 1px solid black;
 }
 
 li {
   float: left;
   background-color:  #A4A4FF;
   list-style-type: none;
-
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;  
+  bor
 }
 
 .right_alligned {
