@@ -1,8 +1,9 @@
+<!--TODO: Fix labels for file inputs, Add titles above/below contextboxes, add third box-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -11,47 +12,63 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Meme Sequencer</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Meme Sequencer</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#news">FIMO</a></li>
+                <li><a href="#contact">Meme</a></li>
+                <li><a href="#visualize">Visualize_tool</a></li>
+                <li><a href="#about">about students page</a></li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li class="active"><a href="#news">FIMO</a></li>
-          <li><a href="#contact">Meme</a></li>
-          <li><a href="#visualize">Visualize_tool</a></li>
-          <li><a href="#about">about students page</a></li>
-        </ul>
-      </div>
     </nav>
-    <div style="padding-left:5px;">
+
+    <!-- The page specific content -->
+    <div class="content" style="text-align: left;padding-left:5px;">
+
+        <!-- The title and explanation -->
         <h1 class="text_clean" style="text-align: left;">Fimo plugin</h1>
-        <!-- The display box-->
-        <div class="explanation_container" style="text-align: left; padding-top:1%;padding-bottom: 5%;" >
+        <div class="explanation_container" style="text-align: left; padding-top:1%;padding-bottom: 5%;">
             <div class="frame2">
                 <p>
-                    fimo works by giving a file with a list of known motifs <br>
-                    and the sequence to test if the motifs are in that sequence. in our case we are going to use promoter <br>
+                    fimo works by giving a file with a list of known motifs66(this is a meme,txt or a <br>
+                    and the sequence to test if the motifs are in that sequence. in our case we are going to use promoter
+                    <br>
                     sequences to find the transcription factorbinding sites fitting to those promoters.
                 </p>
             </div>
         </div>
-        <div class="contentBoxes" style="text-align: left">
-            <textarea style="height:500px;width:30%;resize: none" type="text" id="originalFile" name="country">cvc</textarea>
-            <textarea style="height:500px;width:30%;resize: none" type="text" id="SequencedFile" name="country">xvv</textarea>
+        <label>
+            inputfile fasta left and input meme right
+        </label>
+        <br>
+
+        <div class="contentBoxes" style="display:inline">
+            <textarea style="height:500px;width:30%;resize: none;display:inline-block" type="text" id="originalFile" name="country" placeholder="paste fasta here"></textarea>
+            <textarea style="height:500px;width:30%;resize: none;display:inline-block" type="text" id="SequencedFile" name="country">xvv</textarea>
+            <div style="outline-style: solid; outline-width: 2px;height: 500px; width: 12%;display:inline-block;margin-left:10%;vertical-align:top">
+                <h3 style="text-align: center;margin: 0;">Fimo</h3>
+                <textarea type="text" style="height:460px;width:20%;outline:none;border:none;padding:0;resize: none"></textarea>
+            </div>
         </div>
 
         <form class="form-inline">
-          <label class="sr-only" for="uploadMotif">Name</label>
-          <input type="file" class="form-control mb-2 mr-sm-2" id="uploadMotif" name="motif" accept="txt, meme">
+            <label class="sr-only" for="uploadMotif">Name</label>
+            <input type="file" class="form-control mb-2 mr-sm-2" id="uploadMotif" name="motif"
+                   accept="txt, meme">
 
-          <label class="sr-only" for="uploadFasta">Username</label>
-          <div class="input-group mb-2 mr-sm-2">
-              <input type="file" class="form-control mb-2 mr-sm-2" id="uploadFasta" name="fasta sequence" accept="fasta">
-          </div>
+            <label class="sr-only" for="uploadFasta">Username</label>
+            <div class="input-group mb-2 mr-sm-2">
+                <input type="file" class="form-control mb-2 mr-sm-2" id="uploadFasta" name="fasta sequence"
+                       accept="fasta">
+            </div>
 
-          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
+
     </div>
 </body>
 </html>
