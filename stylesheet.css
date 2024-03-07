@@ -14,7 +14,7 @@ padding: 5px; height: 400px; width: 400px;}
 .frame2 {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: auto;}
 
-.frame44 {border: 2px solid black; border-radius: 5px; background-color: rgba(204, 204, 255, 0.5);
+.frame44 {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: auto;}
 
 
@@ -27,7 +27,7 @@ padding: 5px; height: 400px; width: auto;}
 .container {
 display: flex;
 flex-wrap: wrap;
-justify-content: space-between;
+gap: 30px;
 padding: 10px;
 position: relative;
 top: 100px;
@@ -36,18 +36,17 @@ margin-bottom: 200px;
 
 .container_tool {
 display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
 padding: 10px;
 position: relative;
+gap: 30px;
 top: 100px;
 margin-bottom: 200px;
 }
 
 
-
 .container_output {
 padding-top: 50px; margin-bottom: 50px;
+
 }
 
 .text_clean {
