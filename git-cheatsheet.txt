@@ -1,8 +1,0 @@
-git status (checks what has been changed since latest push/pull)
-git add *.py (adds all python files to be commited and pushed, replace *.py with any files you need to commit.)
-git add *.txt (adds all txt files .... etc)
-git commit -m "message" (commits all added files to be pushed with the given message)
-git push (pushes commits to the git branch)
-
-git pull (pulls latest version of current branch to local)
-git branch [branch_name] (switches to the given branch)
