@@ -1,0 +1,87 @@
+<!--TODO: Fix labels for file inputs, Add titles above/below contextboxes, add third box-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Fimo</title>
+</head>
+<body>
+    <ul class="unordered_list_nav_bar">
+        <li id="left_border"><a class="hover_over_nav_bar"  href="#home">MEME</a></li>
+        <li><a class="hover_over_nav_bar" href="#news">FIMO</a></li>
+        <li><a class="hover_over_nav_bar" href="#contact">tool_3</a></li>
+        <li><a class="hover_over_nav_bar" href="#about">Visualize_tool</a></li>
+        <li id="right_border"><a class="hover_over_nav_bar" href="#about">about students page</a></li>
+    </ul>
+
+
+    <!-- The page specific content -->
+    <div class="content">
+        <!-- The title and explanation -->
+        <h1 class="text_clean">Fimo plugin</h1>
+        <div class="explanation_container">
+        </div>
+        <label>
+            inputfile fasta left and input meme right
+        </label>
+        <br>
+
+        <div class="content-boxes">
+            <textarea class="content-box" type="text" id="originalFile"></textarea>
+            <textarea class="content-box" type="text" id="SequencedFile"></textarea>
+            <div class="fimo-explanation-box">
+                <h3 class="explanation-box-header">Fimo</h3>
+                <textarea class="fimo-explanation-textbox" type="text">fimo works by giving a file with a list of known motifs66(this is a meme,txt or a streme or dreme file) and the DNA/RNA or protein sequence(Fasta) to test if the motifs are in that sequence. in our case we are going to use promoter sequences to find the transcription factorbinding sites fitting to those promoters.
+                </textarea>
+            </div>
+        </div>
+
+        <form class="form-inline">
+            <label for="uploadMotif">Motif:</label>
+            <input type="file" class="form-control mb-2 mr-sm-2" id="uploadMotif" name="motif"
+                   accept="txt, meme">
+
+            <label for="uploadFasta">Fasta:</label>
+            <input type="file" class="form-control mb-2 mr-sm-2" id="uploadFasta" name="fasta sequence"
+                   accept="fasta">
+
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+
+    </div>
+<footer>
+    <div class="container_bottom" >
+        <div class="frame_bottom_info">
+            <h2 class="text-center">Feedback</H2>
+            <p class="frame-bottom-paragraph">
+                Lorem ipsum
+            </p>
+        </div>
+
+        <div class="frame_bottom_info">
+            <h2 class="text-center">Contact</H2>
+            <p class="frame-bottom-paragraph">
+                For feedback, bugs and other problems. Contact us! <br>
+                Tai Vo - email: T.t.vo@st.hanze.nl <br>
+                Jarno Duiker - email: j.j.duiker@st.hanze.nl <br>
+                Ruben van Dam - email: r.vandam1000@gmail.com <br>
+                Floris Menninga - email: f.j.a.menninga.st.hanze.nl
+            </p>
+        </div>
+
+        <div class="frame_bottom_info">
+            <h2 class="text-center">References</H2>
+            <p class="frame-bottom-paragraph">
+                JASPAR: An open-access database of transcription factor binding profiles. (z.d.). JASPAR 2018. https://jaspar2020.genereg.net/about/ <br>
+                MEME Suite. (z.d.). https://meme-suite.org/meme/doc/overview.html
+            </p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

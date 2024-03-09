@@ -1,0 +1,138 @@
+.navbar-link {
+    color: black;
+}
+
+body {
+    background-color: rgba(204, 204, 255, 0.5);
+    min-height: 100vh;
+}
+
+.content{
+    margin-left:20px;
+    padding-top:1%;
+    text-align: left;
+    padding-left:5px;
+}
+
+.explanation-box-header{
+    text-align: center;
+    margin: 0;
+}
+
+.content-box {
+    height:500px;
+    width:30%;
+    resize: none;
+    display:inline-block
+}
+
+.content-boxes {
+    padding-bottom: 15px;
+}
+
+footer {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    height: 225px;
+    width: 101%;
+    position: relative;
+    right: 10px;
+    margin-top: 10%;
+}
+
+.frame_bottom_info {
+    padding: 5px;
+    height: 200px;
+    width: 400px;
+    position: relative;
+    right: 10px;
+}
+
+.container_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+}
+
+.fimo-explanation-box {
+    background-color:white;
+    outline-style: solid;
+    outline-width: 2px;
+    height: 500px;
+    width: 12%;
+    display:inline-block;
+    margin-left:10%;
+    vertical-align:top
+}
+
+.fimo-explanation-textbox {
+    height:480px;
+    width:100%;
+    outline:none;
+    border:none;
+    padding-top:10px;
+    resize: none;
+}
+
+.explanation_container {
+    padding-top:10px;
+    padding-bottom: 5%;
+}
+
+.frame-bottom-paragraph {
+    line-height: 200%;
+    text-align: center;
+}
+
+/*For the navbar*/
+.unordered_list_nav_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  left: 10px;
+  z-index: 2;
+
+}
+
+#left_border {
+    border-left: 1px solid black;
+}
+
+#right_border {
+    border-right: 1px solid black;
+}
+
+li {
+  float: left;
+  background-color: #A4A4FF;
+  list-style-type: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.right_alligned {
+    text-align: right;
+
+}
+
+.hover_over_nav_bar {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: black;
+  list-style-type: none;
+
+}
+
+li a:hover {
+    background-color: #274a79;
+    color: lightskyblue;
+
+}
