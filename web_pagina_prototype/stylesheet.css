@@ -48,6 +48,24 @@ html,body
     position: relative; 
     right: 10px;}
 
+.text_centered { 
+    text-align: center;
+}
+
+.line_height_200 { line-height: 200%;}
+
+.frame_MEME {
+    position: relative; left: 76%;
+}
+
+.frame_fimo {
+    position: relative; left: 80%;
+}
+
+.frame_about {
+    position: relative; left: 80%;
+}
+
 .container {
 display: flex;
 flex-wrap: wrap;
@@ -114,7 +132,7 @@ li {
   list-style-type: none;
   border-top: 1px solid black;
   border-bottom: 1px solid black;  
-  bor
+  
 }
 
 .right_alligned {
