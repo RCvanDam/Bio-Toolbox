@@ -32,11 +32,11 @@
         <br>
 
         <div class="content-boxes">
-            <textarea class="content-box" type="text" id="originalFile"></textarea>
-            <textarea class="content-box" type="text" id="SequencedFile"></textarea>
+            <textarea class="content-box" id="originalFile"></textarea>
+            <textarea class="content-box" id="SequencedFile"></textarea>
             <div class="fimo-explanation-box">
                 <h3 class="explanation-box-header">Fimo</h3>
-                <textarea class="fimo-explanation-textbox" type="text">fimo works by giving a file with a list of known motifs66(this is a meme,txt or a streme or dreme file) and the DNA/RNA or protein sequence(Fasta) to test if the motifs are in that sequence. in our case we are going to use promoter sequences to find the transcription factorbinding sites fitting to those promoters.
+                <textarea class="fimo-explanation-textbox">fimo works by giving a file with a list of known motifs66(this is a meme,txt or a streme or dreme file) and the DNA/RNA or protein sequence(Fasta) to test if the motifs are in that sequence. in our case we are going to use promoter sequences to find the transcription factorbinding sites fitting to those promoters.
                 </textarea>
             </div>
         </div>
@@ -44,11 +44,11 @@
         <form class="form-inline">
             <label for="uploadMotif">Motif:</label>
             <input type="file" class="form-control mb-2 mr-sm-2" id="uploadMotif" name="motif"
-                   accept="txt, meme">
+                   accept="text/*">
 
             <label for="uploadFasta">Fasta:</label>
             <input type="file" class="form-control mb-2 mr-sm-2" id="uploadFasta" name="fasta sequence"
-                   accept="fasta">
+                   accept="text/*">
 
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
