@@ -1,4 +1,4 @@
-# **The MEME Sequenator** #
+# **Transcription Factor Binding Site locator** #
 **version 0.01**
 ## **Authors** ##
 <p>
