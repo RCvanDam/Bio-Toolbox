@@ -28,7 +28,7 @@ def allowed_file(filename):
 # ‘/’ URL is bound with hello_world() function.
 def homepage():
     if request.method == "POST":
-        if "file" not in request.files:
+        if "file" not in request.files:#checks for the preesence of a file
             flash("No file part")
             return redirect(request.url)
         else:
@@ -38,6 +38,7 @@ def homepage():
             return redirect(request.url)
         if file == True and allowed_file(file.filename) == True:
             filename = werkzeug.utils.secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             if filename == "":
                 flash("we're still working on this filename error!")
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
