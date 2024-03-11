@@ -1,4 +1,4 @@
-# **Transcription Factor Binding Site locator** #
+# **MEFIM-FindR** #
 **version 0.01**
 ## **Authors** ##
 <p>
