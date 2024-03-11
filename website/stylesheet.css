@@ -92,21 +92,32 @@ top: 100px;
 body {background-color: rgba(204, 204, 255, 0.5)}
 
 
-/*For the menu-bar: */
+/* Navbar */
 
 .unordered_list_nav_bar {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
-  background-color: green;
-  position: fixed;
+  position: relative;
+  left: 10px;
+  z-index: 2;
+}
 
+#left_border {
+    border-left: 1px solid black;
+}
 
+#right_border {
+    border-right: 1px solid black;
 }
 
 li {
   float: left;
-  background-color:  #c8a2c8;
+  background-color:  white  ;
   list-style-type: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 
 }
 
