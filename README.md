@@ -43,14 +43,12 @@ RAM requirements depend on the size of the input files (Motif file and the seque
 .
 
  ## **Purpose of our website and tool** 
+MemeSuite is a collection of tools with the encompassing goal of transcription factor binding site recognition.
+To recognize TF(transcription factor) binding sites, one can use the FIMO tool. FIMO is used to scan for the presence of known transcription factor motifs, a list of motivs has to be given in order to search for them.
 
-The purpose of our tool is that people that have a biology background but not a programming background can use our tool we are using memesuite and fimo to accomplish this.
-
-memesuit will be used to find motifs in a DNA,RNA or protein sequence. A motif is a pattern of nucleotides that fall in a certain position of the sequence,
-
-in our case it's for finding transcriptionpatterns. or the chance that a certain nucleotide is set in a certain position of the sequence the use of memesuit is recognising these patterns which can be done by using multifasta.
-
-fimo works by giving a file with a list of known motifs and the sequence to test if the motifs are in that sequence. in our case we are gonna use promoter sequences to find the transcription factorbinding sites fitting to those promoters.
+The other tool that we implemented on the website is MEME, this tool is used to find novel transcription factor binding sites, for this, the user has to
+input a multi-fasta sequence with the sequences that the tool should use to find motifs, a motif is a short nucleotide patter that consists of 4 to 20 nucleotides. The sequence of this motif is not always the same but there are nucleotides at every position in this short sequence that have a higher likelyhood of occuring at that place. The chance of what nucleotide occurs at what position can be displayed using a SequenceLogo. See the example SequenceLogo below.
+![Example Sequence logo](Sequence_logo.png)
 
 
 ## **Contact** ##
