@@ -15,12 +15,17 @@ ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key="poep"
+
+
 
 def allowed_file(filename):
     if "." in filename and filename.rsplit(".",1)[1].lower in ALLOWED_EXTENSIONS:
         return True
     else:
         return False
+    
+
  
 
 # The route() function of the Flask class is a decorator, 
@@ -31,24 +36,33 @@ def allowed_file(filename):
 def homepage():
 
     if request.method == "GET":
-        return render_template("prototype.html")
-    elif request.method == 'POST':
+        return render_template("prototype.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
+    
 
-        # response when the submit button is clicked in the 'form/form_GET.html'
-        # pack the variables in a dictionary
+    elif request.method == 'POST':#user submitted inputs
         kwargs = {
         'course': request.form['course'],
         'ec': request.form['ec'],
         'teacher': request.form['test_teacher'],} # request.form refers to the input's name in html
-        user_file = request.files["user_file"]
-        sec_filename = werkzeug.utils.secure_filename(user_file.filename)
+
+        user_file = request.files["user_file"] #here we define the file the user submitted as user_file
+
+        if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
+            flash("submitted filename must contain atleast 1 character!")
+            return redirect(request.url)
         
-        user_file.save(os.path.abspath(os.path.join(app.root_path,sec_filename))) #saves the file under a new secure filename. in app_prototype.
+        if user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
+            secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
+            user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
+            flash("file submitted!") # still working on the flashes
+
+        
+        
         unpacked_kwargs = kwargs.keys()
         
         for iterate in unpacked_kwargs:
             print(kwargs[iterate])
-        return render_template("prototype.html")
+    return render_template("prototype.html")
             
 
 @app.route('/download')
@@ -67,7 +81,7 @@ def testing_url():
  
 
 # main driver function
-if __name__ == '__main__':   #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
+if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
     print(app.root_path)
     # run() method of Flask class runs the application 
     # on the local development server.
