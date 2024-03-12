@@ -36,6 +36,7 @@ def allowed_file(filename):
 def homepage():
 
     if request.method == "GET":
+        flash("inititial visit!!!")
         return render_template("prototype.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
     
 
@@ -49,26 +50,30 @@ def homepage():
 
         if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
             flash("submitted filename must contain atleast 1 character!")
+            print("flasj was triggered")
             return redirect(request.url)
         
-        if user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
+        elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
             secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
             user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
             flash("file submitted!") # still working on the flashes
+            print("flash was triggered")
+            return render_template("prototype.html")
+        else:
+            flash("something wen't wrong")
+            return render_template("prototype.html")
 
         
+        # unpacked_kwargs = kwargs.keys()
         
-        unpacked_kwargs = kwargs.keys()
-        
-        for iterate in unpacked_kwargs:
-            print(kwargs[iterate])
+        # for iterate in unpacked_kwargs:
+        #     print(kwargs[iterate])
     return render_template("prototype.html")
             
 
 @app.route('/download')
 def download():
-    uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
-    outputs = os.path.join(app.root_path, "output_files\\test_output_delete_this.txt")
+    outputs = os.path.abspath(os.path.join(app.root_path, "output_files\\test_output_delete_this.txt")) # generate a variable absolute path so it works on anyone's pc
     return flask.send_file(outputs, as_attachment=True)
 
 
