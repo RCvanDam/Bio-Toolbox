@@ -4,6 +4,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for # delete werkzeug and reinstall it's 2.2 version
 import werkzeug
 import os
+import flask
 
 os.environ["FLASK_DEBUG"]="1" #turn on debug mode
  
@@ -27,7 +28,7 @@ def allowed_file(filename):
 @app.route('/', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
 def homepage():
-
+    print("this is the app.root folder from homepage",app.root_path)
     if request.method == "GET":
         return render_template("prototype.html")
     elif request.method == 'POST':
@@ -49,6 +50,11 @@ def homepage():
         return render_template("prototype.html")
             
 
+@app.route('/download')
+def download():
+    uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+    outputs = os.path.join(app.root_path, "output_files\\test_output_delete_this.txt")
+    return flask.send_file(outputs, as_attachment=True)
 
 
  
@@ -65,4 +71,5 @@ if __name__ == '__main__':   #this statement basically checks if the file is bei
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
+    print("this is the app.root folder",app.root_path)
 
