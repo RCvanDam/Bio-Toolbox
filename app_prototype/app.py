@@ -27,26 +27,24 @@ def allowed_file(filename):
 @app.route('/', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
 def homepage():
-    if request.method == "POST":
-        if "file" not in request.files:#checks for the preesence of a file
-            flash("No file part")
-            return redirect(request.url)
-        else:
-            file = request.files["file"]
-        if file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
-            flash("No selected file")
-            return redirect(request.url)
-        if file == True and allowed_file(file.filename) == True:
-            filename = werkzeug.utils.secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            if filename == "":
-                flash("we're still working on this filename error!")
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
-                return redirect(url_for('download_file', name=filename)) # to be edited
+
+    if request.method == "GET":
+        return render_template("prototype.html")
+    elif request.method == 'POST':
+        # response when the submit button is clicked in the 'form/form_GET.html'
+        # pack the variables in a dictionary
+        kwargs = {'course': request.form['course'],
+        'ec': request.form['ec'],
+        'teacher': request.form['teacher'],}
+        unpacked_kwargs = kwargs.keys()
         
+        for iterate in unpacked_kwargs:
+            print(kwargs[iterate])
+        return render_template("prototype.html")
+            
 
 
-    return render_template("prototype.html")
+
  
 
 @app.route('/test')

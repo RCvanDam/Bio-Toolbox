@@ -42,14 +42,19 @@
     <div style="padding-left: 50px;">
         <!--Button and input-->
         <div >
-            <label class="text_clean">Input your fasta file here:</label>
-            <div style="margin-left: 50px;">
-                <input type="file" id="fasta" name="myfile">
-                <br>
-                <input type="submit" name="submit" value="submit">
-                <input type="password" name="user_pswd">
+            <form action="" method="POST">
 
-            </div>
+                <label for="course">Course Name</label>
+                <input class="form-control" name="course" placeholder="Course Name"><br />
+
+                <label for="EC">EC's</label>
+                <input class="form-control" name="ec" placeholder="Number of EC credits"><br />
+
+                <label for="user_teacher">Teacher</label>
+                <input id="user_teacher"  class="form-control" name="teacher" placeholder="Name of teacher"><br />
+
+                <button type="submit" name='submit'>Submit</button>
+            </form>
             
         </div>
 
