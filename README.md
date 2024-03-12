@@ -26,6 +26,7 @@ It can be compiled from source as described below.
 Execute the folowing commands:
 <p> 
 Download the meme-x.x.x.tar.gz file from the following website: <br />
+Note: This manual was tested with MemeSuite version 5.5.5. Newer versions may not work in the same way.
 https://meme-suite.org/meme/doc/download.html <br />
 <code> tar zxf meme-5.5.5.tar.gz </code> # to decompress the files <br />
          <code> cd meme-5.5.5 </code> # to move to the directory <br /> </code>
