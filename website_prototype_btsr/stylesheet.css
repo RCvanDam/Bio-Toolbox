@@ -20,6 +20,36 @@ html,body
     box-shadow: 5px 5px 5px;
 }
 
+.frame_tool {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 15px;
+}
+
+.frame_tool_top_right {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+    
+}
+
+.frame_tool_top_left {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+}
 
 
 .logo_mefim_findr {
