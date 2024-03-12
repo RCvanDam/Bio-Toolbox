@@ -43,6 +43,7 @@ def homepage():
                 flash("we're still working on this filename error!")
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
                 return redirect(url_for('download_file', name=filename)) # to be edited
+        
 
 
     return render_template("prototype.html")
