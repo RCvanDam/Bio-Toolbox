@@ -1,27 +1,98 @@
+
 html,body
 {
     width: 100%;
     height: 107%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden;
-
+    overflow-x: hidden; 
+    
 }
-.frame {border: 2px solid black; border-radius: 5px; background-color: white;
-padding: 5px; height: 400px; width: 400px;}
+
+/* dit is de hoofd css voor de frames  */
 
 .frame2 {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: auto;}
+
+.frame {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    padding: 5px; 
+    height: 500px; 
+    width: 400px;
+    box-shadow: 5px 5px 5px;
+}
+
+.center_text {
+  text-align: center;
+  padding: 10px;
+}
+
+.text_clean {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 30px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.nav_bar {
+gap: 80px;
+top: 100px;
+margin-bottom: 200px;
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+padding-right: 50px;
+
+
+}
 
 .frame3 {border: 2px solid black; border-radius: 5px; background-color: white;
 padding: 5px; height: 400px; width: auto;}
 
 
-.logo_mefim_findr {text-align: right; margin-top: 20px; margin-right: 20px; }
 
-.frame_bottom_page {border: 2px solid black; border-radius: 5px; background-color: white;
-    padding: 5px; height: 400px; width: auto; position: relative; right: 300%;}
+.logo_mefim_findr {
+    text-align: right; 
+    margin-top: 20px; 
+    margin-right: 20px; }
 
+.frame_bottom {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    padding: 5px; 
+    height: 300px; 
+    width: 102%; 
+    position: relative; 
+    right: 10px;}
+
+.frame_bottom_info { 
+    padding: 5px; 
+    height: 200px; 
+    width: 400px; 
+    position: relative; 
+    right: 10px;}
+
+.text_centered { 
+    text-align: center;
+}
+
+.line_height_200 { line-height: 200%;}
+
+.frame_MEME {
+    position: relative; left: 76%;
+}
+
+.frame_fimo {
+    position: relative; left: 80%;
+}
+
+.frame_about {
+    position: relative; left: 80%;
+}
 
 .container {
 padding-top: 50px;
@@ -34,19 +105,9 @@ top: 10px;
 padding-left: 150px;
 
 
-}
-/* */
-.nav_bar {
-gap: 80px;
-top: 100px;
-margin-bottom: 200px;
-list-style-type: none;
-margin: 0;
-padding: 0;
-overflow: hidden;
-
 
 }
+
 
 .container_tool {
 display: flex;
@@ -57,7 +118,6 @@ top: 60px;
 margin-bottom: 105px;
 padding-left: 150px;
 }
-
 
 .container_output {
 padding-top: 50px;
@@ -70,16 +130,33 @@ top: 100px;
 
 }
 
-.text_clean {
+.container_main {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+padding: 30px;
+position: relative;
+top: 80px;
+margin-bottom: 200px;
+z-index: 1;
+}
+
+.container_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+    
+    }
+
+
+
+.text_clean { 
     font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: 30px;
     line-height: 1.6;
     color: #333;
-}
-
-.center_text {
-  text-align: center;
-  padding: 10px;
 }
 
 .center_item { display: block; margin-left: auto; margin-right: auto;}
@@ -102,6 +179,9 @@ body {background-color: rgba(204, 204, 255, 0.5)}
   position: relative;
   left: 10px;
   z-index: 2;
+ 
+  
+
 }
 
 #left_border {
@@ -117,8 +197,9 @@ li {
   background-color:  white  ;
   list-style-type: none;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid black;  
 
+  
 }
 
 .right_alligned {
@@ -140,4 +221,9 @@ li {
 li a:hover {
   background-color: #274a79;
   color: green;
+}
+
+.shadow { 
+    box-shadow: 5px 5px 5px;
+
 }
