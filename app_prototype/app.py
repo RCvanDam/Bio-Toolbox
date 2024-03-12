@@ -31,11 +31,17 @@ def homepage():
     if request.method == "GET":
         return render_template("prototype.html")
     elif request.method == 'POST':
+
+        
         # response when the submit button is clicked in the 'form/form_GET.html'
         # pack the variables in a dictionary
-        kwargs = {'course': request.form['course'],
+        kwargs = {
+        'course': request.form['course'],
         'ec': request.form['ec'],
-        'teacher': request.form['teacher'],}
+        'teacher': request.form['test_teacher'],} # request.form refers to the input's name in html
+        user_file = request.files["user_file"]
+        filename = werkzeug.utils.secure_filename(user_file.filename)
+        user_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
         unpacked_kwargs = kwargs.keys()
         
         for iterate in unpacked_kwargs:

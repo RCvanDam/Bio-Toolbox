@@ -42,7 +42,7 @@
     <div style="padding-left: 50px;">
         <!--Button and input-->
         <div >
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
 
                 <label for="course">Course Name</label>
                 <input class="form-control" name="course" placeholder="Course Name"><br />
@@ -51,13 +51,22 @@
                 <input class="form-control" name="ec" placeholder="Number of EC credits"><br />
 
                 <label for="user_teacher">Teacher</label>
-                <input id="user_teacher"  class="form-control" name="teacher" placeholder="Name of teacher"><br />
+                <input id="user_teacher"  class="form-control" name="test_teacher" placeholder="Name of teacher"><br />
+
+                <label for="file">Insert File</label>
+                <input id="file" type="file" class="form-control" name="user_file" placeholder="txt or fasta file"><br />
 
                 <button type="submit" name='submit'>Submit</button>
             </form>
             
         </div>
 
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1>Download the file</h1>
+            <button class="btn btn-success">Download</button>
+        </div>
     </div>
 
     <!-- The display box-->
