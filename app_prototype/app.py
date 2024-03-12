@@ -10,7 +10,7 @@ os.environ["FLASK_DEBUG"]="1" #turn on debug mode
  
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-UPLOAD_FOLDER = "\\app_prototype\\user_input_files"
+UPLOAD_FOLDER = r"\app_prototype\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 app = Flask(__name__)
@@ -22,18 +22,18 @@ def allowed_file(filename):
     else:
         return False
  
+
 # The route() function of the Flask class is a decorator, 
 # which tells the application which URL should call 
 # the associated function.
 @app.route('/', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
 def homepage():
-    print("this is the app.root folder from homepage",app.root_path)
+
     if request.method == "GET":
         return render_template("prototype.html")
     elif request.method == 'POST':
 
-        
         # response when the submit button is clicked in the 'form/form_GET.html'
         # pack the variables in a dictionary
         kwargs = {
@@ -41,8 +41,9 @@ def homepage():
         'ec': request.form['ec'],
         'teacher': request.form['test_teacher'],} # request.form refers to the input's name in html
         user_file = request.files["user_file"]
-        filename = werkzeug.utils.secure_filename(user_file.filename)
-        user_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #saves the file under a new secure filename.
+        sec_filename = werkzeug.utils.secure_filename(user_file.filename)
+        
+        user_file.save(os.path.abspath(os.path.join(app.root_path,sec_filename))) #saves the file under a new secure filename. in app_prototype.
         unpacked_kwargs = kwargs.keys()
         
         for iterate in unpacked_kwargs:
@@ -67,9 +68,9 @@ def testing_url():
 
 # main driver function
 if __name__ == '__main__':   #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
-    
+    print(app.root_path)
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
-    print("this is the app.root folder",app.root_path)
+
 
