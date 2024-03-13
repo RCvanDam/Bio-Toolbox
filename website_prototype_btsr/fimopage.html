@@ -40,6 +40,9 @@
                     <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
                     <input class="form-control" type="file" id="fasta" name="myfile">
                     <br>
+                    <p>Select the meme file that you want to use and adjust the optional parameters.</p>
+                    <input class="form-control" type="file" id="meme" name="memefile">
+                    <br>
                     <form>
                                 <label for="nmotifs">Max amount of motifs to look for:</label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
@@ -74,18 +77,32 @@
                                 <label for="nmotifs">Other variable here...:</label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
                                     <option>please select a number</option>
-                                    <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                     <option>4</option>
                                     <option>5</option>
+                                    <option>6</option>
                                 </select><br>
 
                                 <label for="msize">Max motif size:</label>
-                                <input type="text" id="msize" name="msize"><br>
+                                <select class="form-control" id="msize" name="msize">
+                                    <option>please select a number</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select><br>
 
                                 <label for="minsize">Min motif size:</label>
-                                <input type="text" id="minsize" name="minsize"><br>
+                                <select class="form-control" id="minsize" name="minsize">
+                                    <option>please select a number</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select><br>
 
                                 <input type="radio" id="DNA" name="Seq-type" value="DNA">
                                 <label for="DNA">DNA</label>
@@ -174,9 +191,11 @@
                     <div class="col-sm-4">
                             <h2 class="text_centered">Contact</H2>
                             <p class="line_height_200 text_centered" >
-                                For feedback, bugs and other problems. Contact us! <br>
+                                For feedback, bugs and other problems. Contact us 
+                                <a id="easteregg" href="https://nl.pinterest.com/rhodes1bakers4/ferret-board/">!</a>
+                                <br>
                                 Tai Vo git: MoonCake98 <br>
-                                Jarno Duiker git: azzipxonraj <br>
+                                Jarno Duiker git: azzipxonraj<br>
                                 Ruben van Dam git: RCvanDam <br>
                                 Floris Menninga git: Fl-ris
                             </p>

@@ -159,3 +159,8 @@ li a:hover {
     box-shadow: 5px 5px 5px;
 
 }
+
+#easteregg {
+    text-decoration: none;
+    color: black;
+}
