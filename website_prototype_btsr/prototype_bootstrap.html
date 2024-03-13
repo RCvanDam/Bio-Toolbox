@@ -21,7 +21,7 @@
                     <ul class="unordered_list_nav_bar">
                         <li id="left_border"><a class="hover_over_nav_bar"href="prototype_bootstrap.html">HOME</a></li>
                         <li><a class="hover_over_nav_bar" href="memePage.html">MEME</a></li>
-                        <li><a class="hover_over_nav_bar"href="#fimo">FIMO</a></li>
+                        <li><a class="hover_over_nav_bar"href="fimopage.html">FIMO</a></li>
                         <li id="right_border"><a class="hover_over_nav_bar" href="#tool_3">tool_3 (optional)</a></li>
                     </ul>
                 </div>
@@ -39,8 +39,9 @@
                             <h2 class="text-center">About</H2>
                             <hr class="hr_border">
                             <p class="text_centered">
-                                This website was constructed by four students of the Hanze University of applied sciences with the purpose of making a easily accessible way to both find new transcription factor binding sites and to check for the presence of them when the user gives a list of motifs to look for.
-
+                                This website was constructed by four students of the Hanze University of applied sciences with the purpose of making a easily accessible way to both find new transcription factor binding sites and to check for the presence of them when the user gives a list of motifs to look for. 
+                                <br>
+                                <br>
                                 This web-tool can be operated without knowledge of linux or command-line tools, it is all handled behind the user friendly interface.
 
                             </p>
@@ -54,13 +55,17 @@
                                 <h2 class="text-center">MEME</h2>
                                 <hr class="hr_border">
                                 <p class="text_centered" >
-                                    MemeSuite is a collection of tools with the encompassing goal of transcription factor binding site recognition and the discovery of new binding sites.
-                                    To recognize TF’s(transcription factors) binding sites, one can use the FIMO tool. FIMO is used to scan for the presence of known transcription factor motifs, a list of motifs has to be given in order to search for them.
+                                    MEME is short for: “Multiple Em for Motif Elicitation” and is used to discover new motifs in multi-fasta files. The sequences in this fasta file can for example be related proteins from different organisms. These sequences will be used to find consensus regions, that means that there are certain short sequences of 4 to 20 nucleotides that occur in more than one of these sequences. The larger the amount of sequences within the muli-fasta, the more likely it is that the motif was not a result of pure chance. To quantify these statistics, found motifs are given a P-value. The lower the P-value the higher the statistical significance.   
 
-                                    The other tool that we implemented on the website is MEME, this tool is used to find novel transcription factor binding sites, for this, the user has to
-                                    input a multi-fasta sequence with the sequences that the tool should use to find motifs, a motif is a short nucleotide patter that consists of 4 to 20 nucleotides. The sequence of this motif is not always the same but there are nucleotides at every position in this short sequence that have a higher likelihood of occurring at that place. The chance of what nucleotide occurs at what position can be displayed using a SequenceLogo. See the example SequenceLogo below.
+                                    To use MEME, there are several parameters that should be configured. Next to every text-box or radio button, there is a default value to get started. Many of the parameters depend on the given sequence, for example the sequence alphabet: It can be either DNA, RNA or protein.
+                                    MEME looks for ungapped motifs, this means that there are no nucleotides that are not part of a motif in between two parts of the same motif. If the user does need to find gapped motifs, there are different algorithms that can be used like GLAM2 but this is beyond the scope of this website.
 
-                                    In the motif sequence, the nucleotide for every position in the sequence is displayed. When there are more occurrences of a particular nucleotide, this nucleotide will be on top of- and bigger than the lesser frequent occurring nucleotides.
+
+                                    For further reference, see this paper:
+                                    <a href="//www.ncbi.nlm.nih.gov/pmc/articles/PMC2703892/"> ncbi meme explenation</a>" 
+                                    It is about all of the tools that comprise the MemeSuite.
+
+
                                 </p>
                         </div>  
                     </div>
@@ -70,8 +75,14 @@
                                 <h2 class="text-center" >FIMO</h2>
                                 <hr class="hr_border">
                                 <p class="text_centered">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae hendrerit dolor, in volutpat ipsum. Vivamus at nunc lectus. Integer eget dapibus nulla. Phasellus vel neque ac augue laoreet finibus at vel nulla. Maecenas nulla nisl, elementum at hendrerit ac, volutpat et magna. Sed porttitor pretium nunc, id pellentesque risus faucibus ac. Mauris quis ultrices orci. Nulla rhoncus augue vitae vulputate congue. In sodales venenatis nulla, ut congue est viverra eu. Integer mattis tellus tellus, ut congue ligula fringilla eget. Pellentesque a leo ut justo tincidunt pulvinar. Phasellus rutrum dui eu nibh convallis pellentesque. Maecenas sit amet molestie tortor.
-                                    Cras porttitor varius diam vel imperdiet. Ut sagittis fringilla laoreet. Maecenas congue maximus turpis et viverra. Pellentesque eu venenatis ipsum. Duis lacinia ullamcorper eros et pharetra. Cras fermentum ligula nisl, non finibus sem rhoncus sit amet. Etiam ac tempus ante.
+                                    FIMO is the abbreviation for: “Find Individual Motif Occurrences” and it is used to check for the presence of motifs in a given sequence the FIMO tool can be used. It requires a multi-fasta and using a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.  
+                                    This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.
+                                    
+                                    Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored. 
+                                    <br>
+                                    <br>
+                                    More about the possible parameters on FIMO’s tool-page.
+                                    <a href="https://meme-suite.org/meme/doc/fimo.html">FIMO-aboutpage</a>                                    
                                 </p>
                         </div>
                     </div>
@@ -86,7 +97,7 @@
                     <div class="col-sm-4">
                             <h2 class="text_centered">Feedback</H2>
                             <p class="text_centered">
-                                Lorem ipsum
+                            For feedback, bugs and other problems. Contact us! <br>
                             </p>
                     </div>
                 
@@ -109,7 +120,6 @@
                         <div class="frame_bottom_info">
                             <h2 class="text_centered">Refrences</H2>
                             <p class="text_centered  line_height_200">
-                                JASPAR: An open-access database of transcription factor binding profiles. (z.d.). JASPAR 2018. https://jaspar2020.genereg.net/about/ <br>   
                                 MEME Suite. (z.d.). https://meme-suite.org/meme/doc/overview.html       
                             </p>
                         </div>
