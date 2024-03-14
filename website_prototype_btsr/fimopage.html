@@ -142,8 +142,9 @@
                         <h2 class="center_text">Input en Ouput files:</H2>
                             <hr class="hr_border">
                         <p>
-                            To find motifs using MEME, the tool should be presented one or multiple sequences in a fasta, multi-fasta or plain-text.
-                            The output of the program is one or more sequence logo pictures, the full list of these motifs is also saved in a seperate file (.html) and the sequence logo picture can be downloaded for later reference.
+                         FIMO requires a multi-fasta and a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.<br>
+This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.<br>
+Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored.
                         </p>
                     </div>
                 </div>
@@ -154,7 +155,7 @@
                         <hr class="hr_border">
 
                         <p class="center_text" >
-                            Display commandline output here if possible
+                            Commandline Output
                     </div>
                 </div>
 
@@ -163,10 +164,10 @@
                         <h2 class="center_text" >Optional arguments:</h2>
                         <hr class="hr_border">
                         <p class="center_text">
-                        <i>Explanation of the (optional) parameters for using MEME:</i><br>
-                        Max amount of motifs to look for corresponds to the "-nmotifs" command argument in the commandline version of MEME.<br>
-                        Max motif size: max nucleotide lenght of motif -maxw<br>
-                        Min motif size: Minimum nucleotide lenght of motif -minw<br>
+                    Only scan for a given motif ID (corresponds to commandline argument: --motif <id>  )
+                    Reject matches with a higher P-value than the given value (corresponds to Commandline argument: --thresh )
+                    This last option is to reject matches with a lesser statistical likelihood of being a good match for the given motif. The program also has a internal P-value cut-off for when the amount of possible matches exeeds a certain number, this value is not configurable.
+
                         </p>
                     </div>
                 </div>
