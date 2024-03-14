@@ -4,7 +4,7 @@
 
 
         <meta charset="utf-8">
-        <title>MEME Toolpage</title>
+        <title>FIMO Toolpage</title>
         <link rel="stylesheet" href="stylesheet.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -45,18 +45,18 @@
                     <br>
                     <form>
                     <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Use motif from database (select below)
                                 </label>
                                 </div>
 
 
-                                <label for="nmotifs">Motif database to use:</label>
+                                <label for="nmotifs"><b>Motif database to use:</b></label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
                                     <option>Please select database to use</option>
                                     <option>Human</option>
@@ -75,8 +75,21 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select><br>
+
+                                 <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Custom P-value cut-off: (Select below)
+                                </label>
+                                </div>
+
                                 <label for="customRange1" class="form-label">Select P-value threshold:</label>
-                                <input type="range" class="form-range" id="customRange1">
+                                <input type="range" class="form-range" min="0" max="5" id="customRange1">
+
                             </form>
                             <br>
                             <button type="button" class="btn btn-outline-success">Find the binding sites</button>
