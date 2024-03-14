@@ -111,7 +111,9 @@ html,body
   position: relative;
   left: 10px;
   z-index: 2;
- 
+  box-shadow: 5px 5px 5px;
+  width: 91.3%;
+
   
 
 }
@@ -155,10 +157,6 @@ li a:hover {
   color: green;
 }
 
-.shadow { 
-    box-shadow: 5px 5px 5px;
-
-}
 
 #easteregg {
     text-decoration: none;
