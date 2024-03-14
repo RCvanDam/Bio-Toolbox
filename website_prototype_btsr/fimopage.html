@@ -37,21 +37,33 @@
                     <div class="frame_tool_top_left">
                     <H1 class="center_text" >FIMO</H1>
                     <hr class="hr_border">
-                    <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
+                    <p>Select the fasta file to use and adjust the optional parameters.</p>
                     <input class="form-control" type="file" id="fasta" name="myfile">
                     <br>
-                    <p>Select the meme file that you want to use and adjust the optional parameters.</p>
+                    <p>Select the motif file to use and adjust the optional parameters.</p>
                     <input class="form-control" type="file" id="meme" name="memefile">
                     <br>
                     <form>
-                                <label for="nmotifs">Max amount of motifs to look for:</label>
+                    <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Use motif from database (select below)
+                                </label>
+                                </div>
+
+
+                                <label for="nmotifs">Motif database to use:</label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
-                                    <option>please select a number</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option>Please select database to use</option>
+                                    <option>Human</option>
+                                    <option>Jaspar</option>
+                                    <option>E.coli (Bacterium)</option>
+                                    <option>Mouse</option>
+                                    <option>Drosophila (fly)</option>
                                 </select><br>
 
                                 <label for="nmotifs">Other variable here...:</label>
@@ -63,55 +75,8 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select><br>
-
-                                <label for="nmotifs">Other variable here...:</label>
-                                <select class="form-control" id="nmotifs" name="nmotifs">
-                                    <option>please select a number</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select><br>
-
-                                <label for="nmotifs">Other variable here...:</label>
-                                <select class="form-control" id="nmotifs" name="nmotifs">
-                                    <option>please select a number</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select><br>
-
-                                <label for="msize">Max motif size:</label>
-                                <select class="form-control" id="msize" name="msize">
-                                    <option>please select a number</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select><br>
-
-                                <label for="minsize">Min motif size:</label>
-                                <select class="form-control" id="minsize" name="minsize">
-                                    <option>please select a number</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select><br>
-
-                                <input type="radio" id="DNA" name="Seq-type" value="DNA">
-                                <label for="DNA">DNA</label>
-
-                                <input type="radio" id="RNA" name="Seq-type" value="RNA">
-                                <label for="RNA">RNA</label>
-
-                                <input type="radio" id="Protein" name="Seq-type" value="Protein">
-                                <label for="Protein">Protein</label>
+                                <label for="customRange1" class="form-label">Select P-value threshold:</label>
+                                <input type="range" class="form-range" id="customRange1">
                             </form>
                             <br>
                             <button type="button" class="btn btn-outline-success">Find the binding sites</button>
@@ -122,11 +87,11 @@
         <!-- The display box-->
                 <div class="col-sm-4"> 
                     <div class="frame_tool_top_right">
-                        <H1 class="center_text" >SequenceLogo</H1>
+                        <H1 class="center_text" >Results</H1>
                         <hr class="hr_border">
-                        <p>Insert SequenceLogo here.</p>
-                        <p>Insert buttons to show SequenceLogos with a lower probability.</p><br>
-                        <button type="button" class="btn btn-outline-success">Download SequenceLogo</button>
+                        <p>Insert output table with results here. </p>
+
+                        <button type="button" class="btn btn-outline-success">Download full table with all motifs</button>
                     </div>
                 </div>
             </div>    
@@ -165,7 +130,7 @@ Just like with MEME, the results of FIMO are returned with a p-value. The user c
                         <hr class="hr_border">
                         <p class="center_text">
                     Only scan for a given motif ID (corresponds to commandline argument: --motif <id>  )
-                    Reject matches with a higher P-value than the given value (corresponds to Commandline argument: --thresh )
+                    Reject matches with a higher P-value than the given value (corresponds to commandline argument: --thresh)
                     This last option is to reject matches with a lesser statistical likelihood of being a good match for the given motif. The program also has a internal P-value cut-off for when the amount of possible matches exeeds a certain number, this value is not configurable.
                     The final parameter is: Database, With this option, the user can specify whith wich database the mulit-fasta should be scanned when there is no motif file given. (Using a motif file overrides this option)
 
