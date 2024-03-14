@@ -11,6 +11,9 @@ html,body
 
 /* dit is de hoofd css voor de frames  */
 
+.frame2 {border: 2px solid black; border-radius: 5px; background-color: white;
+padding: 5px; height: 400px; width: auto;}
+
 .frame {
     border: 2px solid black; 
     border-radius: 5px; 
@@ -20,6 +23,34 @@ html,body
     width: 400px;
     box-shadow: 5px 5px 5px;
 }
+
+.center_text {
+  text-align: center;
+  padding: 10px;
+}
+
+.text_clean {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 30px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.nav_bar {
+gap: 80px;
+top: 100px;
+margin-bottom: 200px;
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+padding-right: 50px;
+
+
+}
+
+.frame3 {border: 2px solid black; border-radius: 5px; background-color: white;
+padding: 5px; height: 400px; width: auto;}
 
 
 
@@ -64,6 +95,42 @@ html,body
 }
 
 .container {
+padding-top: 50px;
+margin-bottom: 50px;
+display: flex;
+padding: 10px;
+position: relative;
+gap: 80px;
+top: 10px;
+padding-left: 150px;
+
+
+
+}
+
+
+.container_tool {
+display: flex;
+padding: 10px;
+position: relative;
+gap: 80px;
+top: 60px;
+margin-bottom: 105px;
+padding-left: 150px;
+}
+
+.container_output {
+padding-top: 50px;
+margin-bottom: 50px;
+display: flex;
+padding: 10px;
+position: relative;
+gap: 80px;
+top: 100px;
+
+}
+
+.container_main {
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;

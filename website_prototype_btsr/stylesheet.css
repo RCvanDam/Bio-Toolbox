@@ -1,8 +1,8 @@
 
 html,body
 {
-    width: 100%;
-    height: 107%;
+    width: auto;
+    height: auto;
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
@@ -15,12 +15,41 @@ html,body
     border: 2px solid black; 
     border-radius: 5px; 
     background-color: white;
-    padding: 5px; 
-    height: 500px; 
-    width: 400px;
+    height: auto; 
+    width: auto;
     box-shadow: 5px 5px 5px;
 }
 
+.frame_tool {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 15px;
+}
+
+.frame_tool_top_right {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+    
+}
+
+.frame_tool_top_left {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+}
 
 
 .logo_mefim_findr {
@@ -28,57 +57,25 @@ html,body
     margin-top: 20px; 
     margin-right: 20px; }
 
-.frame_bottom {
-    border: 2px solid black; 
-    border-radius: 5px; 
-    background-color: white;
-    padding: 5px; 
-    height: 300px; 
-    width: 102%; 
-    position: relative; 
-    right: 10px;}
 
-.frame_bottom_info { 
-    padding: 5px; 
-    height: 200px; 
-    width: 400px; 
-    position: relative; 
-    right: 10px;}
 
 .text_centered { 
-    text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+
 }
 
 .line_height_200 { line-height: 200%;}
 
-.frame_MEME {
-    position: relative; left: 76%;
-}
 
-.frame_fimo {
-    position: relative; left: 80%;
-}
 
-.frame_about {
-    position: relative; left: 80%;
-}
-
-.container {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-padding: 30px;
-position: relative;
-top: 80px;
-margin-bottom: 200px;
-z-index: 1;
-}
 
 .container_bottom {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px;
     position: relative;
     
     }
@@ -94,12 +91,14 @@ z-index: 1;
 
 .center_item { display: block; margin-left: auto; margin-right: auto;}
 
-.hr_border {border: 1px solid black; width: 410px; position: relative; right: 7px;}
+.hr_border {border: 1px solid black; position: relative;}
 
 .hr_border_bottom {border: 1px solid black; width: 110%; position: relative; }
 
 
-body {background-color: rgba(204, 204, 255, 0.5)}
+#background_color {background-color: rgba(204, 204, 255, 0.5)}
+
+#background_color_lower_frame {background-color: white; border-top: 2px black solid;}
 
 
 /* Navbar */
@@ -159,4 +158,9 @@ li a:hover {
 .shadow { 
     box-shadow: 5px 5px 5px;
 
+}
+
+#easteregg {
+    text-decoration: none;
+    color: black;
 }
