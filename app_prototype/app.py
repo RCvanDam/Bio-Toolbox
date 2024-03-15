@@ -64,7 +64,7 @@ def home_about_page():
             return render_template("prototype_bootstrap.html")
         else:
             flash("something wen't wrong")
-            return render_template("prototype_bootstrap.html")
+            return render_template("prototype_bootstrap.html") #render template adds
 
         
         # unpacked_kwargs = kwargs.keys()
@@ -88,6 +88,15 @@ def testing_url():
     return 'TESTIOMGWORKS!'
  
 
+@app.route('/fimo')
+def html_render_fimo():
+    return render_template("fimopage.html")
+
+@app.route('/meme')
+def html_render_meme():
+    return render_template("memePage.html")
+
+
 # main driver function
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
     print(app.root_path)
@@ -96,6 +105,3 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     app.run()
 
 
-@app.route('/FIMO')
-def fimo():
-    return render_template()
