@@ -1,7 +1,7 @@
 
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template, flash, request, redirect, url_for # delete werkzeug and reinstall it's 2.2 version
+from flask import Flask, render_template, flash, request, redirect, url_for 
 import werkzeug
 import os
 import flask
@@ -26,12 +26,15 @@ def allowed_file(filename):
         return False
     
 
- 
+@app.route('/')
+def home_redirect():
+    return redirect(url_for("home_about_page"))
+
 
 # The route() function of the Flask class is a decorator, 
 # which tells the application which URL should call 
 # the associated function.
-@app.route('/', methods=["POST","GET"])
+@app.route('/about', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
 def home_about_page():
 
@@ -93,3 +96,6 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     app.run()
 
 
+@app.route('/FIMO')
+def fimo():
+    return render_template()
