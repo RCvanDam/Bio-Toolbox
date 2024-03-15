@@ -33,11 +33,11 @@ def allowed_file(filename):
 # the associated function.
 @app.route('/', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
-def homepage():
+def home_about_page():
 
     if request.method == "GET":
         flash("inititial visit!!!")
-        return render_template("prototype.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
+        return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
     
 
     elif request.method == 'POST':#user submitted inputs
@@ -51,24 +51,24 @@ def homepage():
         if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
             flash("submitted filename must contain atleast 1 character!")
             print("flasj was triggered")
-            return redirect(request.url)
+            return render_template("prototype_bootstrap.html")
         
         elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
             secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
             user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
             flash("file submitted!") # still working on the flashes
             print("flash was triggered")
-            return render_template("prototype.html")
+            return render_template("prototype_bootstrap.html")
         else:
             flash("something wen't wrong")
-            return render_template("prototype.html")
+            return render_template("prototype_bootstrap.html")
 
         
         # unpacked_kwargs = kwargs.keys()
         
         # for iterate in unpacked_kwargs:
         #     print(kwargs[iterate])
-    return render_template("prototype.html")
+    return render_template("prototype_bootstrap.html")
             
 
 @app.route('/download')
