@@ -103,13 +103,13 @@ def html_render_fimo():
         "input_custom_pvalue": request.form["input_custom_pvalue"],
         } # request.form refers to the input's name in html
 
-        if request.form.get("motif_file_option") != None:
+        if request.form.get("motif_file_option") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
             user_input_values["motif_file_option"] = request.form["motif_file_option"]
 
         if request.form.get("motif_database_option") != None:
             user_input_values["motif_database_option"] = request.form["motif_database_option"]
 
-        if request.form.get("default_pvalue") != None:
+        if request.form.get("default_pvalue") != None: 
             user_input_values["default_pvalue"] = request.form["default_pvalue"]
 
         if request.form.get("custom_pvalue") != None:
