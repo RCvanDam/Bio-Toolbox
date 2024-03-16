@@ -42,40 +42,17 @@
     <div style="padding-left: 50px;">
         <!--Button and input-->
         <div >
-            <form action="" method="POST" enctype="multipart/form-data">
+            <label class="text_clean">Input your fasta file here:</label>
+            <div style="margin-left: 50px;">
+                <input type="file" id="fasta" name="myfile">
+                <br>
+                <input type="submit" name="submit" value="">
+                <input type="password" name="user_pswd">
 
-                <label for="course">Course Name</label>
-                <input class="form-control" name="course" placeholder="Course Name"><br />
-
-                <label for="EC">EC's</label>
-                <input class="form-control" name="ec" placeholder="Number of EC credits"><br />
-
-                <label for="user_teacher">Teacher</label>
-                <input id="user_teacher"  class="form-control" name="test_teacher" placeholder="Name of teacher"><br />
-
-                <label for="file">Insert File</label>
-                <input id="file" type="file" class="form-control" name="user_file" placeholder="txt or fasta file"><br />
-
-                <button type="submit" name='submit'>Submit</button>
-            </form>
+            </div>
             
         </div>
 
-    </div>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    <div class="container">
-        <div class="row">
-            <h1>Download the output</h1>
-            <a class="btn btn-success" href="{{url_for('download',filename="test_output_delete_this.txt")}}">Download</a>
-        </div>
     </div>
 
     <!-- The display box-->
