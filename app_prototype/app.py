@@ -133,6 +133,28 @@ def html_render_fimo():
 def html_render_meme():
     return render_template("memePage.html")
 
+# Error handeling:
+@app.errorhandler(429)
+def error_429():
+    return "Error 429 Too Many Requests"
+
+@app.errorhandler(500)
+def error_500():
+    return "500 Internal Server Error"
+
+@app.errorhandler(502)
+def error_502():
+    return "502 Bad Gateway"
+
+@app.errorhandler(503)
+def error_503():
+    return "503 Service Unavailable"
+
+@app.errorhandler(504)
+def error_504():
+    return "504 Gateway Timeout"
+
+
 
 # main driver function
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
