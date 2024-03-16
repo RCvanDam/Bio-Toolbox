@@ -45,26 +45,31 @@
                     <br>
                     <form>
                     <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault1">
+            
+
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault1" onchange="hide_database_option()" checked >
                                 <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
+
+                            
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault2" onchange="hide_database_option()" >
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Use motif from database
                                 </label>
                                 </div>
 
-
-                                <label for="nmotifs"><b>Motif database to use:</b></label>
-                                <select class="form-control" id="nmotifs" name="nmotifs">
-                                    <option>Please select database to use</option>
-                                    <option>Human</option>
-                                    <option>Jaspar</option>
-                                    <option>E.coli (Bacterium)</option>
-                                    <option>Mouse</option>
-                                    <option>Drosophila (fly)</option>
-                                </select><br>
+                                <div id="database_options">
+                                    <label for="nmotifs"><b>Motif database to use:</b></label>
+                                    <select class="form-control" id="nmotifs" name="nmotifs">
+                                        <option>Please select database to use</option>
+                                        <option>Human</option>
+                                        <option>Jaspar</option>
+                                        <option>E.coli (Bacterium)</option>
+                                        <option>Mouse</option>
+                                        <option>Drosophila (fly)</option>
+                                    </select><br>
+                                </div>
 
                                 <label for="nmotifs">Other variable here...:</label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
@@ -75,6 +80,7 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select><br>
+
 
                                  <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault1">
@@ -120,9 +126,9 @@
                         <h2 class="center_text">Input en Ouput files:</H2>
                             <hr class="hr_border">
                         <p>
-                         FIMO requires a multi-fasta and a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.<br>
-This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.<br>
-Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored.
+                            FIMO requires a multi-fasta and a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.<br>
+                            This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.<br>
+                            Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored.
                         </p>
                     </div>
                 </div>
@@ -194,6 +200,6 @@ Just like with MEME, the results of FIMO are returned with a p-value. The user c
                 </div>
             </div>
         </div>
-
+<script src="show_databases.js"></script>
     </body>
 </html>
