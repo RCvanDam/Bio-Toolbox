@@ -88,11 +88,48 @@ def testing_url():
     return 'TESTIOMGWORKS!'
  
 
-@app.route('/fimo')
+@app.route("/fimo", methods=["POST","GET"])
 def html_render_fimo():
+    if request.method == "GET":#basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
+        flash("inititial visit!!!")
+        return render_template("fimopage.html") #just renders the default fimo page
+    
+    elif request.method == "POST":#user submitted inputs
+
+        user_input_values = { #here I save all the input button values as variables
+        "motif_file_option": request.form["motif_file_option"],
+        "motif_database_option": request.form["motif_database_option"],
+        "chosen_database": request.form["chosen_database"],
+        "other_variable": request.form["other_variable"],
+        "default_pvalue": request.form["default_pvalue"],
+        "custom_pvalue": request.form["custom_pvalue"],
+        "input_custom_pvalue": request.form["input_custom_pvalue"],
+        } # request.form refers to the input's name in html
+
+        input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
+        input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
+
+        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            flash("submitted filename(s) must contain atleast 1 character!")
+            print("flash was triggered")
+            return render_template("fimopage.html")
+        
+        else:
+        
+        # elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
+        #     secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
+        #     # user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
+        #     flash("file submitted!") # still working on the flashes
+        #     return render_template("fimopage.html")
+        # else:
+        #     flash("something wen't wrong")
+        #     return render_template("fimopage.html") #render template adds 
+            flash("input received")
+            return render_template("fimopage.html")
+    
     return render_template("fimopage.html")
 
-@app.route('/meme')
+@app.route('/meme', methods=["POST","GET"])
 def html_render_meme():
     return render_template("memePage.html")
 
