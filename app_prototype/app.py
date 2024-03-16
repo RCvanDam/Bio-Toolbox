@@ -90,21 +90,30 @@ def testing_url():
 
 @app.route("/fimo", methods=["POST","GET"])
 def html_render_fimo():
+    # print(request.form)
+    # print(request.form.get("default_pvalue"))
     if request.method == "GET":#basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
         flash("inititial visit!!!")
         return render_template("fimopage.html") #just renders the default fimo page
     
     elif request.method == "POST":#user submitted inputs
-
         user_input_values = { #here I save all the input button values as variables
-        "motif_file_option": request.form["motif_file_option"],
-        "motif_database_option": request.form["motif_database_option"],
         "chosen_database": request.form["chosen_database"],
         "other_variable": request.form["other_variable"],
-        "default_pvalue": request.form["default_pvalue"],
-        "custom_pvalue": request.form["custom_pvalue"],
         "input_custom_pvalue": request.form["input_custom_pvalue"],
         } # request.form refers to the input's name in html
+
+        if request.form.get("motif_file_option") != None:
+            user_input_values["motif_file_option"] = request.form["motif_file_option"]
+
+        if request.form.get("motif_database_option") != None:
+            user_input_values["motif_database_option"] = request.form["motif_database_option"]
+
+        if request.form.get("default_pvalue") != None:
+            user_input_values["default_pvalue"] = request.form["default_pvalue"]
+
+        if request.form.get("custom_pvalue") != None:
+            user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
@@ -112,9 +121,9 @@ def html_render_fimo():
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
             print("flash was triggered")
-            return render_template("fimopage.html")
+        return render_template("fimopage.html")
         
-        else:
+        
         
         # elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
         #     secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
@@ -124,36 +133,14 @@ def html_render_fimo():
         # else:
         #     flash("something wen't wrong")
         #     return render_template("fimopage.html") #render template adds 
-            flash("input received")
-            return render_template("fimopage.html")
+        flash("input received")
+        return render_template("fimopage.html")
     
     return render_template("fimopage.html")
 
 @app.route('/meme', methods=["POST","GET"])
 def html_render_meme():
     return render_template("memePage.html")
-
-# Error handeling:
-@app.errorhandler(429)
-def error_429():
-    return "Error 429 Too Many Requests"
-
-@app.errorhandler(500)
-def error_500():
-    return "500 Internal Server Error"
-
-@app.errorhandler(502)
-def error_502():
-    return "502 Bad Gateway"
-
-@app.errorhandler(503)
-def error_503():
-    return "503 Service Unavailable"
-
-@app.errorhandler(504)
-def error_504():
-    return "504 Gateway Timeout"
-
 
 
 # main driver function

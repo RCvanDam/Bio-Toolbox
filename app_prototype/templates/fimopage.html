@@ -37,13 +37,14 @@
                     <div class="frame_tool_top_left">
                     <H1 class="center_text" >FIMO</H1>
                     <hr class="hr_border">
+                    <form method="POST" enctype="multipart/form-data">
                     <p>Select fasta file to scan for motifs</p>
                     <input class="form-control" type="file" id="fasta" name="input_fasta_file">
                     <br>
                     <p>Select the motif file to use or select database below</p>
                     <input class="form-control" type="file" id="meme" name="input_motif_file">
                     <br>
-                    <form>
+                    
                     <div class="form-check">
                                 <input class="form-check-input" type="radio" name="motif_file_option" id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
@@ -89,10 +90,10 @@
 
                                 <label for="customRange1" class="form-label">Select P-value threshold:</label>
                                 <input  name="input_custom_pvalue" type="range" class="form-range" min="0" max="5" id="customRange1">
+                                <br>
+                                <input type="submit" class="btn btn-outline-success" value="Find the binding sites">
 
-                            </form>
-                            <br>
-                            <input type="submit" class="btn btn-outline-success" value="Find the binding sites">
+                    </form>
                     </div>        
                 </div>
        
