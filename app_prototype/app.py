@@ -90,13 +90,14 @@ def testing_url():
 
 @app.route("/fimo", methods=["POST","GET"])
 def html_render_fimo():
+    method = request.method
     # print(request.form)
     # print(request.form.get("default_pvalue"))
-    if request.method == "GET":#basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
+    if method == "GET":#basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
         flash("inititial visit!!!")
         return render_template("fimopage.html") #just renders the default fimo page
     
-    elif request.method == "POST":#user submitted inputs
+    elif method == "POST":#user submitted inputs
         user_input_values = { #here I save all the input button values as variables
         "chosen_database": request.form["chosen_database"],
         "other_variable": request.form["other_variable"],
@@ -120,7 +121,12 @@ def html_render_fimo():
 
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
-            print("flash was triggered")
+            print("submitted filename(s) must contain atleast 1 character!")
+            return render_template("fimopage.html")
+        
+
+        flash("file received!!")
+        print(user_input_values)
         return render_template("fimopage.html")
         
         
@@ -135,12 +141,43 @@ def html_render_fimo():
         #     return render_template("fimopage.html") #render template adds 
         flash("input received")
         return render_template("fimopage.html")
-    flash("input submitted!")
-    return render_template("fimopage.html")
+
 
 @app.route('/meme', methods=["POST","GET"])
 def html_render_meme():
-    return render_template("memePage.html")
+    method = request.method
+    if method == "GET":
+        flash("inititial visit!!!")
+        return render_template("memepage.html") #just renders the default fimo page
+
+    elif request.method == "POST":#user submitted inputs
+            user_input_values = { #here I save all the input button values as variables
+            "max_motif_amount": request.form["max_motif_amount"],
+            "other_variable1": request.form["other_variable1"],
+            "other_variable2": request.form["other_variable2"],
+            "other_variable3": request.form["other_variable3"],
+            "max_motif_size": request.form["max_motif_size"],
+            "min_motif_size": request.form["min_motif_size"],
+            } # request.form refers to the inputlabel's name="" in html page
+
+            if request.form.get("seq_type_dna") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+                user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
+
+            if request.form.get("seq_type_rna") != None:
+                user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
+
+            if request.form.get("seq_type_protein") != None: 
+                user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
+
+            input_user_file = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
+
+            if input_user_file.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+                flash("submitted filename(s) must contain atleast 1 character!")
+                return render_template("memepage.html")
+            
+            
+            flash("file received!!")
+            return render_template("memepage.html")
 
 # Error handeling:
 @app.errorhandler(429)
