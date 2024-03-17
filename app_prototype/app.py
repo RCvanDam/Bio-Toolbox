@@ -71,7 +71,7 @@ def home_about_page():
         
         # for iterate in unpacked_kwargs:
         #     print(kwargs[iterate])
-    return render_template("prototype_bootstrap.html")
+    return render_template("Inheritance_test/base.html")
             
 
 @app.route('/download')
