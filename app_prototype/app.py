@@ -54,24 +54,24 @@ def home_about_page():
         if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
             flash("submitted filename must contain atleast 1 character!")
             print("flasj was triggered")
-            return render_template("prototype_bootstrap.html")
+            return render_template("Inheritance_test/prototype_bootstrap.html")
         
         elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
             secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
             user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
             flash("file submitted!") # still working on the flashes
             print("flash was triggered")
-            return render_template("prototype_bootstrap.html")
+            return render_template("Inheritance_test/prototype_bootstrap.html")
         else:
             flash("something wen't wrong")
-            return render_template("prototype_bootstrap.html") #render template adds
+            return render_template("Inheritance_test/prototype_bootstrap.html") #render template adds
 
         
         # unpacked_kwargs = kwargs.keys()
         
         # for iterate in unpacked_kwargs:
         #     print(kwargs[iterate])
-    return render_template("Inheritance_test/base.html")
+    return render_template("Inheritance_test/prototype_bootstrap.html")
             
 
 @app.route('/download')
@@ -90,11 +90,11 @@ def testing_url():
 
 @app.route('/fimo')
 def html_render_fimo():
-    return render_template("fimopage.html")
+    return render_template("Inheritance_test/fimopage.html")
 
 @app.route('/meme')
 def html_render_meme():
-    return render_template("memePage.html")
+    return render_template("Inheritance_test/memePage.html")
 
 # Error handeling:
 @app.errorhandler(429)
