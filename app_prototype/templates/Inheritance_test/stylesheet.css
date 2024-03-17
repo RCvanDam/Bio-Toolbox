@@ -1,0 +1,164 @@
+
+html,body
+{
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+    
+}
+
+/* dit is de hoofd css voor de frames  */
+
+.frame {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+}
+
+.frame_tool {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 15px;
+}
+
+.frame_tool_top_right {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+    
+}
+
+.frame_tool_top_left {
+    border: 2px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    height: auto; 
+    width: auto;
+    box-shadow: 5px 5px 5px;
+    padding: 25px;
+}
+
+
+.logo_mefim_findr {
+    text-align: right; 
+    margin-top: 20px; 
+    margin-right: 20px; }
+
+
+
+.text_centered { 
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+
+}
+
+.line_height_200 { line-height: 200%;}
+
+
+
+
+.container_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    
+    }
+
+
+
+.text_clean { 
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 30px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.center_item { display: block; margin-left: auto; margin-right: auto;}
+
+.hr_border {border: 1px solid black; position: relative;}
+
+.hr_border_bottom {border: 1px solid black; width: 110%; position: relative; }
+
+
+#background_color {background-color: rgba(204, 204, 255, 0.5)}
+
+#background_color_lower_frame {background-color: white; border-top: 2px black solid;}
+
+
+/* Navbar */
+
+.unordered_list_nav_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  left: 10px;
+  z-index: 2;
+  box-shadow: 5px 5px 5px;
+  width: 91.3%;
+
+  
+
+}
+
+#left_border {
+    border-left: 1px solid black;
+}
+
+#right_border {
+    border-right: 1px solid black;
+}
+
+li {
+  float: left;
+  background-color:  white  ;
+  list-style-type: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;  
+
+  
+}
+
+.right_alligned {
+    text-align: right;
+
+}
+
+.hover_over_nav_bar {
+  display: block;
+  color: rgb(185, 179, 179);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: black;
+  list-style-type: none;
+
+}
+
+li a:hover {
+  background-color: #274a79;
+  color: green;
+}
+
+
+#easteregg {
+    text-decoration: none;
+    color: black;
+}
