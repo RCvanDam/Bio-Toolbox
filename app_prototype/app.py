@@ -140,6 +140,38 @@ def html_render_fimo():
 
 @app.route('/meme', methods=["POST","GET"])
 def html_render_meme():
+    if request.method == "GET":  # basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
+        flash("inititial visit!!!")
+        return render_template("memePage.html")  # just renders the default meme page
+
+    elif request.method == "POST":  # user submitted inputs
+        user_input_values = {  # here I save all the input button values as variables
+            "chosen_database": request.form["chosen_database"],
+            "other_variable": request.form["other_variable"],
+            "input_custom_pvalue": request.form["input_custom_pvalue"],
+        }  # request.form refers to the input's name in html
+
+        if request.form.get(
+                "motif_file_option") != None:  # radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+            user_input_values["motif_file_option"] = request.form["motif_file_option"]
+
+        if request.form.get("motif_database_option") != None:
+            user_input_values["motif_database_option"] = request.form["motif_database_option"]
+
+        if request.form.get("default_pvalue") != None:
+            user_input_values["default_pvalue"] = request.form["default_pvalue"]
+
+        if request.form.get("custom_pvalue") != None:
+            user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
+
+        input_fasta_file = request.files[
+            "input_fasta_file"]  # here we define the file the user submitted as input_fasta_file
+        input_sequence_logo = request.files[
+            "input_sequence_logo"]  # here we define the file the user submitted as input_sequence_logo
+
+        if input_fasta_file.filename == "" == "":  # if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            flash("submitted filename(s) must contain atleast 1 character!")
+            print("flash was triggered")
     return render_template("memePage.html")
 
 # Error handeling:

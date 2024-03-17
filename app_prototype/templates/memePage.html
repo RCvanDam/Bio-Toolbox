@@ -40,7 +40,7 @@
                     <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
                             <input class="form-control" type="file" id="fasta" name="myfile">
                             <br>
-                            <form>
+                            <form method="POST" enctype="multipart/form-data">
                                 <label for="nmotifs">Max amount of motifs to look for:</label>
                                 <select class="form-control" id="nmotifs" name="nmotifs">
                                     <option>please select a number</option>
