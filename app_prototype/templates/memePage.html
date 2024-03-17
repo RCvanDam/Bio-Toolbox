@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+
+        <meta charset="utf-8">
+        <title>MEME Toolpage</title>
+        <link rel="stylesheet" href="static\stylesheet.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    </head>
+    <body id="background_color">
+
+        <h1 class="logo_mefim_findr" style="color: #c8a2c8;">MEFIM- FindR</h1>
+
+        <div class="container mb-5 p-0">
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="unordered_list_nav_bar">
+                        <li id="left_border"><a class="hover_over_nav_bar"href="/">HOME</a></li>
+                        <li><a class="hover_over_nav_bar" href="meme">MEME</a></li>
+                        <li><a class="hover_over_nav_bar"href="fimo">FIMO</a></li>
+                        <li id="right_border"><a class="hover_over_nav_bar" href="#tool_3">tool_3 (optional)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- The display box-->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="frame_tool_top_left">
+                    <H1 class="center_text" >MEME</H1>
+                    <hr class="hr_border">
+                    <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
+                            <input class="form-control" type="file" id="fasta" name="myfile">
+                            <br>
+                            <form>
+                                <label for="nmotifs">Max amount of motifs to look for:</label>
+                                <select class="form-control" id="nmotifs" name="nmotifs">
+                                    <option>please select a number</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select><br>
+
+                                <label for="nmotifs">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs" name="nmotifs">
+                                    <option>please select a number</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select><br>
+
+                                <label for="nmotifs">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs" name="nmotifs">
+                                    <option>please select a number</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select><br>
+
+                                <label for="nmotifs">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs" name="nmotifs">
+                                    <option>please select a number</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select><br>
+
+                            
+                                <label for="msize">Max motif size:</label>
+                                <select class="form-control" id="msize" name="msize">
+                                    <option>please select a number</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select><br>
+
+                                <label for="minsize">Min motif size:</label>
+                                <select class="form-control" id="minsize" name="minsize">
+                                    <option>please select a number</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select><br>
+
+
+                                <input type="radio" id="DNA" name="Seq-type" value="DNA">
+                                <label for="DNA">DNA</label>
+
+                                <input type="radio" id="RNA" name="Seq-type" value="RNA">
+                                <label for="RNA">RNA</label>
+
+                                <input type="radio" id="Protein" name="Seq-type" value="Protein">
+                                <label for="Protein">Protein</label>
+                            </form>
+                            <br>
+                            <button type="button" class="btn btn-outline-success">Find the binding sites</button>
+                    </div>        
+                </div>
+       
+
+        <!-- The display box-->
+                <div class="col-sm-4"> 
+                    <div class="frame_tool_top_right">
+                        <H1 class="center_text" >SequenceLogo</H1>
+                        <hr class="hr_border">
+                        <p>Insert SequenceLogo here.</p>
+                        <p>Insert buttons to show SequenceLogos with a lower probability.</p><br>
+                        <button type="button" class="btn btn-outline-success">Download SequenceLogo</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    
+
+        <!-- Here is the main info body-->
+
+        <div class="container pt-5 mb-5">
+            <div class="row">
+                <div class="col-sm-4"> 
+                    <div class="frame_tool">
+                        <h2 class="center_text">Input en Ouput files:</H2>
+                        <hr class="hr_border">
+                        <p>
+                            To find motifs using MEME, the tool should be presented one or multiple sequences in a fasta, multi-fasta or plain-text.
+                            The output of the program is one or more sequence logo pictures, the full list of these motifs is also saved in a seperate file (.html) and the sequence logo picture can be downloaded for later reference.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">     
+                    <div class="frame_tool">
+                        <h2 class="center_text">Progress</h2>
+                        <hr class="hr_border">
+                        <p class="center_text" >
+                            Display commandline output here if possible
+                    </div>
+                </div>
+
+                <div class="col-sm-4"> 
+                    <div class="frame_tool">
+                        <h2 class="center_text" >Optional arguments:</h2>
+                        <hr class="hr_border">
+                        <p class="center_text">
+                        <i>Explanation of the (optional) parameters for using MEME:</i><br>
+                        Max amount of motifs to look for corresponds to the "-nmotifs" command argument in the commandline version of MEME.<br>
+                        Max motif size: max nucleotide lenght of motif -maxw<br>
+                        Min motif size: Minimum nucleotide lenght of motif -minw<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--bottom container-->
+
+        <div id="background_color_lower_frame">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-sm-4">
+                            <h2 class="text_centered">Feedback</H2>
+                            <p class="text_centered">
+                                Lorem ipsum
+                            </p>
+                    </div>
+                
+            
+                
+                    <div class="col-sm-4">
+                            <h2 class="text_centered">Contact</H2>
+                            <p class="line_height_200 text_centered" >
+                                For feedback, bugs and other problems. Contact us! <br>
+                                Tai Vo git: MoonCake98 <br>
+                                Jarno Duiker git: azzipxonraj <br>
+                                Ruben van Dam git: RCvanDam <br>
+                                Floris Menninga git: Fl-ris
+                            </p>
+                    </div>
+                
+
+                
+                    <div class="col-sm-4">
+                        <div class="frame_bottom_info">
+                            <h2 class="text_centered">Refrences</H2>
+                            <p class="text_centered  line_height_200">
+                                MEME Suite. (z.d.). https://meme-suite.org/meme/doc/overview.html       
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

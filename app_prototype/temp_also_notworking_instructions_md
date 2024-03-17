@@ -1,0 +1,50 @@
+ignore the venv for now (doesnt work for some reason, I haven't figureds out yet)
+
+I'm assuming you're doing this in vscode.
+
+you have to install the required modules firsed becasue, see line 1
+
+paste this in the command line:
+>`pip install flask flask-sqlalchemy`
+
+*(flask is for running the webpage and sql alchemy is for the database we'll use later on)*
+
+---
+## (optional in case of error)
+
+if you get an error kinda like:
+>`WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000017F861B9B50>: Failed to establish a new connection: [WinError 10051] 
+A socket operation was attempted to an unreachable network')': /simple/flask/`
+
+with this at the end
+
+>`ERROR: Could not find a version that satisfies the requirement flask (from versions: none)
+ERROR: No matching distribution found for flask`
+
+
+you can just use this command instead:
+>`pip --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org install flask flask-sqlalchemy`
+
+*(flask is for running the webpage and sql alchemy is for the database we'll use later on)*
+
+---
+
+make sure you're in the directory:
+>`app_prototype`
+
+then run in the commandline:
+>`python3 app.py`
+
+and the server should be running!
+
+## (optional in case of another error)
+
+if you get an error after trying to run it whilst having installed flask like:
+>`ModuleNotFoundError: No module named 'flask'`
+
+then it's most likely a path error (astleast according to the sourcess I used)
+
+which you can edit by using this tutorial cause I can't be fucked rn
+>windows: https://www.howtogeek.com/787217/how-to-edit-environment-variables-on-windows-10-or-11/
+linux: google it, idk which destrio you use.
+
