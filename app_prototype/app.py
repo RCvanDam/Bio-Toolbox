@@ -135,7 +135,7 @@ def html_render_fimo():
         #     return render_template("fimopage.html") #render template adds 
         flash("input received")
         return render_template("fimopage.html")
-    
+    flash("input submitted!")
     return render_template("fimopage.html")
 
 @app.route('/meme', methods=["POST","GET"])
