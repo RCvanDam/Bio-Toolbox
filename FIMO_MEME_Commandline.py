@@ -13,18 +13,19 @@ Version: 0.05
 import subprocess # om terminal commando's uit te voeren in python 
 
 
-
 class Fimo:
+
     def __init__(self, database_to_use, use_default_p_value, p_value):
         self.database_to_use = database_to_use
         self.use_default_p_value = use_default_p_value
         self.p_value = p_value
 
-
-
+    def __str__(self):
+        return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
 
 
 class Meme:
+
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet):
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
@@ -35,7 +36,7 @@ class Meme:
     def __str__(self):
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
 
-    def process(self):
+    def process(self): # add commandline execution here...
         pass
 
 
@@ -56,8 +57,9 @@ def receive_input():
     min_motif_size = 0 
     alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
 
-    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet)
-    print(str(meme_test))
+    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
+    
+    print(str(meme_test)) # print information about the meme_test object.
 
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
@@ -73,7 +75,7 @@ def input_commands():
 
 def process_commands(fimo_command, meme_command):
     meme_output = subprocess.run([meme_command], shell=True) # , capture_output=True, text=True
-    fimo_output = subprocess.run([meme_command], shell=True)
+    fimo_output = subprocess.run([fimo_command], shell=True)
 
     output_meme = meme_output.stdout
     output_fimo = fimo_output.stdout
