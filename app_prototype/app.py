@@ -125,7 +125,7 @@ def html_render_fimo():
             return render_template("fimopage.html")
         
 
-        flash("file received!!")
+        flash(f"file: {input_fasta_file.filename} received!!")
         print(user_input_values)
         return render_template("fimopage.html")
         
