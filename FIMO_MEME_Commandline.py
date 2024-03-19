@@ -37,7 +37,11 @@ class Meme:
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
 
     def process(self): # add commandline execution here...
-        pass
+
+        meme_output = subprocess.run([meme_command], shell=True)
+        output_meme = meme_output.stdout
+        
+
 
 
 def receive_input():
