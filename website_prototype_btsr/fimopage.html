@@ -18,9 +18,9 @@
             <div class="row">
                 <div class="col-sm-4">
                     <ul class="unordered_list_nav_bar">
-                        <li id="left_border"><a class="hover_over_nav_bar"href="prototype_bootstrap.html">HOME</a></li>
+                        <li id="left_border"><a class="hover_over_nav_bar" href="prototype_bootstrap.html">HOME</a></li>
                         <li><a class="hover_over_nav_bar" href="memePage.html">MEME</a></li>
-                        <li><a class="hover_over_nav_bar"href="fimopage.html">FIMO</a></li>
+                        <li><a class="hover_over_nav_bar" href="fimopage.html">FIMO</a></li>
                         <li id="right_border"><a class="hover_over_nav_bar" href="#tool_3">tool_3 (optional)</a></li>
                     </ul>
                 </div>
@@ -60,8 +60,8 @@
                                 </div>
 
                                 <div id="database_options">
-                                    <label for="nmotifs"><b>Motif database to use:</b></label>
-                                    <select class="form-control" id="nmotifs" name="nmotifs">
+                                    <label for="nmotifs1"><b>Motif database to use:</b></label>
+                                    <select class="form-control" id="nmotifs1" name="nmotifs">
                                         <option>Please select database to use</option>
                                         <option>Human</option>
                                         <option>Jaspar</option>
@@ -71,8 +71,8 @@
                                     </select><br>
                                 </div>
 
-                                <label for="nmotifs">Other variable here...:</label>
-                                <select class="form-control" id="nmotifs" name="nmotifs">
+                                <label for="nmotifs2">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs2" name="nmotifs">
                                     <option>please select a number</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -83,12 +83,12 @@
 
 
                                  <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">Use default P-value cut-off</label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault4" checked>
+                                <label class="form-check-label" for="flexRadioDefault4">
                                     Custom P-value cut-off: (Select below)
                                 </label>
                                 </div>
@@ -148,7 +148,7 @@
                         <h2 class="center_text" >Optional arguments:</h2>
                         <hr class="hr_border">
                         <p class="center_text">
-                    Only scan for a given motif ID (corresponds to commandline argument: --motif <id>  )
+                    Only scan for a given motif ID (corresponds to commandline argument: --motif id  )
                     Reject matches with a higher P-value than the given value (corresponds to commandline argument: --thresh)
                     This last option is to reject matches with a lesser statistical likelihood of being a good match for the given motif. The program also has a internal P-value cut-off for when the amount of possible matches exeeds a certain number, this value is not configurable.
                     The final parameter is: Database, With this option, the user can specify whith wich database the mulit-fasta should be scanned when there is no motif file given. (Using a motif file overrides this option)
