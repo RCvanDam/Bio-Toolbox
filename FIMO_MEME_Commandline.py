@@ -14,6 +14,11 @@ import subprocess # om terminal commando's uit te voeren in python
 
 
 class Fimo:
+    """
+    The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
+
+    
+    """
 
     def __init__(self, database_to_use, use_default_p_value, p_value):
         self.database_to_use = database_to_use
@@ -36,10 +41,13 @@ class Meme:
     def __str__(self):
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
 
-    def process(self): # add commandline execution here...
-
-        meme_output = subprocess.run([meme_command], shell=True)
+    def run(self): # add commandline execution here...
+      #  meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
+        meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format()
+        meme_output = subprocess.run([meme_command_test], shell=True)
         output_meme = meme_output.stdout
+        print(output_meme) # should be redirected to the ouput display in the website. 
+
         
 
 
@@ -53,7 +61,7 @@ def receive_input():
     # Variables for FIMO
     database_to_use = "" # Name of the database.
     use_default_p_value = True # True or false
-    p_value = 0.0 # float, default is 0.0001.
+    p_value = 0.0001 # float, default is 0.0001.
 
     # Variables for MEME
     max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
@@ -62,8 +70,8 @@ def receive_input():
     alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
 
     meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
-    
     print(str(meme_test)) # print information about the meme_test object.
+    meme_test.run()
 
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
@@ -92,5 +100,5 @@ def process_commands(fimo_command, meme_command):
 if __name__ == "__main__":
     database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet = receive_input()
     fimo_command, meme_command = input_commands()
-    process_commands(fimo_command, meme_command)
+  #  process_commands(fimo_command, meme_command)
 
