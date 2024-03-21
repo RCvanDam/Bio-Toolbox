@@ -13,11 +13,28 @@ Version: 0.05
 import subprocess # om terminal commando's uit te voeren in python 
 
 
+# Global test variables (should be replaced by the ones given back by the webserver.)
+
+# Variables for FIMO
+database_to_use = False # Name of the database.
+use_default_p_value = True # True or false
+p_value = 0.0001 # float, default is 0.0001.
+input_motif_file = "/home/floris/Documenten/Data_set/Motifs/motif_databases/MOUSE/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme" 
+input_sequence_path_fimo = "/home/floris/Documenten/Data_set/Motifs/meme_sample_sequences.fasta"
+output_path_fimo = "~/Documenten/OUTPUT" # (Temporary) storage place for the generated files. 
+
+
+# Variables for MEME
+max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
+max_motif_size = 0 # max length of the motifs.
+min_motif_size = 0 
+alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
+input_sequence_path_meme = ""
+output_path_meme = ""
+
 class Fimo:
     """
     The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
-
-    
     """
 
     def __init__(self, database_to_use, use_default_p_value, p_value):
@@ -32,7 +49,7 @@ class Fimo:
         if database_to_use: # If the user selected one of the databases instead of a motif file. 
             pass
         else: # if not: use a given motif file.
-            fimo_command = "fimo --oc {output_path_fimo} --verbosity 1 --bgfile --nrdb-- --thresh {p_value} {input_motif_file} {input_sequence_path_fimo}".format()
+            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
         fimo_output = subprocess.run([fimo_command], shell=True)
         output_fimo = fimo_output.stdout
@@ -55,12 +72,10 @@ class Meme:
     def run(self): # add commandline execution using the user given parameters.
       #  meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
         
-        meme_command_test = "meme {input_sequence_path_meme} {alphabet} -oc {output_path_meme} -time 14400 -mod zoops {max_amount_of_motifs} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format()
+        meme_command_test = "meme {} {} -oc {} -time 14400 -mod zoops {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(input_sequence_path_meme, alphabet, output_path_meme, max_amount_of_motifs)
         meme_output = subprocess.run([meme_command_test], shell=True)
         output_meme = meme_output.stdout
         print(output_meme) # should be redirected to the ouput display in the website. 
-
-        
 
 
 
@@ -70,22 +85,17 @@ def receive_input():
 
     """
 
-    # Variables for FIMO
-    database_to_use = "" # Name of the database.
-    use_default_p_value = True # True or false
-    p_value = 0.0001 # float, default is 0.0001.
-
-    # Variables for MEME
-    max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
-    max_motif_size = 0 # max length of the motifs.
-    min_motif_size = 0 
-    alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
 
 
     # Running the tools using the classes.
-    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
-    print(str(meme_test)) # print information about the meme_test object.
-    meme_test.run()
+    # meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
+    # print(str(meme_test)) # print information about the meme_test object.
+    # meme_test.run()
+
+    # Fimo test:
+    fimo_test = Fimo(database_to_use, use_default_p_value, p_value)
+    fimo_test.run()
+
 
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
