@@ -31,8 +31,10 @@ min_motif_size = 0
 alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
 input_sequence_path_meme = ""
 output_path_meme = ""
+path_memesuite_export = "export PATH=/opt/local/bin:/opt/local/libexec/meme-5.5.5:$PATH"
 
-class Fimo:
+
+class Fimo: 
     """
     The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
     """
@@ -67,6 +69,18 @@ class Meme:
     
     def __str__(self):
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
+    
+
+    def add_to_path(self):
+        print("in Path?")
+        meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True).stdout
+        print(meme_in_path)
+        if "meme" in meme_in_path:
+            print("Memsuite in path")
+        else:
+            print("memesuite not in path, adding now...")
+            subprocess.run("export PATH=/opt/local/bin:/opt/local/libexec/meme-5.5.5:$PATH", shell=True, text=True)
+
 
 
     def run(self): # add commandline execution using the user given parameters.
@@ -78,27 +92,26 @@ class Meme:
         print(output_meme) # should be redirected to the ouput display in the website. 
 
 
-
 def receive_input():
     """
     Variables collected from the website. 
 
     """
 
-
-
     # Running the tools using the classes.
-    # meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
-    # print(str(meme_test)) # print information about the meme_test object.
-    # meme_test.run()
+    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
+    meme_test.run()
+    print(str(meme_test)) # print information about the meme_test object.
+    meme_test.add_to_path()
+
 
     # Fimo test:
-    fimo_test = Fimo(database_to_use, use_default_p_value, p_value)
-    fimo_test.run()
-
-
+    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value)
+    # fimo_test.run() # execute the commandline tool using the object fimo_test.
+    # print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
+
 
 
 def input_commands():
@@ -110,18 +123,18 @@ def input_commands():
 
 
 def process_commands(fimo_command, meme_command):
-    meme_output = subprocess.run([meme_command], shell=True) # , capture_output=True, text=True
-    fimo_output = subprocess.run([fimo_command], shell=True)
+    pass
+    # meme_output = subprocess.run([meme_command], shell=True) # , capture_output=True, text=True
+    # fimo_output = subprocess.run([fimo_command], shell=True)
 
-    output_meme = meme_output.stdout
-    output_fimo = fimo_output.stdout
+    # output_meme = meme_output.stdout
+    # output_fimo = fimo_output.stdout
 
-    print(f"print: {output_meme} type: {type(output_meme)}")
-    print(f"output fimo: {fimo_output} type: {type(output_fimo)}")
-
+    # print(f"print: {output_meme} type: {type(output_meme)}")
+    # print(f"output fimo: {fimo_output} type: {type(output_fimo)}")
 
 
 if __name__ == "__main__":
     database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet = receive_input()
     fimo_command, meme_command = input_commands()
-  #  process_commands(fimo_command, meme_command)
+    #process_commands(fimo_command, meme_command)
