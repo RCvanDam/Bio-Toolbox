@@ -124,6 +124,9 @@ def html_render_fimo():
             print("submitted filename(s) must contain atleast 1 character!")
             return render_template("fimopage.html")
         
+        if os.path.splitext(input_fasta_file)[1] == ".fasta": #this looks at the path then splits the name of the file and the extension and using the [1] i look at the extenion and if its .fasta something happens
+            pass
+
 
         flash(f"file: {input_fasta_file.filename} received!!")
         print(user_input_values)
