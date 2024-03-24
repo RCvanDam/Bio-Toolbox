@@ -39,7 +39,6 @@ def home_redirect():
 def home_about_page():
 
     if request.method == "GET":
-        flash("inititial visit!!!")
         return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
     
 
