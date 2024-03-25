@@ -5,6 +5,7 @@ from flask import Flask, render_template, flash, request, redirect, url_for
 import werkzeug
 import os
 import flask
+import FIMO_MEME_Commandline
 
 os.environ["FLASK_DEBUG"]="1" #turn on debug mode
  
@@ -119,14 +120,24 @@ def html_render_fimo():
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
 
+
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
             print("submitted filename(s) must contain atleast 1 character!")
             return render_template("fimopage.html")
         
+        # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
+        # FIMO_MEME_Commandline.process_commands(fimo_command)
+        
+        
+
+
+        #****** validation
+        
 
         flash(f"file: {input_fasta_file.filename} received!!")
-        print(user_input_values)
+        
+
         return render_template("fimopage.html")
         
         
