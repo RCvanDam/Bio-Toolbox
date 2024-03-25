@@ -34,7 +34,9 @@ Download the meme-x.x.x.tar.gz file from the following website: <br />
          <code>  make </code> # to compile <br />
          <code> make install </code> # to install <br />
 To add this tool to the PATH variable: <br />
-<code> export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH  <code><br />
+<code> export PATH=$HOME/meme/bin:$HOME/meme/libexec/meme-5.5.5:$PATH  </code><br />
+ In the downloaded folder is a script named memeSuite_Autoinstaller.sh you can use this to automatically install the memesuite. it has been tested on linux/macos<br />
+ and make sure that you meet the requirements noted in the autoinstaller file. <br /> 
 </p>
 
 

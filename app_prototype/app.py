@@ -40,7 +40,6 @@ def home_redirect():
 def home_about_page():
 
     if request.method == "GET":
-        flash("inititial visit!!!")
         return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
     
 
@@ -126,6 +125,7 @@ def html_render_fimo():
             print("submitted filename(s) must contain atleast 1 character!")
             return render_template("fimopage.html")
         
+<<<<<<< HEAD
         # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
         # FIMO_MEME_Commandline.process_commands(fimo_command)
         
@@ -134,6 +134,11 @@ def html_render_fimo():
 
         #****** validation
         
+=======
+        if os.path.splitext(input_fasta_file)[1] == ".fasta": #this looks at the path then splits the name of the file and the extension and using the [1] i look at the extenion and if its .fasta something happens
+            pass
+
+>>>>>>> 5a907825ce16a0b6c4433581cb7a6ac7bd212a35
 
         flash(f"file: {input_fasta_file.filename} received!!")
         

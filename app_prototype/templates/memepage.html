@@ -1,98 +1,70 @@
 {% extends "base.html" %}
 {% block content %}
 
+
         <!-- The display box-->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="frame_tool_top_left">
-
-                        <H1 class="center_text" >MEME</H1>
-                        <hr class="hr_border">
-
-                        <form method= "POST" enctype= "multipart/form-data">
-
-                            <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
-                            <input class="form-control" type="file" id="fasta" name="input_user_file">
-
+                    <H1 class="center_text" >MEME</H1>
+                    <hr class="hr_border">
+                    <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
+                            <input class="form-control" type="file" id="fasta" name="myfile">
                             <br>
+                            <form>
+                                <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
+                                
 
-                            <label for="nmotifs">Max amount of motifs to look for:</label>
-                            <select class="form-control" id="nmotifs" name="max_motif_amount">
-                                <option>please select a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select><br>
+                                <label for="nmotifs2">Other variable here...:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs2" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
 
-                            <label for="other_variable1">Other variable here...:</label>
-                            <select class="form-control" id="other_variable1" name="other_variable1">
-                                <option>please select a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select><br>
+                                <label for="nmotifs3">Other variable here...:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs3" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
 
-                            <label for="other_variable2">Other variable here...:</label>
-                            <select class="form-control" id="other_variable2" name="other_variable2">
-                                <option>please select a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select><br>
+                                <label for="nmotifs4">Other variable here...:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs4" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
 
-                            <label for="other_variable3">Other variable here...:</label>
-                            <select class="form-control" id="other_variable3" name="other_variable3">
-                                <option>please select a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select><br>
+                            
+                                <label for="msize">Max motif size:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="msize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
 
-                        
-                            <label for="max_motif_size">Max motif size:</label>
-                            <select class="form-control" id="max_motif_size" name="max_motif_size">
-                                <option>please select a number</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                            </select><br>
-
-                            <label for="min_motif_size">Min motif size:</label>
-                            <select class="form-control" id="min_motif_size" name="min_motif_size">
-                                <option>please select a number</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                            </select><br>
+                                <label for="minsize">Min motif size:</label>
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                </div>
 
 
-                            <input type="radio" id="DNA" name="seq_type_dna" value="DNA">
-                            <label for="DNA">DNA</label>
+                                <input type="radio" id="DNA" name="Seq-type" value="DNA">
+                                <label for="DNA">DNA</label>
 
-                            <input type="radio" id="RNA" name="seq_type_rna" value="RNA">
-                            <label for="RNA">RNA</label>
+                                <input type="radio" id="RNA" name="Seq-type" value="RNA">
+                                <label for="RNA">RNA</label>
 
-                            <input type="radio" id="Protein" name="seq_type_protein" value="Protein">
-                            <label for="Protein">Protein</label>
-
+                                <input type="radio" id="Protein" name="Seq-type" value="Protein">
+                                <label for="Protein">Protein</label>
+                            </form>
                             <br>
-                            <input type="submit" class="btn btn-outline-success" value="Find the binding sites">
-                        </form>
-                </div>        
-            </div>
+                            <button type="button" class="btn btn-outline-success">Find the binding sites</button>
+                    </div>        
+                </div>
        
 
         <!-- The display box-->
@@ -103,15 +75,6 @@
                         <p>Insert SequenceLogo here.</p>
                         <p>Insert buttons to show SequenceLogos with a lower probability.</p><br>
                         <button type="button" class="btn btn-outline-success">Download SequenceLogo</button>
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <ul class=flashes>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endwith %}
                     </div>
                 </div>
             </div>    

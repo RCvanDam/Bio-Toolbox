@@ -7,43 +7,55 @@
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="frame_tool_top_left">
-                        <H1 class="center_text" >FIMO</H1>
-                        <hr class="hr_border">
-                            <form method="POST" enctype="multipart/form-data">
+                    <H1 class="center_text" >FIMO</H1>
+                    <hr class="hr_border">
+                    <p>Select fasta file to scan for motifs</p>
+                    <input class="form-control" type="file" id="fasta" name="myfile">
+                    <br>
+                    <p>Select the motif file to use or select database below</p>
+                    <input class="form-control" type="file" id="meme" name="memefile">
+                    <br>
+                    <form>
+                    <div class="form-check">
+            
 
-                                <p>Select fasta file to scan for motifs</p>
-                                <input class="form-control" type="file" id="fasta" name="input_fasta_file">
-                                <br>
-                                <p>Select the motif file to use or select database below</p>
-                                <input class="form-control" type="file" id="meme" name="input_motif_file">
-                                <br>
-                                
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="motif_file_option" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault1" onchange="hide_database_option()" checked >
+                                <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="motif_database_option" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">Use motif from database</label>
-                                </div>
-
-                                <label for="nmotifs"><b>Motif database to use:</b></label>
-
-                                <select class="form-control" id="nmotifs" name="chosen_database">
-                                    <option>Please select database to use</option>
-                                    <option>Human</option>
-                                    <option>Jaspar</option>
-                                    <option>E.coli (Bacterium)</option>
-                                    <option>Mouse</option>
-                                    <option>Drosophila (fly)</option>
-                                </select>
-
                                 <br>
 
-                                <label for="nmotifs">Other variable here...:</label>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio_database_selector" id="flexRadioDefault2" onchange="hide_database_option()" >
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Use motif from database
+                                </label>
+                                </div>
 
-                                <select class="form-control" id="nmotifs" name="other_variable">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="warning_box_datab">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>                                    
+                                    </svg>
+                                    Don't use the database when the motifs are in the file
+                                    <br>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+
+                                <div id="database_options">
+                                    <label for="nmotifs1"><b>Motif database to use:</b></label>
+                                    <select class="form-control" id="nmotifs1" name="nmotifs">
+                                        <option>Please select database to use</option>
+                                        <option>Human</option>
+                                        <option>Jaspar</option>
+                                        <option>E.coli (Bacterium)</option>
+                                        <option>Mouse</option>
+                                        <option>Drosophila (fly)</option>
+                                    </select><br>
+                                </div>
+
+                                <label for="nmotifs2">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs2" name="nmotifs">
                                     <option>please select a number</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -52,23 +64,25 @@
                                     <option>5</option>
                                 </select><br>
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="default_pvalue" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
-                                </div>
 
+                                 <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">Use default P-value cut-off</label>
+                                </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="custom_pvalue" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">Custom P-value cut-off: (Select below)</label>
+                                <input class="form-check-input" type="radio" name="Radio_p_value_selector" id="flexRadioDefault4" checked>
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    Custom P-value cut-off: (Select below)
+                                </label>
+                                
                                 </div>
 
                                 <label for="customRange1" class="form-label">Select P-value threshold:</label>
-                                <input  name="input_custom_pvalue" type="range" class="form-range" min="0" max="5" id="customRange1">
-                                
-                                <br>
-                                <input type="submit" class="btn btn-outline-success" value="Find the binding sites">
+                                <input type="range" class="form-range" min="0" max="5" id="customRange1">
 
                             </form>
+                            <br>
+                            <button type="button" class="btn btn-outline-success">Find the binding sites</button>
                     </div>        
                 </div>
        
@@ -81,16 +95,6 @@
                         <p>Insert output table with results here. </p>
 
                         <button type="button" class="btn btn-outline-success">Download full table with all motifs</button>
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <ul class=flashes>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endwith %}
-
                     </div>
                 </div>
             </div>    
@@ -106,10 +110,9 @@
                         <h2 class="center_text">Input en Ouput files:</H2>
                             <hr class="hr_border">
                         <p>
-                        FIMO requires a multi-fasta and a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.<br>
-                        This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.<br>
-                        Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored.
-
+                            FIMO requires a multi-fasta and a motif file as input. The sequences in the multi-fasta will only be checked for motifs that are present in this motif file.<br>
+                            This motif file can be either a .html or .txt output file from a motif discovery tool like MEME, STREME or DREME (other tools similar to MEME) and is formatted as a MEME motif format.<br>
+                            Just like with MEME, the results of FIMO are returned with a p-value. The user can also filter the output so that results that are not statistically significant are ignored.
                         </p>
                     </div>
                 </div>
@@ -121,7 +124,6 @@
 
                         <p class="center_text" >
                             Commandline Output
-                            (to be added)
                     </div>
                 </div>
 
@@ -130,14 +132,16 @@
                         <h2 class="center_text" >Optional arguments:</h2>
                         <hr class="hr_border">
                         <p class="center_text">
-                            Only scan for a given motif ID (corresponds to commandline argument: --motif <id>  )
-                            Reject matches with a higher P-value than the given value (corresponds to commandline argument: --thresh)
-                            This last option is to reject matches with a lesser statistical likelihood of being a good match for the given motif. The program also has a internal P-value cut-off for when the amount of possible matches exeeds a certain number, this value is not configurable.
-                            The final parameter is: Database, With this option, the user can specify whith wich database the mulit-fasta should be scanned when there is no motif file given. (Using a motif file overrides this option)
+                    Only scan for a given motif ID (corresponds to commandline argument: --motif id  )
+                    Reject matches with a higher P-value than the given value (corresponds to commandline argument: --thresh)
+                    This last option is to reject matches with a lesser statistical likelihood of being a good match for the given motif. The program also has a internal P-value cut-off for when the amount of possible matches exeeds a certain number, this value is not configurable.
+                    The final parameter is: Database, With this option, the user can specify whith wich database the mulit-fasta should be scanned when there is no motif file given. (Using a motif file overrides this option)
+
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+
 
 {% endblock %}
