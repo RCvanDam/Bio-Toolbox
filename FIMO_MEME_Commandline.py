@@ -60,7 +60,7 @@ class Fimo:
 
 class Meme:
 
-    def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet):
+    def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, ):
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
         self.min_motif_size = min_motif_size
