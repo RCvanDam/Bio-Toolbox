@@ -40,16 +40,33 @@ class Meme:
         pass
 
 
-def receive_input():
+def receive_input(user_input_values_dict,files):
     """
     Variables collected from the website. 
 
     """
+    #motif file no using database
+    if user_input_values_dict.get("motif_file_option") != None and user_input_values_dict.get("motif_database_option") == None:
+        pass
+
+    #use database not motif file
+    elif user_input_values_dict.get("motif_file_option") == None and user_input_values_dict.get("motif_database_option") != None:
+        pass
+
+    #use custom p value
+    if user_input_values_dict.get("default_pvalue") == None and user_input_values_dict.get("custom_pvalue") != None:
+        p_value = user_input_values_dict.get("input_custom_pvalue")
+
+    #use default p value
+    elif user_input_values_dict.get("default_pvalue") != None and user_input_values_dict.get("custom_pvalue") == None:
+        p_value = 0.0001
+
+    
+        
+    
 
     # Variables for FIMO
     database_to_use = "" # Name of the database.
-    use_default_p_value = True # True or false
-    p_value = 0.0 # float, default is 0.0001.
 
     # Variables for MEME
     max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
@@ -62,10 +79,10 @@ def receive_input():
     print(str(meme_test)) # print information about the meme_test object.
 
 
-    return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
+    return database_to_use, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
 
 
-def input_commands():
+def generate_input_commands(database_to_use, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet):
     
     fimo_command = "fimo --oc <OUTPUT_LOCATION> --verbosity 1 --bgfile --nrdb-- --thresh 1.0E-4 <Motif_file_location> <Fasta_file_location>"
     meme_command = "meme '/home/floris/OneDrive_FLORIS/Hanze_Bioinformatica/Jaar_1/Projecten/PAM_Scoring_matrix/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
@@ -82,6 +99,8 @@ def process_commands(fimo_command, meme_command):
 
     print(f"print: {output_meme} type: {type(output_meme)}")
     print(f"output fimo: {fimo_output} type: {type(output_fimo)}")
+
+
 
 
 
