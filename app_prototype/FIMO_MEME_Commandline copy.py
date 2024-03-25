@@ -40,7 +40,7 @@ class Meme:
         pass
 
 
-def receive_input(user_input_values_dict,files):
+def receive_input(user_input_values_dict,files,):
     """
     Variables collected from the website. 
 
