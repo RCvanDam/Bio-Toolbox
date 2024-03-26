@@ -97,9 +97,8 @@ class Meme:
 
 
  def fasta_header_control(self):
-        myfile = "C:\\Users\\rvand\\Documents\\school\\Bio-Toolbox\\Bio-Toolbox\\fasta_files\\uniprotkb_accession_A6N7Y9_OR_accession_2024_03_25.fasta"
 
-        with open(myfile, "r") as fasta:
+        with open(Fastafile, "r") as fasta:
             counter = 0
             multifasta = False
             for i in fasta:
