@@ -11,17 +11,19 @@ Version: 0.06
 
 
 import subprocess # To execute terminal command's on the computer.
-
+import os
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
+working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+print(working_dir)
 
 # Test variables for FIMO
 database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
 p_value = 0.0001 # float, default is 0.0001.
-input_motif_file = "/home/floris/Documenten/Github/Bio-Toolbox/Motif_databases/SwissRegulon_e_coli.meme" 
-input_sequence_path_fimo = "/home/floris/Documenten/Github/Bio-Toolbox/Fasta_sequences/test.fasta" # replace with relative path.
-output_path_fimo = "/home/floris/Documenten/OUTPUT/" # (Temporary) storage place for the generated files. 
+input_motif_file = "{}/Motif_databases/SwissRegulon_e_coli.meme".format(working_dir)
+input_sequence_path_fimo = "{}/meme_sample_sequences.fasta".format(working_dir) # replace with relative path.
+output_path_fimo = "{}/User_output".format(working_dir) # (Temporary) storage place for the generated files. 
 
 
 # Test variables for MEME
@@ -73,7 +75,7 @@ class Fimo:
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
-        fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, capture_output=True, text=True)
+        fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
         print(output_fimo) # should be redirected to the ouput display in the website. 
 
@@ -98,7 +100,7 @@ class Meme:
 
     def add_to_path(self):
         print("in Path?")
-        meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True).stdout
+        meme_in_path = subprocess.run("echo $PATH", shell=True, text=True).stdout
         print(meme_in_path)
         if "meme" in meme_in_path:
             print("Memsuite in path")
@@ -137,18 +139,18 @@ def receive_input():
     """
 
     # Running the tools using the classes.
-    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
-    meme_test.run()
-    print(str(meme_test)) # print information about the meme_test object.
-    meme_test.add_to_path()
+    # meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
+    # meme_test.run()
+    # print(str(meme_test)) # print information about the meme_test object.
+    # #meme_test.add_to_path()
 
 
     # Fimo test:
-    #fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
-    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+    fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+    fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
 
-    # fimo_test.run() # execute the commandline tool using the object fimo_test.
-    # print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
+    fimo_test.run() # execute the commandline tool using the object fimo_test.
+    print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
 
