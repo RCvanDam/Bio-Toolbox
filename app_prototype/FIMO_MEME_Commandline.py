@@ -1,11 +1,11 @@
 
 """
 MemeSuite backend for website
-Author: Floris M
+Author: Floris M, Ruben van Dam
 Date: 7-03-2024
 Last updated: 26-03-2024
 
-Version: 0.06
+Version: 0.07
 
 """
 
@@ -27,12 +27,12 @@ output_path_fimo = "{}/User_output".format(working_dir) # (Temporary) storage pl
 
 
 # Test variables for MEME
-max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
+max_amount_of_motifs = 1  # max abount of motif to look for, program stops looking if the number is exceeded.
 max_motif_size = 0 # max length of the motifs.
 min_motif_size = 0 
 alphabet = "DNA" # Nucleotide alphabet to use: RNA, DNA or protein.
-input_sequence_path_meme = ""
-output_path_meme = ""
+input_sequence_path_meme = "{}/meme_sample_sequences.fasta".format(working_dir)
+output_path_meme = "~/OUTPUT/"
 path_memesuite_export = "export PATH=/opt/local/bin:/opt/local/libexec/meme-5.5.5:$PATH"
 
 
@@ -45,7 +45,6 @@ class Fimo:
     :param p_value: If chosen, the custom P-value. 
     """
 
-
     def __init__(self, database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo):
         self.database_to_use = database_to_use
         self.use_default_p_value = use_default_p_value
@@ -54,15 +53,11 @@ class Fimo:
         self.input_sequence_path_fimo = input_sequence_path_fimo
         self.output_path_fimo = output_path_fimo
 
-    
     def __str__(self):
         """
         Returns information about the created object. 
         """
-
-        
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
-    
 
     def run(self):
         """
@@ -85,52 +80,59 @@ class Meme:
     Meme class to use user input with the meme-tool.
 
     """
-    
         
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, ):
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
         self.min_motif_size = min_motif_size
         self.alphabet = alphabet
-
     
     def __str__(self):
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
-    
 
     def add_to_path(self):
         print("in Path?")
-        meme_in_path = subprocess.run("echo $PATH", shell=True, text=True).stdout
-        print(meme_in_path)
+        meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True).stdout
+        print(f"Path: {meme_in_path}")
         if "meme" in meme_in_path:
             print("Memsuite in path")
         else:
             print("memesuite not in path, adding now...")
-            subprocess.run("export PATH=/opt/local/bin:/opt/local/libexec/meme-5.5.5:$PATH", shell=True, text=True)
+            new_env = os.environ.copy()
+            new_env["PATH"] = os.pathsep.join(["/opt/local/Documents/meme-5.5.5:$PATH",new_env["PATH"]])
+            meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True, env=new_env).stdout
+            print(f"Path: {meme_in_path}")
 
 
 
     def run(self): # add commandline execution using the user given parameters.
        # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
-        
-        meme_command_test = "meme {} {} -oc {} -time 14400 -mod zoops {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(input_sequence_path_meme, alphabet, output_path_meme, max_amount_of_motifs)
-        meme_output = subprocess.run([meme_command_test], shell=True, capture_output=True)
+        meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
+           input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
+        meme_output = subprocess.run([meme_command_test], shell=True)
+        print(f"Running command: {meme_command_test}")
         output_meme = meme_output.stdout
-        print(output_meme) # should be redirected to the ouput display in the website. 
+        print(output_meme) # should be redirected to the ouput display in the website.
 
 
-def fasta_header_control():
-    with open(fasta_file, "r") as fasta:
+def is_multifasta(fastafile: str):
+    """
+    Detects whether a file is fasta or multifasta
+    :param str fastafile: the filepath of the fastafile you want to check
+    """
+    with open(fastafile, "r") as fasta:
         counter = 0
-        multifasta = False
-        for i in fasta:
-            if ">" in i:
+
+        # Count fastas in fasta file
+        for line in fasta:
+            if ">" in line:
                 counter += 1
             if counter >= 2:
-                multifasta = True
-                print(multifasta)
-                return multifasta
-        return multifasta
+                return True
+
+        # Reached end of fasta file, with counter < 2
+        return False
+
 
 def receive_input():
     """
@@ -139,21 +141,20 @@ def receive_input():
     """
 
     # Running the tools using the classes.
-    # meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
-    # meme_test.run()
-    # print(str(meme_test)) # print information about the meme_test object.
-    # #meme_test.add_to_path()
+    meme_test = Meme(max_amount_of_motifs, max_motif_size, min_motif_size, alphabet) # Make Meme instance
+    meme_test.add_to_path() # Check if meme is in path, otherwise add
+    meme_test.run()
+    print(str(meme_test)) # print information about the meme_test object.
 
 
     # Fimo test:
-    fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
-    fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
 
-    fimo_test.run() # execute the commandline tool using the object fimo_test.
-    print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
+    # fimo_test.run() # execute the commandline tool using the object fimo_test.
+    # print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
 
     return database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet
-
 
 
 def input_commands():
