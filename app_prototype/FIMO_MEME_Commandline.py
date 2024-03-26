@@ -33,6 +33,7 @@ alphabet = "dna" # Nucleotide alphabet to use: RNA, DNA or protein.
 input_sequence_path_meme = "{}/meme_sample_sequences.fasta".format(working_dir)
 output_path_meme = "{}/User_output/meme".format(working_dir)
 
+
 class Fimo:
     """
     The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
@@ -110,15 +111,18 @@ class Meme:
 
 
     def run(self): # add commandline execution using the user given parameters.
-       # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
-        meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
-           input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
-        meme_output = subprocess.run([meme_command_test], shell=True)
-        print(f"Running command: {meme_command_test}")
+        if is_multifasta(input_sequence_path_meme):
+            # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
+            meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
+            input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
+            meme_output = subprocess.run([meme_command_test], shell=True)
+            print(f"Running command: {meme_command_test}")
 
-        meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True)
-        output_meme = meme_output.stdout
-        print(output_meme) # should be redirected to the ouput display in the website.
+            meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True)
+            output_meme = meme_output.stdout
+            print(output_meme) # should be redirected to the ouput display in the website.
+        else:
+            print("To use the MEME command, please use a multi-fasta file as input")
 
 
 def is_multifasta(fastafile: str):
@@ -152,7 +156,6 @@ def receive_input():
     meme_test.run()
     print(str(meme_test)) # print information about the meme_test object.
 
-    meme_test.run()
     #meme_test.add_to_path()
 
     # Fimo test:
