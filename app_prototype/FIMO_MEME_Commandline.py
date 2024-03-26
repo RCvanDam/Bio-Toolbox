@@ -32,6 +32,7 @@ min_motif_size = 3
 alphabet = "dna" # Nucleotide alphabet to use: RNA, DNA or protein.
 input_sequence_path_meme = "{}/meme_sample_sequences.fasta".format(working_dir)
 output_path_meme = "{}/User_output/meme".format(working_dir)
+home_path = subprocess.run("echo $HOME", shell=True, text=True, capture_output=True).stdout.rstrip()
 
 
 class Fimo:
@@ -87,6 +88,7 @@ class Meme:
         self.alphabet = alphabet
         self.input_sequence_path_meme = input_sequence_path_meme
         self.output_path_meme = output_path_meme
+        self.new_env = None
     
     def __str__(self):
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
@@ -103,26 +105,29 @@ class Meme:
             print("Memsuite in path")
         else:
             print("memesuite not in path, adding now...")
-            new_env = os.environ.copy()
-            new_env["PATH"] = os.pathsep.join(["/opt/local/Documents/meme-5.5.5:$PATH",new_env["PATH"]])
-            meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True, env=new_env).stdout
+            self.new_env = os.environ.copy()
+            self.new_env["PATH"] = os.pathsep.join([f"{home_path}/bin/meme:$PATH", self.new_env["PATH"]])
+
+            meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True, env=self.new_env).stdout
             print(f"Path: {meme_in_path}")
-
-
+            
 
     def run(self): # add commandline execution using the user given parameters.
         if is_multifasta(input_sequence_path_meme):
             # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
             meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
             input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
-            meme_output = subprocess.run([meme_command_test], shell=True)
-            print(f"Running command: {meme_command_test}")
+            print(f"Running command: {meme_command_test}\nwith PATH: {self.new_env['PATH']}\n")
 
-            meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True)
+            meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True, env=self.new_env)
             output_meme = meme_output.stdout
             print(output_meme) # should be redirected to the ouput display in the website.
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
+
+    def output_as_tar(self):
+        pass
+        #TODO: Create tar file based on User_output/meme/ Delete original folder
 
 
 def is_multifasta(fastafile: str):
@@ -146,8 +151,7 @@ def is_multifasta(fastafile: str):
 
 def receive_input():
     """
-    Variables collected from the website. 
-
+    Variables collected from the website.
     """
 
     # Running the tools using the classes.
