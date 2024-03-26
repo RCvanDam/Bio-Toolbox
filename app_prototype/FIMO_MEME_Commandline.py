@@ -5,7 +5,7 @@ Author: Floris M
 Date: 7-03-2024
 Last updated: 26-03-2024
 
-Version: 0.05
+Version: 0.06
 
 """
 
@@ -19,9 +19,9 @@ import subprocess # To execute terminal command's on the computer.
 database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
 p_value = 0.0001 # float, default is 0.0001.
-input_motif_file = "/home/floris/Documenten/Data_set/Motifs/motif_databases/MOUSE/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme" 
-input_sequence_path_fimo = "/home/floris/Documenten/Data_set/Motifs/meme_sample_sequences.fasta" # replace with relative path.
-output_path_fimo = "~/Documenten/OUTPUT" # (Temporary) storage place for the generated files. 
+input_motif_file = "/home/floris/Documenten/Github/Bio-Toolbox/Motif_databases/SwissRegulon_e_coli.meme" 
+input_sequence_path_fimo = "/home/floris/Documenten/Github/Bio-Toolbox/Fasta_sequences/test.fasta" # replace with relative path.
+output_path_fimo = "/home/floris/Documenten/OUTPUT/" # (Temporary) storage place for the generated files. 
 
 
 # Test variables for MEME
@@ -44,13 +44,13 @@ class Fimo:
     """
 
 
-    def __init__(self, database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, ouput_path_fimo):
+    def __init__(self, database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo):
         self.database_to_use = database_to_use
         self.use_default_p_value = use_default_p_value
         self.p_value = p_value
         self.input_motif_file = input_motif_file # to-do 
         self.input_sequence_path_fimo = input_sequence_path_fimo
-        self.ouput_path_fimo = output_path_fimo
+        self.output_path_fimo = output_path_fimo
 
     
     def __str__(self):
@@ -73,7 +73,7 @@ class Fimo:
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
-        fimo_output = subprocess.run([fimo_command], shell=True)
+        fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, capture_output=True, text=True)
         output_fimo = fimo_output.stdout
         print(output_fimo) # should be redirected to the ouput display in the website. 
 
@@ -109,10 +109,10 @@ class Meme:
 
 
     def run(self): # add commandline execution using the user given parameters.
-      #  meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
+       # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
         
         meme_command_test = "meme {} {} -oc {} -time 14400 -mod zoops {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(input_sequence_path_meme, alphabet, output_path_meme, max_amount_of_motifs)
-        meme_output = subprocess.run([meme_command_test], shell=True)
+        meme_output = subprocess.run([meme_command_test], shell=True, capture_output=True)
         output_meme = meme_output.stdout
         print(output_meme) # should be redirected to the ouput display in the website. 
 
@@ -144,7 +144,9 @@ def receive_input():
 
 
     # Fimo test:
-    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value)
+    #fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+    # fimo_test = Fimo(database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo)
+
     # fimo_test.run() # execute the commandline tool using the object fimo_test.
     # print(str(fimo_test)) # print information from the def __str__ function in the Meme class.
 
