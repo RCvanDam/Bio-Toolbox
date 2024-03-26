@@ -119,7 +119,9 @@ def html_render_fimo():
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
 
-        meme = Meme(user_input_values)
+        fimo = Fimo("~/meme_out", user_input_values[custom_pvalue], user_input_values[custom_pvalue], input_motif_file, input_fasta_file)
+
+
 
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
@@ -182,11 +184,13 @@ def html_render_meme():
 
             input_user_file = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
 
+            #meme = Meme()
+                
             if input_user_file.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
                 flash("submitted filename(s) must contain atleast 1 character!")
                 return render_template("memepage.html")
             
-            
+
             flash("file received!!")
             return render_template("memepage.html")
 
