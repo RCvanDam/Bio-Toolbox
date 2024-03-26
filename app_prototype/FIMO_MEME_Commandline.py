@@ -15,7 +15,7 @@ import subprocess # om terminal commando's uit te voeren in python
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
 
-# Variables for FIMO
+# Test variables for FIMO
 database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
 p_value = 0.0001 # float, default is 0.0001.
@@ -24,7 +24,7 @@ input_sequence_path_fimo = "/home/floris/Documenten/Data_set/Motifs/meme_sample_
 output_path_fimo = "~/Documenten/OUTPUT" # (Temporary) storage place for the generated files. 
 
 
-# Variables for MEME
+# Test variables for MEME
 max_amount_of_motifs = 0 # max abount of motif to look for, program stops looking if the number is exceeded.
 max_motif_size = 0 # max length of the motifs.
 min_motif_size = 0 
@@ -38,6 +38,9 @@ class Fimo:
     """
     The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
 
+    :param database_to_use: The motif file to use when the user doesn't provide their own.
+    :param use_default_p_value: True or False, whether or not to use the default P-value.
+    :param p_value: If chosen, the custom P-value. 
     """
 
     def __init__(self, database_to_use, use_default_p_value, p_value):
@@ -53,7 +56,11 @@ class Fimo:
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
     
     def run(self):
+        """
+        Using the ".run()" method, the Fimo tool will be run. No parameters needed because they were already given when the class was initialized. 
+        """
         if database_to_use: # If the user selected one of the databases instead of a motif file. 
+            
             pass
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
