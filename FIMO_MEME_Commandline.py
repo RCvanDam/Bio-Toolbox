@@ -96,6 +96,21 @@ class Meme:
         print(output_meme) # should be redirected to the ouput display in the website. 
 
 
+ def fasta_header_control(self):
+        myfile = "C:\\Users\\rvand\\Documents\\school\\Bio-Toolbox\\Bio-Toolbox\\fasta_files\\uniprotkb_accession_A6N7Y9_OR_accession_2024_03_25.fasta"
+
+        with open(myfile, "r") as fasta:
+            counter = 0
+            multifasta = False
+            for i in fasta:
+                if ">" in i:
+                    counter += 1
+                if counter >= 2:
+                    multifasta = True
+                    print(multifasta)
+                    return multifasta
+            return multifasta
+
 def receive_input():
     """
     Variables collected from the website. 
