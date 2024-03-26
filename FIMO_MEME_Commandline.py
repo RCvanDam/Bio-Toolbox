@@ -45,7 +45,9 @@ class Fimo:
         self.p_value = p_value
         self.input_motif_file = input_motif_file # to-do 
         self.input_sequence_path_fimo = input_sequence_path_fimo
+        self.ouput_path_fime
 
+    
     def __str__(self):
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
     
