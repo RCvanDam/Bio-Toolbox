@@ -37,6 +37,7 @@ path_memesuite_export = "export PATH=/opt/local/bin:/opt/local/libexec/meme-5.5.
 class Fimo: 
     """
     The Fimo class serves the purpose of running the Fimo tool after the parameters from the website are collected.
+
     """
 
     def __init__(self, database_to_use, use_default_p_value, p_value):
@@ -64,9 +65,10 @@ class Fimo:
 
 class Meme:
     """
-    Meme class with 
-    """
+    Meme class to use user input with the meme-tool.
 
+    """
+    
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, ):
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
@@ -99,19 +101,18 @@ class Meme:
         print(output_meme) # should be redirected to the ouput display in the website. 
 
 
- def fasta_header_control(self):
-
-        with open(Fastafile, "r") as fasta:
-            counter = 0
-            multifasta = False
-            for i in fasta:
-                if ">" in i:
-                    counter += 1
-                if counter >= 2:
-                    multifasta = True
-                    print(multifasta)
-                    return multifasta
-            return multifasta
+def fasta_header_control(self):
+    with open(fasta_file, "r") as fasta:
+        counter = 0
+        multifasta = False
+        for i in fasta:
+            if ">" in i:
+                counter += 1
+            if counter >= 2:
+                multifasta = True
+                print(multifasta)
+                return multifasta
+        return multifasta
 
 def receive_input():
     """
