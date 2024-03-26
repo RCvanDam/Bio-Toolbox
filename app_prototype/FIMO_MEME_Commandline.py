@@ -10,7 +10,7 @@ Version: 0.05
 """
 
 
-import subprocess # om terminal commando's uit te voeren in python 
+import subprocess # To execute terminal command's on the computer.
 
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
@@ -20,7 +20,7 @@ database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
 p_value = 0.0001 # float, default is 0.0001.
 input_motif_file = "/home/floris/Documenten/Data_set/Motifs/motif_databases/MOUSE/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme" 
-input_sequence_path_fimo = "/home/floris/Documenten/Data_set/Motifs/meme_sample_sequences.fasta"
+input_sequence_path_fimo = "/home/floris/Documenten/Data_set/Motifs/meme_sample_sequences.fasta" # replace with relative path.
 output_path_fimo = "~/Documenten/OUTPUT" # (Temporary) storage place for the generated files. 
 
 
@@ -43,25 +43,33 @@ class Fimo:
     :param p_value: If chosen, the custom P-value. 
     """
 
-    def __init__(self, database_to_use, use_default_p_value, p_value):
+
+    def __init__(self, database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, ouput_path_fimo):
         self.database_to_use = database_to_use
         self.use_default_p_value = use_default_p_value
         self.p_value = p_value
         self.input_motif_file = input_motif_file # to-do 
         self.input_sequence_path_fimo = input_sequence_path_fimo
-        self.ouput_path_fime
+        self.ouput_path_fimo = output_path_fimo
 
     
     def __str__(self):
+        """
+        Returns information about the created object. 
+        """
+
+        
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
     
+
     def run(self):
         """
         Using the ".run()" method, the Fimo tool will be run. No parameters needed because they were already given when the class was initialized. 
         """
+
+
         if database_to_use: # If the user selected one of the databases instead of a motif file. 
-            
-            pass
+            pass # add logic to select database depending on the user selection.
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
@@ -76,6 +84,7 @@ class Meme:
 
     """
     
+        
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, ):
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
@@ -108,7 +117,7 @@ class Meme:
         print(output_meme) # should be redirected to the ouput display in the website. 
 
 
-def fasta_header_control(self):
+def fasta_header_control():
     with open(fasta_file, "r") as fasta:
         counter = 0
         multifasta = False

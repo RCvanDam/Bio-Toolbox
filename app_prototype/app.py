@@ -5,10 +5,10 @@ from flask import Flask, render_template, flash, request, redirect, url_for
 import werkzeug
 import os
 import flask
-import FIMO_MEME_Commandline
+from FIMO_MEME_Commandline import Fimo, Meme
 
 os.environ["FLASK_DEBUG"]="1" #turn on debug mode
- 
+
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"\app_prototype\user_input_files"
