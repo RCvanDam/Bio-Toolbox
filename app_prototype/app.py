@@ -119,7 +119,14 @@ def html_render_fimo():
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
 
-        fimo = Fimo("~/meme_out", user_input_values[custom_pvalue], user_input_values[custom_pvalue], input_motif_file, input_fasta_file)
+        working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+        output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
+
+        # execute Fimo with user parameters
+        fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], user_input_values["input_motif_file"], user_input_values["input_fasta_file"], output_path_fimo)
+        #database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo
+        print(str(fimo)) # redirect to website
+        fimo.run()
 
 
 
@@ -182,11 +189,17 @@ def html_render_meme():
             if request.form.get("seq_type_protein") != None: 
                 user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
 
-            input_user_file = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
+            input_sequence_path_meme = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
+            working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+            output_path_meme = "{}/User_ouput/meme".format(working_dir)
 
-            #meme = Meme()
-                
-            if input_user_file.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            # execute Meme with user parameters
+            meme = Meme(user_input_values["max_amount_of_motifs"], user_input_values["max_motif_size"], user_input_values["min_motif_size"], "dna", input_sequence_path_meme, output_path_meme)
+            print(str(meme)) # redirect to website
+            meme.run()
+
+
+            if input_sequence_path_meme.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
                 flash("submitted filename(s) must contain atleast 1 character!")
                 return render_template("memepage.html")
             
