@@ -119,7 +119,7 @@ def html_render_fimo():
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
-        input_motif_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_motif_file
+        input_motif_file = request.files["input_motif_file"] #here we define the file the user submitted as input_motif_file
 
         working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
         output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
