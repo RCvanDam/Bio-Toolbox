@@ -5,12 +5,14 @@ Author: Floris M, Ruben van Dam
 Date: 7-03-2024
 Last updated: 27-03-2024
 
-Version: 0.11
+Version: 0.12
 
 """
 
 import subprocess # To execute terminal command's on the computer.
 import os
+import tarfile
+import shutil
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
 working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
@@ -111,7 +113,6 @@ class Meme:
 
             meme_in_path = subprocess.run("echo $PATH", shell=True, text=True, capture_output=True, env=self.new_env).stdout
             print(f"Path: {meme_in_path}")
-            
 
     def run(self): # add commandline execution using the user given parameters.
         if is_multifasta(input_sequence_path_meme):
@@ -123,13 +124,28 @@ class Meme:
             meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True, env=self.new_env)
             output_meme = meme_output.stdout
             print(output_meme) # should be redirected to the ouput display in the website.
+            self.generate_tarfile()
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
 
-    def output_as_tar(self):
-        pass
-        #TODO: Create tar file based on User_output/meme/ Delete original folder
 
+    def generate_tarfile(self):
+        """
+        Generates a tarfile based on the output from the meme command
+        """
+        # declaring the filename for tar
+        tar_filepath = f"{output_path_meme}.tar"
+        file = tarfile.open(tar_filepath, "w")
+
+        # defines extension
+        ext = (".png", ".eps", ".html", ".txt", "xml")
+        files = os.listdir(output_path_meme)
+        for x in files:
+            file.add(f"{output_path_meme}/{x}", x)
+
+        
+        shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
+        
 
 def is_multifasta(fastafile: str):
     """
@@ -197,3 +213,4 @@ if __name__ == "__main__":
     database_to_use, use_default_p_value, p_value, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet = receive_input()
     fimo_command, meme_command = input_commands()
     #process_commands(fimo_command, meme_command)
+    
