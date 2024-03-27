@@ -168,7 +168,7 @@ def html_render_meme():
     method = request.method
     if method == "GET":
         flash("inititial visit!!!")
-        return render_template("memepage.html") #just renders the default fimo page
+        return render_template("memePage.html") #just renders the default fimo page
 
     elif request.method == "POST":#user submitted inputs
             user_input_values = { #here I save all the input button values as variables
