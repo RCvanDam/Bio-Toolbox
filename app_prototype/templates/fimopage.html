@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-
-
-        <meta charset="utf-8">
-        <title>FIMO Toolpage</title>
-        <link rel="stylesheet" href="static/stylesheet.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
-    </head>
-    <body id="background_color">
-
-        <h1 class="logo_mefim_findr" style="color: #c8a2c8;">MEFIM- FindR</h1>
-
-        <div class="container mb-5 p-0">
-            <div class="row">
-                <div class="col-sm-4">
-                    <ul class="unordered_list_nav_bar">
-                        <li id="left_border"><a class="hover_over_nav_bar"href="/">HOME</a></li>
-                        <li><a class="hover_over_nav_bar" href="meme">MEME</a></li>
-                        <li><a class="hover_over_nav_bar"href="fimo">FIMO</a></li>
-                        <li id="right_border"><a class="hover_over_nav_bar" href="#tool_3">tool_3 (optional)</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
+{% extends "base.html" %}
+{% block content %}
+<!-- 27 maart 2024-->
 
 
         <!-- The display box-->
@@ -49,6 +22,9 @@
                                 <input class="form-check-input" type="radio" name="motif_file_option" id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
+
+                                <br>
+
                                 <div class="form-check">
                                 <input class="form-check-input" type="radio" name="motif_database_option" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
@@ -56,6 +32,14 @@
                                 </label>
                                 </div>
 
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="warning_box_datab">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>                                    
+                                    </svg>
+                                    Don't use the database when the motifs are in the file
+                                    <br>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
 
                                 <label for="nmotifs"><b>Motif database to use:</b></label>
                                 <select class="form-control" id="nmotifs" name="chosen_database">
@@ -67,8 +51,20 @@
                                     <option>Drosophila (fly)</option>
                                 </select><br>
 
-                                <label for="nmotifs">Other variable here...:</label>
-                                <select class="form-control" id="nmotifs" name="other_variable">
+                                <div id="database_options">
+                                    <label for="nmotifs1"><b>Motif database to use:</b></label>
+                                    <select class="form-control" id="nmotifs1" name="nmotifs">
+                                        <option>Please select database to use</option>
+                                        <option>Human</option>
+                                        <option>Jaspar</option>
+                                        <option>E.coli (Bacterium)</option>
+                                        <option>Mouse</option>
+                                        <option>Drosophila (fly)</option>
+                                    </select><br>
+                                </div>
+
+                                <label for="nmotifs2">Other variable here...:</label>
+                                <select class="form-control" id="nmotifs2" name="nmotifs">
                                     <option>please select a number</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -76,6 +72,7 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select><br>
+
 
                                  <div class="form-check">
                                 <input class="form-check-input" type="radio" name="default_pvalue" id="flexRadioDefault1">
@@ -86,6 +83,7 @@
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Custom P-value cut-off: (Select below)
                                 </label>
+                                
                                 </div>
 
                                 <label for="customRange1" class="form-label">Select P-value threshold:</label>
