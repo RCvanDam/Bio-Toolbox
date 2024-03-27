@@ -125,7 +125,7 @@ def html_render_fimo():
         output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
 
         # execute Fimo with user parameters
-        fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], user_input_values["input_motif_file"], user_input_values["input_fasta_file"], output_path_fimo)
+        fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], input_motif_file, input_fasta_file, output_path_fimo)
         #database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo
         print(str(fimo)) # redirect to website
         fimo.run()
