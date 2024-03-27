@@ -18,6 +18,7 @@ import shutil
 working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 print(working_dir)
 
+
 # Test variables for FIMO
 database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
