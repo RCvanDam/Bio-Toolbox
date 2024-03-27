@@ -3,7 +3,7 @@
 MemeSuite backend for website
 Author: Floris M, Ruben van Dam
 Date: 7-03-2024
-Last updated: 26-03-2024
+Last updated: 27-03-2024
 
 Version: 0.11
 
@@ -15,6 +15,7 @@ import os
 # Global test variables (should be replaced by the ones given back by the webserver.)
 working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 print(working_dir)
+
 
 # Test variables for FIMO
 database_to_use = False # Name of the database.
