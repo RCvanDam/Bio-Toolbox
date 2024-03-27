@@ -18,18 +18,17 @@
                     <input class="form-control" type="file" id="meme" name="input_motif_file">
                     <br>
                     
-                    <div class="form-check">
-                                <input class="form-check-input" type="radio" name="motif_file_option" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
-                                </div>
 
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="motif_file_option">
+                                  <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
+                                </div>
                                 <br>
 
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="motif_database_option" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Use motif from database
-                                </label>
+
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault2" name="motif_database_option">
+                                  <label class="form-check-label" for="flexRadioDefault2">Use motif from database</label>
                                 </div>
 
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert" id="warning_box_datab">
