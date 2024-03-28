@@ -3,7 +3,7 @@
 MemeSuite backend for website
 Author: Floris M, Ruben van Dam
 Date: 7-03-2024
-Last updated: 27-03-2024
+Last updated: 28-03-2024
 
 Version: 0.12
 
