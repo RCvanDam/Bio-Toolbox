@@ -1,4 +1,4 @@
-
+# 28 maart 2024
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
 from flask import Flask, render_template, flash, request, redirect, url_for 
@@ -130,6 +130,7 @@ def html_render_fimo():
         print(str(fimo)) # redirect to website
         fimo.run()
 
+        
 
 
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
