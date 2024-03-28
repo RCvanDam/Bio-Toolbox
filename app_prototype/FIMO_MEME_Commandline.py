@@ -128,6 +128,21 @@ class Meme:
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
 
+    def weblogo_checker(self):
+        """"
+        in this function i want to check the weblogo
+        and display the one that has the best accuracy
+        :param: all generated weblogo
+        :return: best weblogo
+        """
+        weblogo_jpg_list = []
+        for files in os.listdir(output_path_meme): #show's everything that is inside the folder (os.listdir)
+            if files.endswith(".jpg"): # look for jpg extensions
+                weblogo_jpg_list.append(files) # put all the jpg in a list
+
+            best_match_wl = weblogo_jpg_list[0] # thinking that the first jpg is the most accurate add this to a new var
+            weblogo_jpg_list = [] # clear the list
+        return best_match_wl
 
     def generate_tarfile(self):
         """
