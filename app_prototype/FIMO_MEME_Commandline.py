@@ -146,7 +146,13 @@ class Meme:
         
         shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
         
-
+def extension_check(fastafile):
+    """made this path checker again re test if it works
+    :param: fastafile
+    :return: True or false"""
+    if os.path.splitext(fastafile)[1] == ".fasta":
+        return True
+        
 def is_multifasta(fastafile: str):
     """
     Detects whether a file is fasta or multifasta
