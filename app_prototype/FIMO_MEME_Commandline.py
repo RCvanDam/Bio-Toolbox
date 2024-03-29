@@ -137,7 +137,7 @@ class Meme:
         """
         weblogo_jpg_list = []
         for files in os.listdir(output_path_meme): #show's everything that is inside the folder (os.listdir)
-            if files.endswith(".jpg"): # look for jpg extensions
+            if files.endswith(".png"): # look for jpg extensions
                 weblogo_jpg_list.append(files) # put all the jpg in a list
 
             best_match_wl = weblogo_jpg_list[0] # thinking that the first jpg is the most accurate add this to a new var
