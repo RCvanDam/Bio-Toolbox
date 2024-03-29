@@ -105,6 +105,17 @@ def html_render_fimo():
         "maxsize": request.form["maxsize"],
         "minsize": request.form["minsize"],
         } # request.form refers to the input's name in html
+        
+        
+        if request.form.get("motif_file_option") == None and request.form.get("motif_database_option") == None:
+            flash("a motif option must be chosen")
+            return render_template("fimopage.html")
+
+        if request.form.get("default_pvalue") == None and request.form.get("custom_pvalue") == None:
+            flash("a pvalue option must be chosen")
+            return render_template("fimopage.html")
+        
+
 
         if request.form.get("motif_file_option") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
             user_input_values["motif_file_option"] = request.form["motif_file_option"]
