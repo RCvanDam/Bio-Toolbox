@@ -3,9 +3,9 @@
 MemeSuite backend for website
 Author: Floris M, Ruben van Dam
 Date: 7-03-2024
-Last updated: 28-03-2024
+Last updated: 29-03-2024
 
-Version: 0.12
+Version: 0.14
 
 """
 
@@ -54,12 +54,31 @@ class Fimo:
         self.input_motif_file = input_motif_file
         self.input_sequence_path_fimo = input_sequence_path_fimo
         self.output_path_fimo = output_path_fimo
+        self.is_multifasta()
 
     def __str__(self):
         """
         Returns information about the created object. 
         """
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
+
+
+    def is_multifasta(fastafile: str):
+        """
+        Detects whether a file is fasta or multifasta
+        :param str fastafile: the filepath of the fastafile you want to check
+        """
+        with open(fastafile, "r") as fasta:
+            counter = 0
+
+            # Count fastas in fasta file
+            for line in fasta:
+                if ">" in line:
+                    counter += 1
+                if counter >= 2:
+                    return True
+                    # Reached end of fasta file, with counter < 2
+            return False
 
     def run(self):
         """
@@ -155,8 +174,10 @@ class Meme:
         # defines extension
         ext = (".png", ".eps", ".html", ".txt", "xml")
         files = os.listdir(output_path_meme)
-        for x in files:
-            file.add(f"{output_path_meme}/{x}", x)
+
+        # listing the files in tar
+        for filename in files:
+            file.add(f"{output_path_meme}/{filename}", filename)
 
         
         shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
