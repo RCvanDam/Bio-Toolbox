@@ -6,8 +6,11 @@ import werkzeug
 import os
 import flask
 from FIMO_MEME_Commandline import Meme, Fimo
+import sys
 
 os.environ["FLASK_DEBUG"]="1" #turn on debug mode
+
+CORRECT_OS = True
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
@@ -26,6 +29,13 @@ def allowed_file(filename):
     else:
         return False
     
+def correct_os():
+    """
+    reusable function to flash on every page
+    the fact that the use of the tool is not possible on the current os
+    """
+    if CORRECT_OS == False:
+        flash("This operating system is not compatible with our tool")
 
 @app.route('/')
 def home_redirect():
@@ -38,6 +48,7 @@ def home_redirect():
 @app.route('/about', methods=["POST","GET"])
 # ‘/’ URL is bound with hello_world() function.
 def home_about_page():
+    correct_os()
 
     if request.method == "GET":
         return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
@@ -90,6 +101,7 @@ def testing_url():
 
 @app.route("/fimo", methods=["POST","GET"])
 def html_render_fimo():
+    correct_os()
     method = request.method
     # print(request.form)
     # print(request.form.get("default_pvalue"))
@@ -130,7 +142,6 @@ def html_render_fimo():
         if motif_file_option != None and motif_database_option != None:
             flash("only one motif option can be chosen")
             return render_template("fimopage.html")
-
 
 
         if motif_file_option != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
@@ -195,6 +206,7 @@ def html_render_fimo():
 
 @app.route('/meme', methods=["POST","GET"])
 def html_render_meme():
+    correct_os()
     method = request.method
     if method == "GET":
         flash("inititial visit!!!")
@@ -256,12 +268,16 @@ def error_504():
     return "Error 504: Gateway Timeout"
 
 
-
 # main driver function
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
+
+    if sys.platform.startswith("win32"):
+        CORRECT_OS = False
+
     print(app.root_path)
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
+
 
 

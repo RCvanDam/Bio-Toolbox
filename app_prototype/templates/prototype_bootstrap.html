@@ -7,8 +7,19 @@
         <div class="container pb-5" >
             <div class="row">
                 <!--Main frames used for info-->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
                     <div class="col-sm-4">
-
                         <div class="frame">
                             <h2 class="text-center">About</H2>
                             <hr class="hr_border">
