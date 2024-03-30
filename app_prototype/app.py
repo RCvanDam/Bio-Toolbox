@@ -111,18 +111,22 @@ def html_render_fimo():
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
         
-        if motif_file_option == None and motif_database_option == None:
+        #checking if neither of the motif options have been chosen.
+        if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
             return render_template("fimopage.html")
 
+        #checking if neither of the pvalue options have been chosen.
         if default_pvalue == None and custom_pvalue == None:
             flash("a pvalue option must be chosen")
             return render_template("fimopage.html")
         
+        #checking if both pvalue options have been chosen.
         if custom_pvalue != None and default_pvalue != None:
             flash("only one p value option can be chosen")
             return render_template("fimopage.html")
         
+        #checking if both motif options have been chosen.
         if motif_file_option != None and motif_database_option != None:
             flash("only one motif option can be chosen")
             return render_template("fimopage.html")
