@@ -106,27 +106,39 @@ def html_render_fimo():
         "minsize": request.form["minsize"],
         } # request.form refers to the input's name in html
         
+        motif_file_option = request.form.get("motif_file_option")
+        motif_database_option = request.form.get("motif_database_option")
+        default_pvalue = request.form.get("default_pvalue")
+        custom_pvalue = request.form.get("custom_pvalue")
         
-        if request.form.get("motif_file_option") == None and request.form.get("motif_database_option") == None:
+        if motif_file_option == None and motif_database_option == None:
             flash("a motif option must be chosen")
             return render_template("fimopage.html")
 
-        if request.form.get("default_pvalue") == None and request.form.get("custom_pvalue") == None:
+        if default_pvalue == None and custom_pvalue == None:
             flash("a pvalue option must be chosen")
             return render_template("fimopage.html")
         
+        if custom_pvalue != None and default_pvalue != None:
+            flash("only one p value option can be chosen")
+            return render_template("fimopage.html")
+        
+        if motif_file_option != None and motif_database_option != None:
+            flash("only one motif option can be chosen")
+            return render_template("fimopage.html")
 
 
-        if request.form.get("motif_file_option") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
-            user_input_values["motif_file_option"] = request.form["motif_file_option"]
 
-        if request.form.get("motif_database_option") != None:
-            user_input_values["motif_database_option"] = request.form["motif_database_option"]
+        if motif_file_option != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+            user_input_values["motif_file_option"] = motif_file_option
 
-        if request.form.get("default_pvalue") != None: 
-            user_input_values["default_pvalue"] = request.form["default_pvalue"]
+        if motif_database_option != None:
+            user_input_values["motif_database_option"] = motif_database_option
 
-        if request.form.get("custom_pvalue") != None:
+        if default_pvalue != None: 
+            user_input_values["default_pvalue"] = default_pvalue
+
+        if custom_pvalue != None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
