@@ -122,7 +122,7 @@ def html_render_fimo():
         motif_database_option = request.form.get("motif_database_option")
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
-        
+
         #checking if neither of the motif options have been chosen.
         if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
@@ -149,6 +149,8 @@ def html_render_fimo():
 
         if motif_database_option != None:
             user_input_values["motif_database_option"] = motif_database_option
+        else:
+            user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
 
         if default_pvalue != None: 
             user_input_values["default_pvalue"] = default_pvalue
