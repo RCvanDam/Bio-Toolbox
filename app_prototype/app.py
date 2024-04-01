@@ -17,11 +17,16 @@ CORRECT_OS = True
 UPLOAD_FOLDER = r"\app_prototype\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
+
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key="poep"
 
+OUTPUT_FOLDER = app.root_path + r"\user_output"
+UPLOAD_FOLDER = app.root_path + r"\user_input_files"
 
+print(UPLOAD_FOLDER)
 
 def allowed_file(filename):
     if "." in filename and filename.rsplit(".",1)[1].lower in ALLOWED_EXTENSIONS:
@@ -170,6 +175,7 @@ def html_render_fimo():
         print(str(fimo)) # redirect to website
         fimo.run()
 
+
         
 
 
@@ -190,7 +196,7 @@ def html_render_fimo():
         flash(f"file: {input_fasta_file.filename} received!!")
         
 
-        return render_template("fimopage.html")
+        return redirect(url_for("render_fimo_output_html"))
         
         
         
@@ -246,7 +252,23 @@ def html_render_meme():
             
 
             flash("file received!!")
-            return render_template("memepage.html")
+            return redirect(url_for("render_meme_output_html"))
+    
+
+
+@app.route('/fimo_output')
+def render_fimo_output_html():
+
+    
+    
+    return render_template("fimo.html")
+
+
+@app.route('/meme_output')
+def render_meme_output_html():
+    return
+
+
 
 # Error handeling:
 @app.errorhandler(429)
@@ -276,7 +298,6 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     if sys.platform.startswith("win32"):
         CORRECT_OS = False
 
-    print(app.root_path)
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
