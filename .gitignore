@@ -3,3 +3,5 @@ User_output
 meme-5.5.5.tar.gz
 FIMO_MEME_Commandline.cpython-310.pyc
 *.pyc
+current_session_output/
+.idea
