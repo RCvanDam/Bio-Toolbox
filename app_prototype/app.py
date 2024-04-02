@@ -9,7 +9,7 @@ from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 from shutil import move
 
-os.environ["FLASK_DEBUG"]="1"  #turn on debug mode
+os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
 CORRECT_OS = True
 
@@ -17,7 +17,6 @@ CORRECT_OS = True
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"\app_prototype\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
-
 
 
 app = Flask(__name__)
@@ -29,19 +28,23 @@ UPLOAD_FOLDER = app.root_path + r"\user_input_files"
 
 print(UPLOAD_FOLDER)
 
+
 def allowed_file(filename):
     if "." in filename and filename.rsplit(".",1)[1].lower in ALLOWED_EXTENSIONS:
         return True
     else:
         return False
-    
+
+
 def correct_os():
+
     """
     reusable function to flash on every page
     the fact that the use of the tool is not possible on the current os
     """
     if CORRECT_OS == False:
         flash("This operating system is not compatible with our tool")
+
 
 @app.route('/')
 def home_redirect():
@@ -57,38 +60,11 @@ def home_about_page():
     correct_os()
 
     if request.method == "GET":
-        return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
-    
+        return render_template("prototype_bootstrap.html")
+        #basically the first time the homepage loads or if the page gets reloaded without user inputs.
 
-    elif request.method == 'POST':#user submitted inputs
-        kwargs = {
-        'course': request.form['course'],
-        'ec': request.form['ec'],
-        'teacher': request.form['test_teacher'],} # request.form refers to the input's name in html
 
-        user_file = request.files["user_file"] #here we define the file the user submitted as user_file
 
-        if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
-            flash("submitted filename must contain atleast 1 character!")
-            print("flasj was triggered")
-            return render_template("prototype_bootstrap.html")
-        
-        elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
-            secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
-            user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
-            flash("file submitted!") # still working on the flashes
-            print("flash was triggered")
-            return render_template("prototype_bootstrap.html")
-        else:
-            flash("something wen't wrong")
-            return render_template("prototype_bootstrap.html") #render template adds
-
-        
-        # unpacked_kwargs = kwargs.keys()
-        
-        # for iterate in unpacked_kwargs:
-        #     print(kwargs[iterate])
-    return render_template("prototype_bootstrap.html")
             
 
 @app.route('/download')
@@ -203,8 +179,7 @@ def html_render_fimo():
         # else:
         #     flash("something wen't wrong")
         #     return render_template("fimopage.html") #render template adds 
-        flash("input received")
-        return render_template("fimopage.html")
+
 
 
 @app.route('/meme', methods=["POST","GET"])
