@@ -4,7 +4,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for 
 import werkzeug
 import os
-import flask
+# import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 
