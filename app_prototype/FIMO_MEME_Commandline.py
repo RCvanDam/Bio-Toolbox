@@ -180,7 +180,7 @@ class Meme:
             file.add(f"{output_path_meme}/{filename}", filename)
 
         
-        shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
+        # shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
         
 def extension_check(fastafile):
     """made this path checker again re test if it works
