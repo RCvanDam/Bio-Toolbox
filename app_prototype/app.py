@@ -4,9 +4,10 @@
 from flask import Flask, render_template, flash, request, redirect, url_for 
 import werkzeug
 import os
-# import flask
+import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
+from shutil import move
 
 os.environ["FLASK_DEBUG"]="1"  #turn on debug mode
 
@@ -96,12 +97,6 @@ def download():
     return flask.send_file(outputs, as_attachment=True)
 
 
- 
-
-@app.route('/test')
-# ‘/’ URL is bound with hello_world() function.
-def testing_url():
-    return 'TESTIOMGWORKS!'
  
 
 @app.route("/fimo", methods=["POST","GET"])
@@ -297,10 +292,13 @@ if __name__ == '__main__': #this statement basically checks if the file is being
 
     if sys.platform.startswith("win32"):
         CORRECT_OS = False
+    
+
 
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
+
 
 
 
