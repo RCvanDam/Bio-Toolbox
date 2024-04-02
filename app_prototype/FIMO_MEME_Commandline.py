@@ -1,7 +1,7 @@
 
 """
 MemeSuite backend for website
-Author: Floris M, Ruben van Dam
+Author: Tai Vo, Floris M, Jarno Duiker, Ruben van Dam
 Date: 7-03-2024
 Last updated: 29-03-2024
 
@@ -180,7 +180,11 @@ class Meme:
             file.add(f"{output_path_meme}/{filename}", filename)
 
         
-        shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
+        # shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
+
+def html_output_file_mover():
+    shutil.move("app_prototype/User_output/fimo.html", "app_prototype/templates")
+
         
 def extension_check(fastafile):
     """made this path checker again re test if it works

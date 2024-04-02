@@ -8,7 +8,7 @@ import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 
-os.environ["FLASK_DEBUG"]="1" #turn on debug mode
+os.environ["FLASK_DEBUG"]="1"  #turn on debug mode
 
 CORRECT_OS = True
 
