@@ -1,13 +1,16 @@
 # 2 apr 2024
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template, flash, request, redirect, url_for 
+import snakeviz
+from flask import Flask, render_template, flash, request, redirect, url_for
 import werkzeug
 import os
 import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
-from shutil import move
+from werkzeug.middleware.profiler import ProfilerMiddleware
+import cProfile, pstats
+
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
@@ -20,6 +23,8 @@ ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 
 app = Flask(__name__)
+app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py',))
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
 
@@ -273,8 +278,14 @@ def error_504():
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
+    profiler = cProfile.Profile()
+    profiler.enable()
+    app.run()
+    profiler.disable()
 
-
+    results = pstats.Stats(profiler)
+    results.print_stats()
+    snakeviz
 
     # run() method of Flask class runs the application
     # on the local development server.
