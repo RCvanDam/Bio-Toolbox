@@ -26,8 +26,11 @@ app.secret_key = "poep"
 OUTPUT_FOLDER = app.root_path + r"\user_output"
 UPLOAD_FOLDER = app.root_path + r"\user_input_files"
 
-HUMAN_DATABASE_OPTION_ = app.root_path + r"\Motif_databases"
-MOUSE_DATABASE_OPTION_ = app.root_path + r"\Motif_databases"
+HUMAN_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_HUMAN_mono_meme_format.meme")
+MOUSE_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_MOUSE_mono_meme_format.meme")
+FLY_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\OnTheFly_2014_Drosophila.meme")
+ECOLI_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_e_coli.meme")
+JASPAR_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_human_and_mouse.meme")
 
 
 def allowed_file(filename):
@@ -44,8 +47,8 @@ def correct_os():
     the fact that the use of the tool is not possible on the current os
     """
     if not CORRECT_OS:
-        flash(f"This operating system is not compatible with our tool, 
-              refer to the readme for the system requirements")
+        flash("""This operating system is not compatible with our tool, 
+              refer to the readme for the system requirements""")
 
 
 @app.route('/')
@@ -96,11 +99,17 @@ def html_render_fimo():
         "minsize": request.form["minsize"],
         } # request.form refers to the input's name in html
         
+        print(len(request.form["chosen_database"]))
+
         motif_file_option = request.form.get("motif_file_option")
         motif_database_option = request.form.get("motif_database_option")
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
 
+        
+        if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use ":
+            flash("Please select a database to use!")
+            
         #checking if neither of the motif options have been chosen.
         if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
@@ -142,21 +151,16 @@ def html_render_fimo():
         working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
         output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
 
+        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            flash("submitted filename(s) must contain atleast 1 character!")
+            return render_template("fimopage.html")
+        
         # execute Fimo with user parameters
         fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], input_motif_file, input_fasta_file, output_path_fimo)
         #database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo
         print(str(fimo)) # redirect to website
         fimo.run()
 
-
-        
-
-
-        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
-            flash("submitted filename(s) must contain atleast 1 character!")
-            print("submitted filename(s) must contain atleast 1 character!")
-            return render_template("fimopage.html")
-        
         # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
         # FIMO_MEME_Commandline.process_commands(fimo_command)
         
