@@ -12,7 +12,11 @@ from FIMO_MEME_Commandline import Fimo, Meme
 
 
 def test_fimo_backend():
-    Fimo
+
+
+def test_meme_backend():
+    
+
     
 
 
