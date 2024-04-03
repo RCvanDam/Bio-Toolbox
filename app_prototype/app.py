@@ -97,6 +97,7 @@ def html_render_fimo():
         return render_template("fimopage.html") #just renders the default fimo page
     
     elif method == "POST":#user submitted inputs
+
         user_input_values = { #here I save all the input button values as variables
         "chosen_database": request.form["chosen_database"],
         "input_custom_pvalue": request.form["input_custom_pvalue"],
@@ -105,51 +106,72 @@ def html_render_fimo():
         "minsize": request.form["minsize"],
         } # request.form refers to the input's name in html
         
-        print(len(request.form["chosen_database"]))
+        print("|",request.form["chosen_database"],"|")
 
         motif_file_option = request.form.get("motif_file_option")
         motif_database_option = request.form.get("motif_database_option")
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
 
-        
-        if motif_database_option is not None and user_input_values["chosen_database"] == "Please select database to use ":
-            flash("Please select a database to use!")
 
         #checking if neither of the motif options have been chosen.
-        if motif_file_option == None and motif_database_option == None:
+        if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
             return render_template("fimopage.html")
 
+        #checking if both motif options have been chosen.
+        if motif_file_option != None and motif_database_option != None:
+            flash("only one motif option can be chosen")
+            return render_template("fimopage.html")
+        
         #checking if neither of the pvalue options have been chosen.
         if default_pvalue == None and custom_pvalue == None:
             flash("a pvalue option must be chosen")
             return render_template("fimopage.html")
         
         #checking if both pvalue options have been chosen.
-        if custom_pvalue is not None and default_pvalue is not None:
+        if custom_pvalue != None and default_pvalue != None:
             flash("only one p value option can be chosen")
             return render_template("fimopage.html")
         
-        #checking if both motif options have been chosen.
-        if motif_file_option is not None and motif_database_option is not None:
-            flash("only one motif option can be chosen")
+        #checking if a database has been chosen if the database option is on
+        if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use":
+            flash("Please select a database to use!")
             return render_template("fimopage.html")
 
-
-        if motif_file_option is not None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+        if motif_file_option != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
             user_input_values["motif_file_option"] = motif_file_option
 
-        if motif_database_option is not None:
+        if motif_database_option != None:
             user_input_values["motif_database_option"] = motif_database_option
         else:
             user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
 
-        if default_pvalue is not None: 
+        if default_pvalue != None: 
             user_input_values["default_pvalue"] = default_pvalue
 
-        if custom_pvalue is not None:
+        if custom_pvalue != None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
+
+        if motif_database_option != None:
+
+            user_input_values["motif_database_option"] = motif_database_option
+
+            #replacing the value in user_input_values with the path to the motif files
+            if user_input_values["chosen_database"] == "Human":
+                user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_
+            elif user_input_values["chosen_database"] == "Mouse":
+                user_input_values["chosen_database"] = MOUSE_DATABASE_OPTION_
+            elif user_input_values["chosen_database"] == "Drosophila (fly)":
+                user_input_values["chosen_database"] = FLY_DATABASE_OPTION_
+            elif user_input_values["chosen_database"] == "E.coli (Bacterium)":
+                user_input_values["chosen_database"] = ECOLI_DATABASE_OPTION_
+            elif user_input_values["chosen_database"] == "Jaspar":
+                user_input_values["chosen_database"] = JASPAR_DATABASE_OPTION_
+
+        else:
+            user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
+
 
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_motif_file"] #here we define the file the user submitted as input_motif_file
