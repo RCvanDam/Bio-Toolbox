@@ -1,7 +1,7 @@
 # 2 apr 2024
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-import snakeviz
+
 from flask import Flask, render_template, flash, request, redirect, url_for
 import werkzeug
 import os
@@ -10,7 +10,7 @@ from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 from werkzeug.middleware.profiler import ProfilerMiddleware
 import cProfile, pstats
-import snakeviz
+
 
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
@@ -283,7 +283,7 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     profiler.enable()
     app.run()
     profiler.disable()
-    profiler.dump_stats("program.prof")
+    profiler.dump_stats("app.prof")
 
     results = pstats.Stats(profiler)
     results.print_stats()
