@@ -26,7 +26,8 @@ app.secret_key = "poep"
 OUTPUT_FOLDER = app.root_path + r"\user_output"
 UPLOAD_FOLDER = app.root_path + r"\user_input_files"
 
-print(UPLOAD_FOLDER)
+HUMAN_DATABASE_OPTION_ = app.root_path + r"\Motif_databases"
+MOUSE_DATABASE_OPTION_ = app.root_path + r"\Motif_databases"
 
 
 def allowed_file(filename):
@@ -43,7 +44,8 @@ def correct_os():
     the fact that the use of the tool is not possible on the current os
     """
     if not CORRECT_OS:
-        flash("This operating system is not compatible with our tool")
+        flash(f"This operating system is not compatible with our tool, 
+              refer to the readme for the system requirements")
 
 
 @app.route('/')
