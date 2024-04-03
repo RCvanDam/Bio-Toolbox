@@ -14,22 +14,44 @@
                             <input class="form-control" type="file" id="fasta" name="myfile">
                             <br>
                             <form>
+                                <button type="button" onclick="showModal('maxmotif-modal')" class="btn btn-light">?</button>
                                 <a title="put the max  amount of motifs you want the program to find">
-                                    <label for="nmotifs1">Max amount of motifs to look for:</label></a>
+                                    <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                </a>
+                                <dialog id="maxmotif-modal">
+                                    <h2>Maximum motif amount</h2>
+                                    <p>The max motif amount ....</p>
+                                    <button type="button" onclick="closeModal('maxmotif-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
-                                
+
+                                <button type="button" onclick="showModal('motifsize-modal')" class="btn btn-light">?</button>
                                 <a title="put the max motifs size you want the program to give back">
-                                    <label for="msize">Max motif size:</label></a>
+                                    <label for="msize">Max motif size:</label>
+                                </a>
+                                <dialog id="motifsize-modal">
+                                    <h2>Maximum motif Size</h2>
+                                    <p>Setting the maximum motif size ....</p>
+                                    <button type="button" onclick="closeModal('motifsize-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="msize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+
                                 </div>
 
+                                <button type="button" onclick="showModal('minmotifs-modal')" class="btn btn-light">?</button>
                                 <a title="put  min amount of motifs you want the program to give back">
-                                    <label for="minsize">Min motif size:</label></a>
+                                    <label for="minsize">Min motif size:</label>
+                                </a>
+                                <dialog id="minmotifs-modal">
+                                    <h2>Maximum motif Size</h2>
+                                    <p>Setting the maximum motif size ....</p>
+                                    <button type="button" onclick="closeModal('minmotifs-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
@@ -55,10 +77,10 @@
                             </form>
                             <br>
                             <button type="button" class="btn btn-outline-success">Find the binding sites</button>
-                    </div>        
+                    </div>
                 </div>
 
-       
+
 
         <!-- The display box-->
                 <div class="col-sm-4"> 
@@ -73,7 +95,7 @@
                             <button type="button" class="btn btn-outline-success">Download SequenceLogo</button></a>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
     
 
@@ -128,6 +150,16 @@
                 </div>
             </div>
         </div>
+    <script>
+        function showModal(modalName) {
+            const modal = document.querySelector(`#${modalName}`);
+            modal.showModal();
+        }
 
-
+        function closeModal(modalName) {
+            const modal = document.querySelector(`#${modalName}`);
+            modal.close();
+        }
+    </script>
 {% endblock %}
+
