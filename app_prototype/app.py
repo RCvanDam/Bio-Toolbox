@@ -1,13 +1,16 @@
 # 2 apr 2024
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template, flash, request, redirect, url_for 
+import snakeviz
+from flask import Flask, render_template, flash, request, redirect, url_for
 import werkzeug
 import os
 import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
-from shutil import move
+from werkzeug.middleware.profiler import ProfilerMiddleware
+import cProfile, pstats
+
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
@@ -20,6 +23,8 @@ ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 
 app = Flask(__name__)
+app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py',))
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
 
@@ -107,11 +112,11 @@ def html_render_fimo():
         custom_pvalue = request.form.get("custom_pvalue")
 
         
-        if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use ":
+        if motif_database_option is not None and user_input_values["chosen_database"] == "Please select database to use ":
             flash("Please select a database to use!")
-            
+
         #checking if neither of the motif options have been chosen.
-        if motif_file_option == None and motif_database_option == None: 
+        if motif_file_option == None and motif_database_option == None:
             flash("a motif option must be chosen")
             return render_template("fimopage.html")
 
@@ -121,28 +126,28 @@ def html_render_fimo():
             return render_template("fimopage.html")
         
         #checking if both pvalue options have been chosen.
-        if custom_pvalue != None and default_pvalue != None:
+        if custom_pvalue is not None and default_pvalue is not None:
             flash("only one p value option can be chosen")
             return render_template("fimopage.html")
         
         #checking if both motif options have been chosen.
-        if motif_file_option != None and motif_database_option != None:
+        if motif_file_option is not None and motif_database_option is not None:
             flash("only one motif option can be chosen")
             return render_template("fimopage.html")
 
 
-        if motif_file_option != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+        if motif_file_option is not None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
             user_input_values["motif_file_option"] = motif_file_option
 
-        if motif_database_option != None:
+        if motif_database_option is not None:
             user_input_values["motif_database_option"] = motif_database_option
         else:
             user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
 
-        if default_pvalue != None: 
+        if default_pvalue is not None: 
             user_input_values["default_pvalue"] = default_pvalue
 
-        if custom_pvalue != None:
+        if custom_pvalue is not None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
@@ -163,12 +168,12 @@ def html_render_fimo():
 
         # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
         # FIMO_MEME_Commandline.process_commands(fimo_command)
-        
-        
+
+
 
 
         #****** validation
-        
+
 
         flash(f"file: {input_fasta_file.filename} received!!")
         
@@ -197,44 +202,44 @@ def html_render_meme():
         return render_template("memePage.html") #just renders the default fimo page
 
     elif request.method == "POST":#user submitted inputs
-            user_input_values = { #here I save all the input button values as variables
-            "max_motif_amount": request.form["max_motif_amount"],
-            "max_motif_size": request.form["max_motif_size"],
-            "min_motif_size": request.form["min_motif_size"],
-            } # request.form refers to the inputlabel's name="" in html page
+        user_input_values = { #here I save all the input button values as variables
+        "max_motif_amount": request.form["max_motif_amount"],
+        "max_motif_size": request.form["max_motif_size"],
+        "min_motif_size": request.form["min_motif_size"],
+        } # request.form refers to the inputlabel's name="" in html page
 
-            if request.form.get("seq_type_dna") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
-                user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
+        if request.form.get("seq_type_dna") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+            user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
 
-            if request.form.get("seq_type_rna") != None:
-                user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
+        if request.form.get("seq_type_rna") != None:
+            user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
 
-            if request.form.get("seq_type_protein") != None: 
-                user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
+        if request.form.get("seq_type_protein") != None: 
+            user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
 
-            input_sequence_path_meme = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
-            working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
-            output_path_meme = "{}/User_ouput/meme".format(working_dir)
+        input_sequence_path_meme = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
+        working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+        output_path_meme = "{}/User_ouput/meme".format(working_dir)
 
-            # execute Meme with user parameters
-            meme = Meme(user_input_values["max_motif_amount"], user_input_values["max_motif_size"], user_input_values["min_motif_size"], "dna", input_sequence_path_meme, output_path_meme)
-            print(str(meme)) # redirect to website
-            meme.run()
+        # execute Meme with user parameters
+        meme = Meme(user_input_values["max_motif_amount"], user_input_values["max_motif_size"], user_input_values["min_motif_size"], "dna", input_sequence_path_meme, output_path_meme)
+        print(str(meme)) # redirect to website
+        meme.run()
 
 
-            if input_sequence_path_meme.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
-                flash("submitted filename(s) must contain atleast 1 character!")
-                return render_template("memepage.html")
-            
+        if input_sequence_path_meme.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            flash("submitted filename(s) must contain atleast 1 character!")
+            return render_template("memepage.html")
+        
 
-            flash("file received!!")
-            return redirect(url_for("render_meme_output_html"))
-    
+        flash("file received!!")
+        return redirect(url_for("render_meme_output_html"))
+
 
 
 @app.route('/fimo_output')
 def render_fimo_output_html():
-
+    """ Route to show the FIMO output"""
     
     
     return render_template("fimo.html")
@@ -242,6 +247,7 @@ def render_fimo_output_html():
 
 @app.route('/meme_output')
 def render_meme_output_html():
+    """ Route to show the FIMO output"""
     return
 
 
@@ -272,13 +278,16 @@ def error_504():
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
-    
+    profiler = cProfile.Profile()
+    profiler.enable()
+    app.run()
+    profiler.disable()
 
+    results = pstats.Stats(profiler)
+    results.print_stats()
+    snakeviz
 
-    # run() method of Flask class runs the application 
+    # run() method of Flask class runs the application
     # on the local development server.
     app.run()
-
-
-
 
