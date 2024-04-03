@@ -9,44 +9,27 @@
                     <div class="frame_tool_top_left">
                     <H1 class="center_text" >MEME</H1>
                     <hr class="hr_border">
-                    <p>Select the fasta file that you want to use and adjust the optional parameters.</p>
-                            <button type="button" class="btn btn-sm btn-light" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">?</button>
+                        <a title="Accepted filetypes: .FASTA">
+                            <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
                             <input class="form-control" type="file" id="fasta" name="myfile">
                             <br>
                             <form>
-                                <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                <a title="put the max  amount of motifs you want the program to find">
+                                    <label for="nmotifs1">Max amount of motifs to look for:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
                                 
-
-                                <label for="nmotifs2">Other variable here...:</label>
-                                <div class="input-group input-group-ml mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs2" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
-                                </div>
-
-                                <label for="nmotifs3">Other variable here...:</label>
-                                <div class="input-group input-group-ml mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs3" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
-                                </div>
-
-                                <label for="nmotifs4">Other variable here...:</label>
-                                <div class="input-group input-group-ml mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs4" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
-                                </div>
-
-                            
-                                <label for="msize">Max motif size:</label>
+                                <a title="put the max motifs size you want the program to give back">
+                                    <label for="msize">Max motif size:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="msize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
 
-                                <label for="minsize">Min motif size:</label>
+                                <a title="put  min amount of motifs you want the program to give back">
+                                    <label for="minsize">Min motif size:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
@@ -82,13 +65,12 @@
                     <div class="frame_tool_top_right">
                         <H1 class="center_text" >SequenceLogo</H1>
                         <hr class="hr_border">
-                        <p>Insert SequenceLogo here.</p>
-                        <p>Insert buttons to show SequenceLogos with a lower probability.</p><br>
                         <img id="placeholder_img" src="https://weblogo.berkeley.edu/img/lexA.png" class="img-thumbnail" alt="sequence placeholder" title="source: https://weblogo.berkeley.edu/examples.html">
                         <div class="alert alert-secondary" role="alert">
                           <p>Here's an example of what image this tool will return.</p>
                         </div>
-                        <button type="button" class="btn btn-outline-success">Download SequenceLogo</button>
+                        <a title="press the download button to download the generate sequence logo like seen in the example">
+                            <button type="button" class="btn btn-outline-success">Download SequenceLogo</button></a>
                     </div>
                 </div>
             </div>    

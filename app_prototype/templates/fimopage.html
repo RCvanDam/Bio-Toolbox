@@ -11,15 +11,24 @@
                     <H1 class="center_text" >FIMO</H1>
                     <hr class="hr_border">
                     <form method="POST" enctype="multipart/form-data">
-                    <p>Select fasta file to scan for motifs</p>
+                    <p>
+                        <a title="Accepted filetypes: .fa">
+                            Select the fasta file to use or select database below
+                        </a>
+                    </p>
                     <input class="form-control" type="file" id="fasta" name="input_fasta_file">
                     <br>
-                    <p>Select the motif file to use or select database below</p>
+                    <p>
+                        <a title="Accepted filetypes: .MEME">
+                            Select the motif file to use or select database below
+                        </a>
+                    </p>
                     <input class="form-control" type="file" id="meme" name="input_motif_file">
                     <br>
                     
 
                                 <div class="form-check form-switch">
+                                    <a title="a sequence motif is a nucleotide or amino-acid sequence pattern"></a>
                                   <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="motif_file_option">
                                   <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
@@ -39,6 +48,7 @@
                                     <br>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
+                        <a title="The databases down below are given with the install of our program, but if you have your own motif file you can upload it here.">
 
                                 <label for="nmotifs"><b>Motif database to use:</b></label>
                                 <select class="form-control" id="nmotifs" name="chosen_database">
@@ -49,20 +59,20 @@
                                     <option>Mouse</option>
                                     <option>Drosophila (fly)</option>
                                 </select><br>
-
-                                <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                <a title="put the max  amount of motifs you want the program to find">
+                                    <label for="nmotifs1">Max amount of motifs to look for:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="max_amount_motifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
-
-                                <label for="msize">Max motif size:</label>
+                                <a title="put the max motifs size you want the program to give back">
+                                    <label for="msize">Max motif size:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="maxsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
-
-                                <label for="minsize">Min motif size:</label>
+                                <a title="put  min amount of motifs you want the program to give back">
+                                    <label for="minsize">Min motif size:</label></a>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
@@ -70,13 +80,15 @@
 
 
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="default_pvalue">
-                                  <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
+                                    <a title="A P_value is a number between 0 and 1 to see how much the Motif pattern matches the given pattern">
+                                        <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="default_pvalue"></a>
+                                        <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
                                 </div>
 
 
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault2" name="custom_pvalue">
+                                    <a title="A P_value is a number between 0 and 1 to see how much the Motif pattern matches the given pattern here you can decide from what p value you cut it off.">
+                                        <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault2" name="custom_pvalue"></a>
                                   <label class="form-check-label" for="flexRadioDefault2">Custom P-value cut-off: (Select below)</label>
                                 </div>
 
@@ -96,8 +108,8 @@
                         <H1 class="center_text" >Results</H1>
                         <hr class="hr_border">
                         <p>Insert output table with results here. </p>
-
-                        <button type="button" class="btn btn-outline-success mb-3">Download full table with all motifs</button>
+                        <a title="this button will bring you to a site with the results">
+                            <button type="button" class="btn btn-outline-success mb-3">Download full table with all motifs</button></a>
 
                     </div>
                 </div>

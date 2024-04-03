@@ -9,7 +9,7 @@ from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 from shutil import move
 
-os.environ["FLASK_DEBUG"]="1"  #turn on debug mode
+os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
 CORRECT_OS = True
 
@@ -19,29 +19,37 @@ UPLOAD_FOLDER = r"\app_prototype\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 
-
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key="poep"
+app.secret_key = "poep"
 
 OUTPUT_FOLDER = app.root_path + r"\user_output"
 UPLOAD_FOLDER = app.root_path + r"\user_input_files"
 
-print(UPLOAD_FOLDER)
+HUMAN_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_HUMAN_mono_meme_format.meme")
+MOUSE_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_MOUSE_mono_meme_format.meme")
+FLY_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\OnTheFly_2014_Drosophila.meme")
+ECOLI_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_e_coli.meme")
+JASPAR_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_human_and_mouse.meme")
+
 
 def allowed_file(filename):
-    if "." in filename and filename.rsplit(".",1)[1].lower in ALLOWED_EXTENSIONS:
+    if "." in filename and filename.rsplit(".", 1)[1].lower in ALLOWED_EXTENSIONS:
         return True
     else:
         return False
-    
+
+
 def correct_os():
+
     """
     reusable function to flash on every page
     the fact that the use of the tool is not possible on the current os
     """
-    if CORRECT_OS == False:
-        flash("This operating system is not compatible with our tool")
+    if not CORRECT_OS:
+        flash("""This operating system is not compatible with our tool, 
+              refer to the readme for the system requirements""")
+
 
 @app.route('/')
 def home_redirect():
@@ -57,38 +65,11 @@ def home_about_page():
     correct_os()
 
     if request.method == "GET":
-        return render_template("prototype_bootstrap.html")#basically the first time the homepage loads or if the page gets reloaded without user inputs.
-    
+        return render_template("prototype_bootstrap.html")
+        #basically the first time the homepage loads or if the page gets reloaded without user inputs.
 
-    elif request.method == 'POST':#user submitted inputs
-        kwargs = {
-        'course': request.form['course'],
-        'ec': request.form['ec'],
-        'teacher': request.form['test_teacher'],} # request.form refers to the input's name in html
 
-        user_file = request.files["user_file"] #here we define the file the user submitted as user_file
 
-        if user_file.filename == '': #if the user submits no file, a file without a name will be submitted anyway so thi checks against that
-            flash("submitted filename must contain atleast 1 character!")
-            print("flasj was triggered")
-            return render_template("prototype_bootstrap.html")
-        
-        elif user_file == True and allowed_file(user_file.filename) == True: #if the userfile is both present an has a valid extension it will continue
-            secure_filename = werkzeug.utils.secure_filename(user_file.filename)# make it so the filename is secure by replacing risky characters with safe ones like a space with _
-            user_file.save(os.path.join(app.root_path, secure_filename))#save the file in the apps root directory
-            flash("file submitted!") # still working on the flashes
-            print("flash was triggered")
-            return render_template("prototype_bootstrap.html")
-        else:
-            flash("something wen't wrong")
-            return render_template("prototype_bootstrap.html") #render template adds
-
-        
-        # unpacked_kwargs = kwargs.keys()
-        
-        # for iterate in unpacked_kwargs:
-        #     print(kwargs[iterate])
-    return render_template("prototype_bootstrap.html")
             
 
 @app.route('/download')
@@ -118,11 +99,17 @@ def html_render_fimo():
         "minsize": request.form["minsize"],
         } # request.form refers to the input's name in html
         
+        print(len(request.form["chosen_database"]))
+
         motif_file_option = request.form.get("motif_file_option")
         motif_database_option = request.form.get("motif_database_option")
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
 
+        
+        if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use ":
+            flash("Please select a database to use!")
+            
         #checking if neither of the motif options have been chosen.
         if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
@@ -164,21 +151,16 @@ def html_render_fimo():
         working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
         output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
 
+        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+            flash("submitted filename(s) must contain atleast 1 character!")
+            return render_template("fimopage.html")
+        
         # execute Fimo with user parameters
         fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], input_motif_file, input_fasta_file, output_path_fimo)
         #database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo
         print(str(fimo)) # redirect to website
         fimo.run()
 
-
-        
-
-
-        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
-            flash("submitted filename(s) must contain atleast 1 character!")
-            print("submitted filename(s) must contain atleast 1 character!")
-            return render_template("fimopage.html")
-        
         # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
         # FIMO_MEME_Commandline.process_commands(fimo_command)
         
@@ -203,8 +185,7 @@ def html_render_fimo():
         # else:
         #     flash("something wen't wrong")
         #     return render_template("fimopage.html") #render template adds 
-        flash("input received")
-        return render_template("fimopage.html")
+
 
 
 @app.route('/meme', methods=["POST","GET"])
@@ -289,8 +270,7 @@ def error_504():
 
 # main driver function
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
-
-    if sys.platform.startswith("win32"):
+    if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
     
 
