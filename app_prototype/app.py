@@ -10,6 +10,7 @@ from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 from werkzeug.middleware.profiler import ProfilerMiddleware
 import cProfile, pstats
+import snakeviz
 
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
@@ -282,12 +283,13 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     profiler.enable()
     app.run()
     profiler.disable()
+    profiler.dump_stats("program.prof")
 
     results = pstats.Stats(profiler)
     results.print_stats()
-    snakeviz
+
 
     # run() method of Flask class runs the application
     # on the local development server.
-    app.run()
+
 
