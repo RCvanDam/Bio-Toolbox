@@ -21,7 +21,7 @@ ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key="poep"
+app.secret_key = "poep"
 
 OUTPUT_FOLDER = app.root_path + r"\user_output"
 UPLOAD_FOLDER = app.root_path + r"\user_input_files"
@@ -30,7 +30,7 @@ print(UPLOAD_FOLDER)
 
 
 def allowed_file(filename):
-    if "." in filename and filename.rsplit(".",1)[1].lower in ALLOWED_EXTENSIONS:
+    if "." in filename and filename.rsplit(".", 1)[1].lower in ALLOWED_EXTENSIONS:
         return True
     else:
         return False
@@ -42,7 +42,7 @@ def correct_os():
     reusable function to flash on every page
     the fact that the use of the tool is not possible on the current os
     """
-    if CORRECT_OS == False:
+    if not CORRECT_OS:
         flash("This operating system is not compatible with our tool")
 
 
@@ -264,8 +264,7 @@ def error_504():
 
 # main driver function
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
-
-    if sys.platform.startswith("win32"):
+    if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
     
 
