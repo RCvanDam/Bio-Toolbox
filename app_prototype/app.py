@@ -26,7 +26,7 @@ WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 
 
 app = Flask(__name__)
-app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py',))
+app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py'), profile_dir=("cProfile_output"))
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
@@ -312,13 +312,12 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
     profiler = cProfile.Profile()
-    #profiler.enable()
+    profiler.enable()
     app.run()
     profiler.disable()
-    profiler.dump_stats("app.prof")
+    
 
     results = pstats.Stats(profiler)
-    results.print_stats()
 
 
     # run() method of Flask class runs the application
