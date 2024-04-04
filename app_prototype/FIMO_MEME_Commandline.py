@@ -3,9 +3,9 @@
 MemeSuite backend for website
 Author: Tai Vo, Floris M, Jarno Duiker, Ruben van Dam
 Date: 7-03-2024
-Last updated: 02-04-2024
+Last updated: 04-04-2024
 
-Version: 0.14
+Version: 0.15
 
 """
 
@@ -13,6 +13,8 @@ import subprocess # To execute terminal command's on the computer.
 import os
 import tarfile
 import shutil
+import matplotlib.pyplot as plt
+
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
 working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
@@ -155,6 +157,7 @@ class Meme:
         :param: all generated weblogo
         :return: best weblogo
         """
+        
         weblogo_jpg_list = []
         for files in os.listdir(output_path_meme): #show's everything that is inside the folder (os.listdir)
             if files.endswith(".png"): # look for jpg extensions
@@ -179,9 +182,11 @@ class Meme:
         # listing the files in tar
         for filename in files:
             file.add(f"{output_path_meme}/{filename}", filename)
+    
+    def plot_graph(self):
+        pass
 
-        
-        # shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
+
 
 def html_output_file_mover():
     shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"/templates/meme.html")
