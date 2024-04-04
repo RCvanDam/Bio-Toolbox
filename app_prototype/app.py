@@ -57,6 +57,8 @@ def correct_os():
     if not CORRECT_OS:
         flash("""This operating system is not compatible with our tool, 
               refer to the readme for the system requirements""")
+        flash("""This operating system is not compatible with our tool, 
+              refer to the readme for the system requirements""")
 
 
 @app.route('/')
@@ -115,7 +117,7 @@ def html_render_fimo():
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
 
-
+        
         #checking if neither of the motif options have been chosen.
         if motif_file_option == None and motif_database_option == None: 
             flash("a motif option must be chosen")
@@ -140,12 +142,32 @@ def html_render_fimo():
         if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use":
             flash("Please select a database to use!")
             return render_template("fimopage.html")
-
-        if motif_file_option != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
+        
+        #radio buttons aren't present if they're turned off so I gotta check if they are before storing them
+        if motif_file_option != None: 
             user_input_values["motif_file_option"] = motif_file_option
 
         if motif_database_option != None:
             user_input_values["motif_database_option"] = motif_database_option
+
+            if user_input_values["chosen_database"] == "PLease select a database to use":
+                flash("please select a database to use")
+                return render_template("fimopage.html")
+            
+            elif user_input_values["chosen_database"] == "Human":
+                pass
+            elif user_input_values["chosen_database"] == "Mouse":
+                pass
+            elif user_input_values["chosen_database"] == "Drosophilla (fly)":
+                pass
+            elif user_input_values["chosen_database"] == "E.coli (Bacterium)":
+                pass
+            elif user_input_values["chosen_database"] == "Jaspar":
+                pass
+
+
+
+
         else:
             user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
 
