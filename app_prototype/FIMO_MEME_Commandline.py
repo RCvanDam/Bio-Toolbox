@@ -199,6 +199,8 @@ def extension_check(fastafile):
     :return: True or false"""
     if os.path.splitext(fastafile)[1] == ".fasta":
         return True
+    else:
+        return False
 
 def is_multifasta(fastafile: str):
     """

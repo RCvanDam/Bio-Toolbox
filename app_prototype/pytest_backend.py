@@ -32,4 +32,4 @@ def test_multi_fasta():
    # Multi-fasta test:
    assert is_multifasta(WORKING_DIR + r"/meme_sample_sequences.fasta")  == True
    # Fasta test:
-   assert is_multifasta(WORKING_DIR + r"unit_tests/test_fasta_wrong_extention.fastaaa")  == False
+   assert is_multifasta(WORKING_DIR + "/test_fasta_wrong_extention.fastaaa")  == False
