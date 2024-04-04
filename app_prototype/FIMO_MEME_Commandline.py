@@ -17,17 +17,17 @@ import matplotlib.pyplot as plt
 
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
-working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
-print(working_dir)
+WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+print(WORKING_DIR)
 
 
 # Test variables for FIMO
 database_to_use = False # Name of the database.
 use_default_p_value = True # True or false
 p_value = 0.0001 # float, default is 0.0001.
-input_motif_file = "{}/Motif_databases/SwissRegulon_e_coli.meme".format(working_dir)
-input_sequence_path_fimo = "{}/meme_sample_sequences.fasta".format(working_dir) # replace with relative path.
-output_path_fimo = "{}/User_output/fimo".format(working_dir) # (Temporary) storage place for the generated files.
+input_motif_file = "{}/Motif_databases/SwissRegulon_e_coli.meme".format(WORKING_DIR)
+input_sequence_path_fimo = "{}/meme_sample_sequences.fasta".format(WORKING_DIR) # replace with relative path.
+output_path_fimo = "{}/User_output/fimo".format(WORKING_DIR) # (Temporary) storage place for the generated files.
 
 
 # Test variables for MEME
@@ -35,8 +35,8 @@ max_amount_of_motifs = 20 # max abount of motif to look for, program stops looki
 max_motif_size = 8 # max length of the motifs.
 min_motif_size = 3
 alphabet = "dna" # Nucleotide alphabet to use: RNA, DNA or protein.
-input_sequence_path_meme = "{}/meme_sample_sequences.fasta".format(working_dir)
-output_path_meme = "{}/User_output/meme".format(working_dir)
+input_sequence_path_meme = "{}/meme_sample_sequences.fasta".format(WORKING_DIR)
+output_path_meme = "{}/User_output/meme".format(WORKING_DIR)
 home_path = subprocess.run("echo $HOME", shell=True, text=True, capture_output=True).stdout.rstrip()
 
 
@@ -189,8 +189,8 @@ class Meme:
 
 
 def html_output_file_mover():
-    shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"/templates/meme.html")
-    shutil.move(working_dir + r"/User_output/meme/logo1.png", working_dir + r"/logo1.png")
+    shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
+    shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
 
         
 def extension_check(fastafile):
