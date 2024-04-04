@@ -155,15 +155,15 @@ def html_render_fimo():
                 return render_template("fimopage.html")
             
             elif user_input_values["chosen_database"] == "Human":
-                user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_:
+                user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_
             elif user_input_values["chosen_database"] == "Mouse":
-                user_input_values["chosen_database"] = MOUSE_DATABASE_OPTION_:
+                user_input_values["chosen_database"] = MOUSE_DATABASE_OPTION_
             elif user_input_values["chosen_database"] == "Drosophilla (fly)":
-                user_input_values["chosen_database"] = :
+                user_input_values["chosen_database"] = FLY_DATABASE_OPTION_
             elif user_input_values["chosen_database"] == "E.coli (Bacterium)":
-                user_input_values["chosen_database"] = :
+                user_input_values["chosen_database"] = ECOLI_DATABASE_OPTION_
             elif user_input_values["chosen_database"] == "Jaspar":
-                user_input_values["chosen_database"] = :
+                user_input_values["chosen_database"] = JASPAR_DATABASE_OPTION_
 
 
 
