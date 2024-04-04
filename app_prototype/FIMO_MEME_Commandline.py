@@ -144,6 +144,7 @@ class Meme:
             output_meme = meme_output.stdout
             print(output_meme) # should be redirected to the ouput display in the website.
             self.generate_tarfile()
+            html_output_file_mover()
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
 
@@ -183,7 +184,7 @@ class Meme:
         # shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
 
 def html_output_file_mover():
-    shutil.move("app_prototype/User_output/fimo.html", "app_prototype/templates")
+    shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"app_prototype/templates/meme.html")
 
         
 def extension_check(fastafile):
