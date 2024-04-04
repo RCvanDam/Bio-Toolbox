@@ -19,7 +19,7 @@ CORRECT_OS = True
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-UPLOAD_FOLDER = r"\app_prototype\user_input_files"
+UPLOAD_FOLDER = r"/app_prototype/user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 
@@ -31,8 +31,8 @@ app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py',))
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
 
-OUTPUT_FOLDER = WORKING_DIR + r"\user_output"
-UPLOAD_FOLDER = WORKING_DIR + r"\user_input_files"
+OUTPUT_FOLDER = WORKING_DIR + r"/user_output"
+UPLOAD_FOLDER = WORKING_DIR + r"/user_input_files"
 
 HUMAN_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
 MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
@@ -261,7 +261,7 @@ def html_render_meme():
 
         if input_sequence_path_meme.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
-            return render_template("memepage.html")
+            return render_template("memePage.html")
         
 
         flash("file received!!")
@@ -280,8 +280,8 @@ def render_fimo_output_html():
 @app.route('/meme_output')
 def render_meme_output_html():
     """ Route to show the FIMO output"""
-    
-    return render_template("meme.html")
+    render_template("meme.html")
+    return
 
 
 
@@ -312,7 +312,7 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
     profiler = cProfile.Profile()
-    #profiler.enable()
+    profiler.enable()
     app.run()
     profiler.disable()
     profiler.dump_stats("app.prof")
