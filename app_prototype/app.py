@@ -9,7 +9,7 @@ import flask
 from FIMO_MEME_Commandline import Meme, Fimo
 import sys
 from werkzeug.middleware.profiler import ProfilerMiddleware
-import cProfile, pstats
+
 
 
 
@@ -361,15 +361,8 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
 
-    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py'), profile_dir=("cProfile_output"))
-    profiler = cProfile.Profile()
-    profiler.enable()
+
     app.run()
-    profiler.disable()
-    
-
-    results = pstats.Stats(profiler)
-
 
     # run() method of Flask class runs the application
     # on the local development server.
