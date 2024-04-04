@@ -54,7 +54,7 @@ class Fimo:
         self.input_motif_file = input_motif_file
         self.input_sequence_path_fimo = input_sequence_path_fimo
         self.output_path_fimo = output_path_fimo
-        self.is_multifasta()
+        # self.is_multifasta()
 
     def __str__(self):
         """
@@ -89,7 +89,7 @@ class Fimo:
         if database_to_use: # If the user selected one of the databases instead of a motif file.
             pass # add logic to select database depending on the user selection.
         else: # if not: use a given motif file.
-            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
+            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, input_motif_file, input_sequence_path_fimo)
 
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
