@@ -5,7 +5,7 @@ import flask
 import sys
 from FIMO_MEME_Commandline import Meme, Fimo
 from werkzeug.middleware.profiler import ProfilerMiddleware
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, helpers
 
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
@@ -224,13 +224,12 @@ def html_render_meme():
     correct_os()
     method = request.method
     if method == "GET":
-
         # just renders the default meme page
         return render_template("memePage.html")
+        
 
     # if the user clicks on the submit button on the page
     elif request.method == "POST":
-
         # here I save all the input button values as variables
         # request.form refers to the input's name in html
         user_input_values = {
@@ -331,34 +330,39 @@ def render_fimo_output_html():
 def render_meme_output_html():
     """ Route to show the MEME output"""
 
-    render_template("meme.html")
-    return
+    return render_template("meme.html")
 
 
 # Error handling:
 @app.errorhandler(429)
 def error_429():
-    return "Error 429 Too Many Requests"
-
+    """function to catch and handle the 429 error"""
+    return render_template("429.html"), 429
 
 @app.errorhandler(500)
 def error_500():
-    return "Error 500: Internal Server Error"
-
+    """function to catch and handle the 500 error"""
+    
+    return render_template("500.html"), 500
 
 @app.errorhandler(502)
 def error_502():
-    return "Error 502: Bad Gateway"
+    """function to catch and handle the 502 errors"""
+    
+    return render_template("502.html"), 502
 
 
 @app.errorhandler(503)
 def error_503():
-    return "Error 503: Service Unavailable"
+    """function to catch and handle the 503 errors"""
+    return render_template("503.html"), 503
 
 
 @app.errorhandler(504)
-def error_504():
-    return "Error 504: Gateway Timeout"
+def gateway_error(error):
+    """function to catch and handle the 504 errors"""
+
+    return render_template("504.html"), 504
 
 
 # main driver function
