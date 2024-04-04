@@ -170,7 +170,7 @@ class Meme:
         """
         # declaring the filename for tar
         tar_filepath = f"{output_path_meme}.tar"
-        file = tarfile.open(tar_filepath, "w")
+        file = tarfile.open(tar_kfilepath, "w")
 
         # defines extension
         ext = (".png", ".eps", ".html", ".txt", "xml")
@@ -185,6 +185,7 @@ class Meme:
 
 def html_output_file_mover():
     shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"/templates/meme.html")
+    shutil.move(working_dir + r"/User_output/meme/logo1.png", working_dir + r"/logo1.png")
 
         
 def extension_check(fastafile):
