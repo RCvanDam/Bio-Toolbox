@@ -31,14 +31,14 @@ app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py',))
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
 
-OUTPUT_FOLDER = app.root_path + r"\user_output"
-UPLOAD_FOLDER = app.root_path + r"\user_input_files"
+OUTPUT_FOLDER = WORKING_DIR + r"\user_output"
+UPLOAD_FOLDER = WORKING_DIR + r"\user_input_files"
 
-HUMAN_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_HUMAN_mono_meme_format.meme")
-MOUSE_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\HOCOMOCOv11_full_MOUSE_mono_meme_format.meme")
-FLY_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\OnTheFly_2014_Drosophila.meme")
-ECOLI_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_e_coli.meme")
-JASPAR_DATABASE_OPTION_ = os.path.abspath(app.root_path + r"\Motif_databases\SwissRegulon_human_and_mouse.meme")
+HUMAN_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
+MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
+FLY_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\OnTheFly_2014_Drosophila.meme"
+ECOLI_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\SwissRegulon_e_coli.meme"
+JASPAR_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\SwissRegulon_human_and_mouse.meme"
 
 
 def allowed_file(filename):
