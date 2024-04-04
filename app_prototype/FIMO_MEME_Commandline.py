@@ -184,7 +184,7 @@ class Meme:
         # shutil.rmtree(f"{output_path_meme}", ignore_errors=True)
 
 def html_output_file_mover():
-    shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"app_prototype/templates/meme.html")
+    shutil.move(working_dir + r"/User_output/meme/meme.html", working_dir + r"/templates/meme.html")
 
         
 def extension_check(fastafile):
