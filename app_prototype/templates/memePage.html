@@ -10,10 +10,10 @@
                     <H1 class="center_text" >MEME</H1>
                     <hr class="hr_border">
                         <a title="Accepted filetypes: .FASTA">
-                            <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
-                            <input class="form-control" type="file" id="fasta" name="myfile">
-                            <br>
                             <form method = "POST" enctype="multipart/form-data" >
+                                <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
+                                <input class="form-control" type="file" id="fasta" name="input_user_file">
+                                <br>
                                 <button type="button" onclick="showModal('maxmotif-modal')" class="btn btn-light">?</button>
                                 <a title="put the max  amount of motifs you want the program to find">
                                     <label for="nmotifs1">Max amount of motifs to look for:</label>
