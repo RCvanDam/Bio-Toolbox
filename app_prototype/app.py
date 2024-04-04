@@ -1,4 +1,4 @@
-# 2 apr 2024
+# 4 apr 2024
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
 
@@ -280,7 +280,8 @@ def render_fimo_output_html():
 @app.route('/meme_output')
 def render_meme_output_html():
     """ Route to show the FIMO output"""
-    return
+    
+    return render_template("meme.html")
 
 
 
@@ -311,7 +312,7 @@ if __name__ == '__main__': #this statement basically checks if the file is being
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
     profiler = cProfile.Profile()
-    profiler.enable()
+    #profiler.enable()
     app.run()
     profiler.disable()
     profiler.dump_stats("app.prof")
