@@ -173,7 +173,7 @@ class Meme:
         """
         # declaring the filename for tar
         tar_filepath = f"{output_path_meme}.tar"
-        file = tarfile.open(tar_kfilepath, "w")
+        file = tarfile.open(tar_filepath, "w")
 
         # defines extension
         ext = (".png", ".eps", ".html", ".txt", "xml")
