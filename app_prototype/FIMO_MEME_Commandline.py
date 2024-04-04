@@ -138,7 +138,7 @@ class Meme:
             # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
             meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
             input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
-            print(f"Running command: {meme_command_test}\nwith PATH: {self.new_env['PATH']}\n")
+            # print(f"Running command: {meme_command_test}\nwith PATH: {self.new_env['PATH']}\n")godverdomme ruben
 
             meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True, env=self.new_env)
             output_meme = meme_output.stdout
