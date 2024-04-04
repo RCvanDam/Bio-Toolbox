@@ -34,11 +34,11 @@ app.secret_key = "poep"
 OUTPUT_FOLDER = WORKING_DIR + r"\user_output"
 UPLOAD_FOLDER = WORKING_DIR + r"\user_input_files"
 
-HUMAN_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
-MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
-FLY_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\OnTheFly_2014_Drosophila.meme"
-ECOLI_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\SwissRegulon_e_coli.meme"
-JASPAR_DATABASE_OPTION_ = WORKING_DIR + r"\Motif_databases\SwissRegulon_human_and_mouse.meme"
+HUMAN_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
+MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
+FLY_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/OnTheFly_2014_Drosophila.meme"
+ECOLI_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_e_coli.meme"
+JASPAR_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_human_and_mouse.meme"
 
 
 def allowed_file(filename):
@@ -96,8 +96,9 @@ def html_render_fimo():
     method = request.method
     # print(request.form)
     # print(request.form.get("default_pvalue"))
-    if method == "GET":#basically the first time the homepage loads or if the page gets reloaded without user inputs. or any other page refresh without clicking the submit button.
-        flash("inititial visit!!!")
+
+    #the page loading without any forms being submitted
+    if method == "GET":
         return render_template("fimopage.html") #just renders the default fimo page
     
     elif method == "POST":#user submitted inputs
@@ -138,22 +139,32 @@ def html_render_fimo():
             flash("only one p value option can be chosen")
             return render_template("fimopage.html")
         
-        #checking if a database has been chosen if the database option is on
-        if motif_database_option!= None and user_input_values["chosen_database"] == "Please select database to use":
-            flash("Please select a database to use!")
-            return render_template("fimopage.html")
-        
         #radio buttons aren't present if they're turned off so I gotta check if they are before storing them
         if motif_file_option != None: 
             user_input_values["motif_file_option"] = motif_file_option
 
+        #temporarily putting it on on anyways because the tool won't work otherwise for now
+        else:
+            user_input_values["motif_database_option"] = "on" 
+            
+        if default_pvalue != None: 
+            user_input_values["default_pvalue"] = default_pvalue
+
+        else:
+            user_input_values["default_pvalue"] = True
+
+        if custom_pvalue != None:
+            user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
+
         if motif_database_option != None:
             user_input_values["motif_database_option"] = motif_database_option
 
+            #checking to see if a database has been chosen if the database option is on
             if user_input_values["chosen_database"] == "PLease select a database to use":
                 flash("please select a database to use")
                 return render_template("fimopage.html")
             
+            #replacing the value in user_input_values with the path to the motif files
             elif user_input_values["chosen_database"] == "Human":
                 user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_
             elif user_input_values["chosen_database"] == "Mouse":
@@ -165,65 +176,41 @@ def html_render_fimo():
             elif user_input_values["chosen_database"] == "Jaspar":
                 user_input_values["chosen_database"] = JASPAR_DATABASE_OPTION_
 
-
-
-
+        #temporarily putting it on on anyways because the tool won't work otherwise for now
         else:
-            user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
-
-        if default_pvalue != None: 
-            user_input_values["default_pvalue"] = default_pvalue
-
-        if custom_pvalue != None:
-            user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
-
-        if motif_database_option != None:
-
-            user_input_values["motif_database_option"] = motif_database_option
-
-            #replacing the value in user_input_values with the path to the motif files
-            if user_input_values["chosen_database"] == "Human":
-                user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Mouse":
-                user_input_values["chosen_database"] = MOUSE_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Drosophila (fly)":
-                user_input_values["chosen_database"] = FLY_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "E.coli (Bacterium)":
-                user_input_values["chosen_database"] = ECOLI_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Jaspar":
-                user_input_values["chosen_database"] = JASPAR_DATABASE_OPTION_
-
-        else:
-            user_input_values["motif_database_option"] = "on" #temporarily putting it on on anyways because the tool won't work otherwise for now
+            user_input_values["motif_database_option"] = "on" 
 
 
-        input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
-        input_motif_file = request.files["input_motif_file"] #here we define the file the user submitted as input_motif_file
+         #here we define the files the user submitted.
+        input_fasta_file = request.files["input_fasta_file"]
+        input_motif_file = request.files["input_motif_file"]
 
         output_path_fimo = "{}/User_ouput/fimo".format(WORKING_DIR)
 
-        if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
+        #if the user submits no file, 
+        #a file without a name will be submitted anyway
+        #so this checks against that
+        if input_fasta_file.filename == "" or input_motif_file.filename == "":
             flash("submitted filename(s) must contain atleast 1 character!")
             return render_template("fimopage.html")
         
         # execute Fimo with user parameters
-        fimo = Fimo(user_input_values["motif_database_option"], user_input_values["default_pvalue"], user_input_values["custom_pvalue"], input_motif_file, input_fasta_file, output_path_fimo)
+        fimo = Fimo(user_input_values["motif_database_option"], 
+                    user_input_values["default_pvalue"], 
+                    user_input_values["custom_pvalue"], 
+                    input_motif_file, input_fasta_file, 
+                    output_path_fimo)
         #database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo
-        print(str(fimo)) # redirect to website
+        
+        #fimo output for commandline terminal to check input variables
+        print(str(fimo))
         fimo.run()
 
-        # fimo_command, meme_command = FIMO_MEME_Commandline.input_commands(FIMO_MEME_Commandline.receive_input())
-        # FIMO_MEME_Commandline.process_commands(fimo_command)
 
-
-
-
-        #****** validation
-
-
+        #confirmation for front end that the files have been received
         flash(f"file: {input_fasta_file.filename} received!!")
         
-
+        #redirects to the path for fimo's html output
         return redirect(url_for("render_fimo_output_html"))
         
         
