@@ -11,24 +11,44 @@
                     <H1 class="center_text" >FIMO</H1>
                     <hr class="hr_border">
                     <form method="POST" enctype="multipart/form-data">
-                    <p>
-                        <a title="Accepted filetypes: .fa">
-                            Select the fasta file to use or select database below
-                        </a>
-                    </p>
+                      <button type="button" onclick="showModal('uploadfasta-modal')" class="btn btn-light">?</button>
+                            <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
+                            <dialog id="uploadfasta-modal">
+                                    <h2>What is a Fasta file</h2>
+                                    <p>FASTA format is a text-based format for representing either nucleotide sequences or peptide sequences, <br>
+                                        which base pairs or amino acids are represented using single-letter codes.<br>
+                                        A sequence in FASTA format begins with a single-line description <br>
+                                        the extension for the file is .FASTA.
+                                    </p>
+                                    <button type="button" onclick="closeModal('uploadfasta-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                     <input class="form-control" type="file" id="fasta" name="input_fasta_file">
                     <br>
-                    <p>
-                        <a title="Accepted filetypes: .MEME">
-                            Select the motif file to use or select database below
-                        </a>
-                    </p>
+                    <button type="button" onclick="showModal('motif-modal')" class="btn btn-light">?</button>
+                                    <label for="motifs1">motif_file:</label>
+                                <dialog id="motif-modal">
+                                    <h2> what is a motif</h2>
+                                    <p> a motif is a nucleotide or amino-acid sequence pattern <br>
+                                        that is widespread and usually assumed to be related to biological <br>
+                                        function of the macromolecule. The input here will specify how many <br>
+                                        motifs the program will look for.
+                                    </p>
+                                    <button type="button" onclick="closeModal('motif-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                     <input class="form-control" type="file" id="meme" name="input_motif_file">
                     <br>
                     
-
+                                 <button type="button" onclick="showModal('Database-modal')" class="btn btn-light">?</button>
+                                    <label for="Database">Max amount of motifs to look for:</label>
+                                <dialog id="Database-modal">
+                                    <h2>Databases or own file</h2>
+                                    <p> Please upload your own motif file <br>
+                                        if you don't have a motiffile you can choose one from the given databases.<br>
+                                        Fimo will use this motif file to compare with the given sequence<br>
+                                    </p>
+                                    <button type="button" onclick="closeModal('Database-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="form-check form-switch">
-                                    <a title="a sequence motif is a nucleotide or amino-acid sequence pattern"></a>
                                   <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="motif_file_option">
                                   <label class="form-check-label" for="flexRadioDefault1">Use motifs from file</label>
                                 </div>
@@ -48,7 +68,6 @@
                                     <br>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                        <a title="The databases down below are given with the install of our program, but if you have your own motif file you can upload it here.">
 
                                 <label for="nmotifs"><b>Motif database to use:</b></label>
                                 <select class="form-control" id="nmotifs" name="chosen_database">
@@ -59,28 +78,54 @@
                                     <option>Mouse</option>
                                     <option>Drosophila (fly)</option>
                                 </select><br>
-                                <a title="put the max  amount of motifs you want the program to find">
-                                    <label for="nmotifs1">Max amount of motifs to look for:</label></a>
+                                <button type="button" onclick="showModal('maxmotif-modal')" class="btn btn-light">?</button>
+                                    <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                <dialog id="maxmotif-modal">
+                                    <h2>Maximum motif amount</h2>
+                                    <p> The input here will specify how many <br>
+                                        motifs the program will look for.
+                                    </p>
+                                    <button type="button" onclick="closeModal('maxmotif-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="max_amount_motifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
-                                <a title="put the max motifs size you want the program to give back">
-                                    <label for="msize">Max motif size:</label></a>
+                                <button type="button" onclick="showModal('motifsize-modal')" class="btn btn-light">?</button>
+                                    <label for="msize">Max motif size:</label>
+                                <dialog id="motifsize-modal">
+                                    <h2>Maximum motif Size</h2>
+                                    <p>Put the max motifs size you want the program to give back.</p>
+                                    <button type="button" onclick="closeModal('motifsize-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="maxsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
-                                <a title="put  min amount of motifs you want the program to give back">
-                                    <label for="minsize">Min motif size:</label></a>
+
+                                <button type="button" onclick="showModal('minmotifs-modal')" class="btn btn-light">?</button>
+                                    <label for="minsize">Min motif size:</label>
+                                <dialog id="minmotifs-modal">
+                                    <h2>Minimum motif Size</h2>
+                                    <p>Put  min amount of motifs you want the program to give back</p>
+                                    <button type="button" onclick="closeModal('minmotifs-modal')" class="btn btn-light">Close</button>
+                                </dialog>
+                                    <label for="minsize">Min motif size:</label>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
                                     <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
 
-
+                                <button type="button" onclick="showModal('P_value-modal')" class="btn btn-light">?</button>
+                                    <label for="P_Value">P_value:</label>
+                                <dialog id="P_value-modal">
+                                    <h2>Minimum motif Size</h2>
+                                    <p>A P_value is a number between 0 and 1 to see how much the Motif pattern matches the given pattern<br>
+                                    please input if you want to use custom P_value or the default P_value.
+                                    </p>
+                                    <button type="button" onclick="closeModal('P_value-modal')" class="btn btn-light">Close</button>
+                                </dialog>
                                 <div class="form-check form-switch">
-                                    <a title="A P_value is a number between 0 and 1 to see how much the Motif pattern matches the given pattern">
                                         <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="default_pvalue"></a>
                                         <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
                                 </div>
@@ -108,9 +153,26 @@
                         <H1 class="center_text" >Results</H1>
                         <hr class="hr_border">
                         <p>Insert output table with results here. </p>
-                        <a title="this button will bring you to a site with the results">
-                            <button type="button" class="btn btn-outline-success mb-3">Download full table with all motifs</button></a>
+                         <button type="button" onclick="showModal('DownloadHTML-modal')" class="btn btn-light">?</button>
+                                <dialog id="DownloadHTML-modal">
+                                    <h2>Download sequence</h2>
+                                    <p>Press the button to open the generated <br>
+                                    HTML link with the results.
+                                    </p>
+                                    <button type="button" onclick="closeModal('DownloadHTML-modal')" class="btn btn-light">Close</button>
+                                </dialog>
+                                <button type="button" class="btn btn-outline-success mb-3">Open HTML page</button>
+                                <br>
 
+                                <button type="button" onclick="showModal('Downloadtar-modal')" class="btn btn-light">?</button>
+                                    <dialog id="Downloadtar-modal">
+                                        <h2>Download tarfile</h2>
+                                        <p>Press the button to download the generated <br>
+                                        tarfile.<br>
+                                        </p>
+                                        <button type="button" onclick="closeModal('Downloadtar-modal')" class="btn btn-light">Close</button>
+                                    </dialog>
+                                <button type="button" class="btn btn-outline-success mb-3">Download tarfile</button>
                     </div>
                 </div>
             </div>    
@@ -170,5 +232,18 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+        function showModal(modalName) {
+            const modal = document.querySelector(`#${modalName}`);
+            modal.showModal();
+        }
+
+        function closeModal(modalName) {
+            const modal = document.querySelector(`#${modalName}`);
+            modal.close();
+        }
+    </script>
 
 {% endblock %}
