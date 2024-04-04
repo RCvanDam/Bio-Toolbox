@@ -26,7 +26,6 @@ WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 
 
 app = Flask(__name__)
-app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py'), profile_dir=("cProfile_output"))
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "poep"
@@ -361,6 +360,8 @@ def error_504():
 if __name__ == '__main__': #this statement basically checks if the file is being run directly by the user, or is being run by another file, for example for importing
     if sys.platform.startswith("linux") == False:
         CORRECT_OS = False
+
+    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=('/app.py'), profile_dir=("cProfile_output"))
     profiler = cProfile.Profile()
     profiler.enable()
     app.run()
