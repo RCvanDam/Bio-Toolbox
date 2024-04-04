@@ -4,15 +4,10 @@ Date: 25-03-2024
 Author: Floris M
 
 """
-import os
-working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+
 
 import unittest
-
-
-path = "app_prototype/FIMO_MEME_Commandline"
-tool = "{}/{}".format(working_dir, path)
-import "{}/{}".format(working_dir, path)
+from FIMO_MEME_Commandline import is_multifasta, extension_check
 
 
 
@@ -27,7 +22,5 @@ def test_multi_fasta(fasta, multifasta):
     is_multifasta(fasta, multifasta)
 
 
-    
-
-
-
+def test_extention():
+    assert extension_check()
