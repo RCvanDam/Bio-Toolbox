@@ -231,39 +231,89 @@ def html_render_meme():
     correct_os()
     method = request.method
     if method == "GET":
-        flash("inititial visit!!!")
         return render_template("memePage.html") #just renders the default fimo page
 
     elif request.method == "POST":#user submitted inputs
         user_input_values = { #here I save all the input button values as variables
-        "max_amount_of_motifs": request.form["max_amount_of_motifs"],
+        "": request.form["max_amount_of_motifs"],
         "max_motif_size": request.form["max_motif_size"],
         "min_motif_size": request.form["min_motif_size"],
         } # request.form refers to the inputlabel's name="" in html page
+        flash(type(user_input_values["max_amount_of_motifs"]))
+        #radio buttons aren't present if they're turned off,
+        #so I gotta check if they are before storing them
 
-        if request.form.get("seq_type_dna") != None: #radio buttons aren't present if they're turned off so I gotta cheeck if they are before storing them
-            user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
-
-        if request.form.get("seq_type_rna") != None:
-            user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
-
-        if request.form.get("seq_type_protein") != None: 
-            user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
-
-        input_sequence_path_meme = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
-        output_path_meme = "{}/User_ouput/meme".format(WORKING_DIR)
-
-        # execute Meme with user parameters
-        meme = Meme(user_input_values["max_amount_of_motifs"], user_input_values["max_motif_size"], user_input_values["min_motif_size"], "dna", input_sequence_path_meme, output_path_meme)
-        print(str(meme)) # redirect to website
-        meme.run()
-
-
-        if input_sequence_path_meme.filename == "" : #if the user submits no file, a file without a name will be submitted anyway so this checks against that
-            flash("submitted filename(s) must contain atleast 1 character!")
+        if user_input_values["max_motif_size"] == "":
+            flash("please input a max motif size!")
             return render_template("memePage.html")
         
+        if user_input_values["min_motif_size"] == "":
+            flash("please input a min motif size!")
+            return render_template("memePage.html")
+        
+        if user_input_values["max_amount_of_motifs"] == "":
+            flash("please input a max amount of motifs!")
+            return render_template("memePage.html")
+        
+        if request.form.get("seq_type_dna") != None: 
 
+            #checking if the other buttons aren't on
+            if request.form.get("seq_type_rna") != None or\
+                  request.form.get("seq_type_protein") != None: 
+                
+                flash("Only 1 sequence type can be chosen!")
+                return render_template("memePage.html")
+
+            
+            else:
+                user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
+
+        if request.form.get("seq_type_rna") != None:
+
+            #checking if the other buttons aren't on
+            if request.form.get("seq_type_protein") != None or\
+                  request.form.get("seq_type_dna") != None:
+                
+                flash("Only 1 sequence type can be chosen!")
+                return render_template("memePage.html")
+
+            else:
+                user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
+
+        if request.form.get("seq_type_protein") != None: 
+
+            #checking if the other buttons aren't on
+            if request.form.get("seq_type_rna") != None or\
+                  request.form.get("seq_type_dna") != None:
+                
+                flash("Only 1 sequence type can be chosen!")
+                return render_template("memePage.html")
+             
+            else:
+                user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
+
+        #here we define the file the user submitted as input_fasta_file
+        input_sequence_path_meme = request.files["input_user_file"] 
+        output_path_meme = "{}/User_ouput/meme".format(WORKING_DIR)
+
+        #if the user submits no file, 
+        #a file without a name will be submitted anyway
+        #so this checks against that
+        if input_sequence_path_meme.filename == "" : 
+            flash("submitted filename(s) must contain atleast 1 character!")
+            return render_template("memePage.html")
+
+        # execute Meme with user parameters
+        meme = Meme(user_input_values["max_amount_of_motifs"], 
+                    user_input_values["max_motif_size"], 
+                    user_input_values["min_motif_size"], 
+                    "dna", input_sequence_path_meme, 
+                    output_path_meme)
+        #meme output for commandline terminal to check input variables
+        print(str(meme)) 
+        meme.run()
+
+        
         flash("file received!!")
         return redirect(url_for("render_meme_output_html"))
 
