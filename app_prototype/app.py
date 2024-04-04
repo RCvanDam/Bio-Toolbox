@@ -21,6 +21,8 @@ CORRECT_OS = True
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"\app_prototype\user_input_files"
 ALLOWED_EXTENSIONS = {'txt', 'fasta'}
+WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+
 
 
 app = Flask(__name__)
@@ -176,8 +178,7 @@ def html_render_fimo():
         input_fasta_file = request.files["input_fasta_file"] #here we define the file the user submitted as input_fasta_file
         input_motif_file = request.files["input_motif_file"] #here we define the file the user submitted as input_motif_file
 
-        working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
-        output_path_fimo = "{}/User_ouput/fimo".format(working_dir)
+        output_path_fimo = "{}/User_ouput/fimo".format(WORKING_DIR)
 
         if input_fasta_file.filename == "" or input_motif_file.filename == "": #if the user submits no file, a file without a name will be submitted anyway so this checks against that
             flash("submitted filename(s) must contain atleast 1 character!")
@@ -241,8 +242,7 @@ def html_render_meme():
             user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
 
         input_sequence_path_meme = request.files["input_user_file"] #here we define the file the user submitted as input_fasta_file
-        working_dir = os.path.dirname(os.path.realpath(__file__)) # to check current dir
-        output_path_meme = "{}/User_ouput/meme".format(working_dir)
+        output_path_meme = "{}/User_ouput/meme".format(WORKING_DIR)
 
         # execute Meme with user parameters
         meme = Meme(user_input_values["max_motif_amount"], user_input_values["max_motif_size"], user_input_values["min_motif_size"], "dna", input_sequence_path_meme, output_path_meme)
