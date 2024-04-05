@@ -333,7 +333,38 @@ def render_meme_output_html():
     return render_template("meme.html")
 
 
+
+
+
 # Error handling:
+
+@app.errorhandler(301)
+def error_301():
+    """function to catch and handle the 301 error"""
+    return render_template("301.html"), 301
+
+
+@app.errorhandler(302)
+def error_302():
+    """function to catch and handle the 302 error"""
+    return render_template("302.html"), 302
+
+@app.errorhandler(400)
+def error_400():
+    """function to catch and handle the 400 error"""
+    return render_template("400.html"), 400
+
+@app.errorhandler(403)
+def error_403():
+    """function to catch and handle the 403 error"""
+    return render_template("400.html"), 403
+
+app.errorhandler(404)
+def error_404():
+    """function to catch and handle the 404 error"""
+    return render_template("400.html"), 404
+
+
 @app.errorhandler(429)
 def error_429():
     """function to catch and handle the 429 error"""
