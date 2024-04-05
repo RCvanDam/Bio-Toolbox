@@ -15,8 +15,6 @@ CORRECT_OS = True
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"/app_prototype/user_input_files"
-ALLOWED_EXTENSIONS_FASTA = ("txt", "fasta", "faa")
-ALLOWED_EXTENSIONS_MOTIF = ("meme", "steme", "dreme")
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
 
 app = Flask(__name__)
@@ -32,14 +30,6 @@ MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_MOUSE
 FLY_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/OnTheFly_2014_Drosophila.meme"
 ECOLI_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_e_coli.meme"
 JASPAR_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_human_and_mouse.meme"
-
-
-def allowed_file(filename, allowed_extensions_list):
-    if "." in filename and filename.rsplit(".", 1)[1].lower in allowed_extensions_list:
-        return True
-    else:
-        return False
-
 
 def correct_os():
 
@@ -188,16 +178,6 @@ def html_render_fimo():
         # so this checks against that
         if input_fasta_file.filename == "" or input_motif_file.filename == "":
             flash("submitted filename(s) must contain atleast 1 character!")
-            return render_template("fimopage.html")
-        
-        # checking if the file has the correct extensions
-        if not allowed_file(input_fasta_file.filename, ALLOWED_EXTENSIONS_FASTA):
-            flash("submitted fasta file must have .fasta extension ")
-            return render_template("fimopage.html")
-
-        # checking if the file has the correct extensions
-        if not allowed_file(input_motif_file.filename, ALLOWED_EXTENSIONS_MOTIF):
-            flash("submitted motif file must have meme, steme or dreme extension ")
             return render_template("fimopage.html")
 
         # execute Fimo with user parameters
