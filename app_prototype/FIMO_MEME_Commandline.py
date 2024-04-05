@@ -243,7 +243,7 @@ def extension_check(fastafile):
     """made this path checker again re test if it works
     :param: fastafile
     :return: True or false"""
-    if os.path.splitext(fastafile)[1] == ".fasta":
+    if os.path.splitext(fastafile.name())[1] == ".fasta":
         return True
     else:
         return False
