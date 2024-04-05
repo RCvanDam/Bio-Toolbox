@@ -96,6 +96,10 @@ class Fimo:
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, input_motif_file, input_sequence_path_fimo)
 
+        if use_default_p_value == True: # if the user chooses the default P-value:
+            p_value = 0.0001 # The default p_value
+            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {p_value} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
+
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
         print(output_fimo) # should be redirected to the ouput display in the website.
