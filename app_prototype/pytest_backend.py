@@ -8,9 +8,9 @@ Author: Floris M
 
 import pytest
 import html5lib # for testing the website
-import os
+import os # for the working_dir path
 from FIMO_MEME_Commandline import is_multifasta, extension_check
-#import app.py
+from app import app
 
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 
@@ -24,6 +24,10 @@ def test_meme_backend():
 
 
 def test_extention():
+    """
+    Extension function test to check if the function can distinguise between files with one of the allowed
+    extentions like .fasta or .faa.
+    """
     # .fasta extention
     assert extension_check(WORKING_DIR + "app_prototype/eme_sample_sequences.fasta") == True 
     # wrong extention
@@ -31,7 +35,55 @@ def test_extention():
 
 
 def test_multi_fasta():
+   """
+   Function test to check if the "is_multifasta" function can detect if a sequence is a fasta or multifasta. 
+   """
    # Multi-fasta test:
    assert is_multifasta(WORKING_DIR + "/meme_sample_sequences.fasta")  == True
    # Fasta test:
    assert is_multifasta(WORKING_DIR + "/test_fasta_wrong_extention.fastaaa")  == False
+
+
+@pytest.fixture
+def client():
+    """
+    
+    """
+    return app.test_client()
+
+
+def test_root(client):
+    response = client.get('/about')
+    assert response.status_code == 200
+    # assert "Hello World" in response.text
+
+def test_meme(client):
+    response = client.get("/meme")
+    assert response.status_code == 200
+
+def test_fimo(client):
+    response = client.get("/fimo")
+    assert response.status_code == 200
+
+
+@pytest.mark.parametrize('uri', [
+    # '/',
+    '/form',
+])
+
+
+def test_html_parse(client, uri):
+    response = client.get(uri)
+    assert response.status_code == 200
+    try:
+        parser = html5lib.HTMLParser(strict=True, namespaceHTMLElements=False)
+        htmldoc = parser.parse(response.data)
+    except html5lib.html5parser.ParseError as error:
+        pytest.fail(f'{error.__class__.__name__}: {str(error)}', pytrace=False)
+    forms = htmldoc.findall('./body/div/form')
+    assert len(forms) == 1
+    form = forms[0]
+    names = set()
+    # for inp in form.iter('input'):
+    #     names.add(inp.attrib['name'])
+    # assert names == {'course', 'teacher', 'ec'}
