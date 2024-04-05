@@ -86,7 +86,31 @@ class Fimo:
 
 
         if database_to_use: # If the user selected one of the databases instead of a motif file.
-            pass # add logic to select database depending on the user selection.
+            if database_to_use == "HUMAN_DATABASE_OPTION_":
+                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
+
+            elif database_to_use == "MOUSE_DATABASE_OPTION_":
+                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
+
+            elif database_to_use == "FLY_DATABASE_OPTION_":
+                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/OnTheFly_2014_Drosophila.meme"
+
+            elif database_to_use == "ECOLI_DATABASE_OPTION_":
+                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_e_coli.meme"
+
+            elif database_to_use == "JASPAR_DATABASE_OPTION_":
+                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_human_and_mouse.meme"
+            
+            # Run the tool with the selected database:
+
+            # Uncomment to directly activate the tool here...
+            # fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, input_motif_file, input_sequence_path_fimo)
+            # fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
+            # output_fimo = fimo_output.stdout
+            # print(output_fimo)
+            # return
+
+
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, input_motif_file, input_sequence_path_fimo)
 
@@ -208,7 +232,7 @@ def html_output_file_mover():
         shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
     except:
         print("Meme not used, quitting...")
-        
+
     try: # Try to move the generated Fimo output to the template dir to dispaly, if the content exists.
         shutil.move(WORKING_DIR + r"/User_output/fimo/fimo.html", WORKING_DIR + r"/templates/fimo.html")
         shutil.move(WORKING_DIR + r"/User_output/fimo/logo1.png", WORKING_DIR + r"/logo1.png")
@@ -234,6 +258,13 @@ def is_multifasta(fastafile):
     """
     with open(fastafile, "r") as fasta:
         return len(list(filter(is_id,fasta))) >= 2
+
+
+
+
+
+
+
 
 # Test functions below:
 
