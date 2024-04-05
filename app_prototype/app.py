@@ -338,59 +338,48 @@ def render_meme_output_html():
 
 # Error handling:
 
-# @app.errorhandler(301)
-# def error_301():
-#     """function to catch and handle the 301 error"""
-#     return render_template("301.html"), 301
-
-
-# @app.errorhandler(302)
-# def error_302():
-#     """function to catch and handle the 302 error"""
-#     return render_template("302.html"), 302
-
 @app.errorhandler(400)
-def error_400():
+def bad_request(e):
     """function to catch and handle the 400 error"""
     return render_template("400.html"), 400
 
 @app.errorhandler(403)
-def error_403():
+def Acces_forbidden(e):
     """function to catch and handle the 403 error"""
     return render_template("400.html"), 403
 
-app.errorhandler(404)
-def error_404():
+@app.errorhandler(404)
+def Page_not_found(e):
     """function to catch and handle the 404 error"""
-    return render_template("400.html"), 404
+    return render_template("404.html"), 404
 
 
 @app.errorhandler(429)
-def error_429():
+def too_many_request(e):
     """function to catch and handle the 429 error"""
     return render_template("429.html"), 429
 
 @app.errorhandler(500)
-def error_500():
+def internal_server_error(e):
     """function to catch and handle the 500 error"""
     
     return render_template("500.html"), 500
 
 @app.errorhandler(502)
-def error_502():
+def Bad_Gateway(e):
     """function to catch and handle the 502 errors"""
     
     return render_template("502.html"), 502
 
 
 @app.errorhandler(503)
-def error_503():
+def service_unavailable(e):
     """function to catch and handle the 503 errors"""
     return render_template("503.html"), 503
 
 
 @app.errorhandler(504)
-def gateway_error(error):
+def gateway_error(e):
     """function to catch and handle the 504 errors"""
 
     return render_template("504.html"), 504
