@@ -50,6 +50,9 @@ class Fimo:
     """
 
     def __init__(self, database_to_use, use_default_p_value, p_value, input_motif_file, input_sequence_path_fimo, output_path_fimo):
+        """
+        Init function to initialize the class with the parameters above. 
+        """
         self.database_to_use = database_to_use
         self.use_default_p_value = use_default_p_value
         self.p_value = p_value
@@ -106,6 +109,9 @@ class Meme:
     """
 
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, input_sequence_path_meme, output_path_meme):
+        """
+        Init function to initialize the class with the parameters above. 
+        """
         self.max_amount_of_motifs = max_amount_of_motifs
         self.max_motif_size = max_motif_size
         self.min_motif_size = min_motif_size
@@ -115,6 +121,9 @@ class Meme:
         self.new_env = None
 
     def __str__(self):
+        """
+        Return string with information about the used parameters that were used to initialize the class. 
+        """
         return f"Max amount of motifs: {self.max_amount_of_motifs}, Max motif size: {self.max_motif_size}, Min motif size: {self.min_motif_size}, Alphabet used: {self.alphabet}."
 
     def add_to_path(self):
@@ -184,11 +193,18 @@ class Meme:
             file.add(f"{output_path_meme}/{filename}", filename)
     
     def plot_graph(self):
+        """
+        Function to make a plot with the gathered data from the meme.html or meme.xml files.
+        """
         pass
 
 
 
 def html_output_file_mover():
+    """
+    Function to move the generated output file to the template dir so it can be displayed.
+    Also it moves the generated sequence logo to 
+    """
     shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
     shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
 
@@ -220,6 +236,7 @@ def is_multifasta(fastafile: str):
         # Reached end of fasta file, with counter < 2
         return False
 
+# Test functions below:
 
 def receive_input():
     """
