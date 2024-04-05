@@ -8,11 +8,9 @@ Author: Floris M
 
 import pytest
 import html5lib # for testing the website
-import os
+import os # for the working_dir path
 from FIMO_MEME_Commandline import is_multifasta, extension_check
 from app import app
-
-#import app.py
 
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
 
