@@ -126,19 +126,22 @@
                                     <button type="button" onclick="closeModal('P_value-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault1" name="default_pvalue"></a>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexRadioDefault1" name="default_pvalue"></a>
                                         <label class="form-check-label" for="flexRadioDefault1">Use default P-value cut-off</label>
                                 </div>
 
 
                                 <div class="form-check form-switch">
                                     <a title="A P_value is a number between 0 and 1 to see how much the Motif pattern matches the given pattern here you can decide from what p value you cut it off.">
-                                        <input class="form-check-input" type="checkbox" role="switch" id=flexRadioDefault2" name="custom_pvalue"></a>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexRadioDefault2" name="custom_pvalue"></a>
                                   <label class="form-check-label" for="flexRadioDefault2">Custom P-value cut-off: (Select below)</label>
                                 </div>
 
                                 <label for="customRange1" class="form-label">Select P-value threshold:</label>
-                                <input  name="input_custom_pvalue" type="range" class="form-range" min="0" max="5" id="customRange1">
+                                <div class="input-group input-group-ml mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
+                                    <input  name="input_custom_pvalue" type="number" class="form-control" aria-label="Sizing example input" min="0" max="5" id="customRange1">
+                                </div>
                                 <br>
                                 <input type="submit" class="btn btn-outline-success" value="Find the binding sites">
 
