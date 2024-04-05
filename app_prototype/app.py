@@ -15,7 +15,7 @@ CORRECT_OS = True
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"/app_prototype/user_input_files"
-ALLOWED_EXTENSIONS_FASTA = ("txt", "fasta")
+ALLOWED_EXTENSIONS_FASTA = ("txt", "fasta", "faa")
 ALLOWED_EXTENSIONS_MOTIF = ("meme", "steme", "dreme")
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
 
