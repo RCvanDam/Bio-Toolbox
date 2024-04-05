@@ -203,9 +203,17 @@ def html_output_file_mover():
     Function to move the generated output file to the template dir so it can be displayed.
     Also it moves the generated sequence logo to 
     """
-    shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
-    shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
-
+    try: # Try to move the generated meme output to the template dir to dispaly, if the content exists.
+        shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
+        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
+    except:
+        print("Meme not used, quitting...")
+        
+    try: # Try to move the generated Fimo output to the template dir to dispaly, if the content exists.
+        shutil.move(WORKING_DIR + r"/User_output/fimo/fimo.html", WORKING_DIR + r"/templates/fimo.html")
+        shutil.move(WORKING_DIR + r"/User_output/fimo/logo1.png", WORKING_DIR + r"/logo1.png")
+    except:
+        print("Fimo not used, quitting...")
         
 def extension_check(fastafile):
     """made this path checker again re test if it works

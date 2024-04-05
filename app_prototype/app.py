@@ -313,7 +313,7 @@ def html_render_meme():
 
         # meme output for commandline terminal to check input variables
         print(str(meme)) 
-        meme.run()
+        meme.run() # execute meme with the user given parameters.
 
         flash("file received!!")
         return redirect(url_for("render_meme_output_html"))
