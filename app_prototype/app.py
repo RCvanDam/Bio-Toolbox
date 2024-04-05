@@ -15,7 +15,7 @@ CORRECT_OS = True
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"/app_prototype/user_input_files"
-ALLOWED_EXTENSIONS_FASTA = ("txt", "fasta")
+ALLOWED_EXTENSIONS_FASTA = ("txt", "fasta", "faa")
 ALLOWED_EXTENSIONS_MOTIF = ("meme", "steme", "dreme")
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
 
@@ -313,7 +313,7 @@ def html_render_meme():
 
         # meme output for commandline terminal to check input variables
         print(str(meme)) 
-        meme.run()
+        meme.run() # execute meme with the user given parameters.
 
         flash("file received!!")
         return redirect(url_for("render_meme_output_html"))
@@ -338,16 +338,16 @@ def render_meme_output_html():
 
 # Error handling:
 
-@app.errorhandler(301)
-def error_301():
-    """function to catch and handle the 301 error"""
-    return render_template("301.html"), 301
+# @app.errorhandler(301)
+# def error_301():
+#     """function to catch and handle the 301 error"""
+#     return render_template("301.html"), 301
 
 
-@app.errorhandler(302)
-def error_302():
-    """function to catch and handle the 302 error"""
-    return render_template("302.html"), 302
+# @app.errorhandler(302)
+# def error_302():
+#     """function to catch and handle the 302 error"""
+#     return render_template("302.html"), 302
 
 @app.errorhandler(400)
 def error_400():

@@ -67,23 +67,17 @@ class Fimo:
         """
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
 
+    def is_id(line):
+        return line[0] == ">"
 
-    def is_multifasta(fastafile: str):
+    def is_multifasta(fastafile):
         """
         Detects whether a file is fasta or multifasta
         :param str fastafile: the filepath of the fastafile you want to check
         """
         with open(fastafile, "r") as fasta:
-            counter = 0
+            return len(list(filter(is_id,fasta))) >= 2
 
-            # Count fastas in fasta file
-            for line in fasta:
-                if ">" in line:
-                    counter += 1
-                if counter >= 2:
-                    return True
-                    # Reached end of fasta file, with counter < 2
-            return False
 
     def run(self):
         """
@@ -95,6 +89,10 @@ class Fimo:
             pass # add logic to select database depending on the user selection.
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, input_motif_file, input_sequence_path_fimo)
+
+        if use_default_p_value == True: # if the user chooses the default P-value:
+            p_value = 0.0001 # The default p_value
+            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {p_value} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
@@ -205,9 +203,17 @@ def html_output_file_mover():
     Function to move the generated output file to the template dir so it can be displayed.
     Also it moves the generated sequence logo to 
     """
-    shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
-    shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
-
+    try: # Try to move the generated meme output to the template dir to dispaly, if the content exists.
+        shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
+        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
+    except:
+        print("Meme not used, quitting...")
+        
+    try: # Try to move the generated Fimo output to the template dir to dispaly, if the content exists.
+        shutil.move(WORKING_DIR + r"/User_output/fimo/fimo.html", WORKING_DIR + r"/templates/fimo.html")
+        shutil.move(WORKING_DIR + r"/User_output/fimo/logo1.png", WORKING_DIR + r"/logo1.png")
+    except:
+        print("Fimo not used, quitting...")
         
 def extension_check(fastafile):
     """made this path checker again re test if it works
@@ -217,24 +223,17 @@ def extension_check(fastafile):
         return True
     else:
         return False
+    
+def is_id(line):
+        return line[0] == ">"
 
-def is_multifasta(fastafile: str):
+def is_multifasta(fastafile):
     """
     Detects whether a file is fasta or multifasta
     :param str fastafile: the filepath of the fastafile you want to check
     """
     with open(fastafile, "r") as fasta:
-        counter = 0
-
-        # Count fastas in fasta file
-        for line in fasta:
-            if ">" in line:
-                counter += 1
-            if counter >= 2:
-                return True
-
-        # Reached end of fasta file, with counter < 2
-        return False
+        return len(list(filter(is_id,fasta))) >= 2
 
 # Test functions below:
 

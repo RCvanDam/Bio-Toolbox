@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- 27 maart 2024-->
+<!-- 5 april 2024-->
 
         <!-- The display box-->
         <div class="container">
@@ -9,87 +9,74 @@
                     <div class="frame_tool_top_left">
                     <H1 class="center_text" >MEME</H1>
                     <hr class="hr_border">
-                        <button type="button" onclick="showModal('uploadfasta-modal')" class="btn btn-light">?</button>
-                            <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
-                            <dialog id="uploadfasta-modal">
-                                    <h2>What is a Fasta file</h2>
-                                    <p>FASTA format is a text-based format for representing either nucleotide sequences or peptide sequences, <br>
-                                        which base pairs or amino acids are represented using single-letter codes.<br>
-                                        A sequence in FASTA format begins with a single-line description <br>
-                                        the extension for the file is .FASTA.
-                                    </p>
-                                    <button type="button" onclick="closeModal('uploadfasta-modal')" class="btn btn-light">Close</button>
-                                </dialog>
-                            <input class="form-control" type="file" id="fasta" name="myfile">
-                            <br>
-                            <form>
+                        <a title="Accepted filetypes: .FASTA">
+                            <form method = "POST" enctype="multipart/form-data" >
+                                <p>Select the fasta file that you want to use and adjust the optional parameters.</p></a>
+                                <input class="form-control" type="file" id="fasta" name="input_user_file">
+                                <br>
                                 <button type="button" onclick="showModal('maxmotif-modal')" class="btn btn-light">?</button>
+                                <a title="put the max  amount of motifs you want the program to find">
                                     <label for="nmotifs1">Max amount of motifs to look for:</label>
+                                </a>
                                 <dialog id="maxmotif-modal">
                                     <h2>Maximum motif amount</h2>
-                                    <p> a motif is a nucleotide or amino-acid sequence pattern <br>
-                                        that is widespread and usually assumed to be related to biological <br>
-                                        function of the macromolecule. The input here will specify how many <br>
-                                        motifs the program will look for.
-                                    </p>
+                                    <p>The max motif amount ....</p>
                                     <button type="button" onclick="closeModal('maxmotif-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="nmotifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="nmotifs1" name="max_amount_of_motifs" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
 
                                 <button type="button" onclick="showModal('motifsize-modal')" class="btn btn-light">?</button>
+                                <a title="put the max motifs size you want the program to give back">
                                     <label for="msize">Max motif size:</label>
+                                </a>
                                 <dialog id="motifsize-modal">
                                     <h2>Maximum motif Size</h2>
-                                    <p>Put the max motifs size you want the program to give back.</p>
+                                    <p>Setting the maximum motif size ....</p>
                                     <button type="button" onclick="closeModal('motifsize-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="msize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="msize" name="max_motif_size" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
 
                                 </div>
 
                                 <button type="button" onclick="showModal('minmotifs-modal')" class="btn btn-light">?</button>
+                                <a title="put  min amount of motifs you want the program to give back">
                                     <label for="minsize">Min motif size:</label>
+                                </a>
                                 <dialog id="minmotifs-modal">
-                                    <h2>Minimum motif Size</h2>
-                                    <p>Put  min amount of motifs you want the program to give back</p>
+                                    <h2>Maximum motif Size</h2>
+                                    <p>Setting the maximum motif size ....</p>
                                     <button type="button" onclick="closeModal('minmotifs-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Input Number</span>
-                                    <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="minsize" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
+                                    <input type="number" class="form-control" aria-label="Sizing example input" id="minsize" name="min_motif_size" aria-describedby="inputGroup-sizing-sm" min="0" max="99">
                                 </div>
 
                                 <!-- Here's all the selectables for -->
-                                <button type="button" onclick="showModal('DNA_RNA_Protein-modal')" class="btn btn-light">?</button>
-                                    <label for="DNA_RNA_Protein">DNA/RNA/Protein selector:</label>
-                                <dialog id="DNA_RNA_Protein-modal">
-                                    <h2>DNA/RNA/Protein selector</h2>
-                                    <p>Select what type of sequence is in the FASTA file</p>
-                                    <button type="button" onclick="closeModal('DNA_RNA_Protein-modal')" class="btn btn-light">Close</button>
-                                </dialog>
+
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="DNA" name="Seq-type" value="DNA">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="DNA" name="seq_type_dna" value="DNA">
                                   <label class="form-check-label" for="DNA">DNA</label>
                                 </div>
 
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="RNA" name="Seq-type" value="RNA">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="RNA" name="seq_type_rna" value="RNA">
                                   <label class="form-check-label" for="RNA">RNA</label>
                                 </div>
 
 
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="Protein" name="Seq-type" value="Protein">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="Protein" name="seq_type_protein" value="Protein">
                                   <label class="form-check-label" for="Protein">Protein</label>
                                 </div>
+                                <br>
+                                <input type="submit" value="Find the binding sites" class="btn btn-outline-success">
                             </form>
-                            <br>
-                            <button type="button" class="btn btn-outline-success">Find the binding sites</button>
                     </div>
                 </div>
 
@@ -104,16 +91,8 @@
                         <div class="alert alert-secondary" role="alert">
                           <p>Here's an example of what image this tool will return.</p>
                         </div>
-
-                         <button type="button" onclick="showModal('Download-modal')" class="btn btn-light">?</button>
-                                <dialog id="Download-modal">
-                                    <h2>Download sequence</h2>
-                                    <p>Press the button to download the generated <br>
-                                    sequence logo like seen in the example<br>
-                                    </p>
-                                    <button type="button" onclick="closeModal('Download-modal')" class="btn btn-light">Close</button>
-                                </dialog>
-                            <button type="button" class="btn btn-outline-success">Download SequenceLogo</button>
+                        <a title="press the download button to download the generate sequence logo like seen in the example">
+                            <button type="button" class="btn btn-outline-success">Download SequenceLogo</button></a>
                     </div>
                 </div>
             </div>
