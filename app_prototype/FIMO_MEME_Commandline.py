@@ -67,6 +67,8 @@ class Fimo:
         """
         return f"Database used: {database_to_use}, Default p-value used?: {use_default_p_value}, P-value: {p_value}"
 
+    def is_id(line):
+        return line[0] == ">"
 
     def is_multifasta(fastafile):
         """
@@ -74,11 +76,8 @@ class Fimo:
         :param str fastafile: the filepath of the fastafile you want to check
         """
         with open(fastafile, "r") as fasta:
-            countinglist = [id for id in fasta if id[0] == ">" ]
-            print(countinglist)
-            if len(countinglist) >= 2:
-                return True
-            return False
+            return len(list(filter(is_id,fasta))) >= 2
+
 
     def run(self):
         """
@@ -216,24 +215,17 @@ def extension_check(fastafile):
         return True
     else:
         return False
+    
+def is_id(line):
+        return line[0] == ">"
 
-def is_multifasta(fastafile: str):
+def is_multifasta(fastafile):
     """
     Detects whether a file is fasta or multifasta
     :param str fastafile: the filepath of the fastafile you want to check
     """
     with open(fastafile, "r") as fasta:
-        counter = 0
-
-        # Count fastas in fasta file
-        for line in fasta:
-            if ">" in line:
-                counter += 1
-            if counter >= 2:
-                return True
-
-        # Reached end of fasta file, with counter < 2
-        return False
+        return len(list(filter(is_id,fasta))) >= 2
 
 # Test functions below:
 
