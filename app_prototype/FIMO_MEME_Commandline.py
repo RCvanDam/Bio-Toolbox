@@ -86,19 +86,19 @@ class Fimo:
 
 
         if database_to_use: # If the user selected one of the databases instead of a motif file.
-            if database_to_use == "HUMAN_DATABASE_OPTION_":
+            if database_to_use == "Human":
                 input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
 
-            elif database_to_use == "MOUSE_DATABASE_OPTION_":
+            elif database_to_use == "Mouse":
                 input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
 
-            elif database_to_use == "FLY_DATABASE_OPTION_":
+            elif database_to_use == "Drosophilla (fly)":
                 input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/OnTheFly_2014_Drosophila.meme"
 
-            elif database_to_use == "ECOLI_DATABASE_OPTION_":
+            elif database_to_use == "E.coli (Bacterium)":
                 input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_e_coli.meme"
 
-            elif database_to_use == "JASPAR_DATABASE_OPTION_":
+            elif database_to_use == "Jaspar":
                 input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_human_and_mouse.meme"
             
             # Run the tool with the selected database:

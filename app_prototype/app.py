@@ -151,18 +151,6 @@ def html_render_fimo():
                 flash("please select a database to use")
                 return render_template("fimopage.html")
             
-            # replacing the value in user_input_values with the path to the motif files
-            elif user_input_values["chosen_database"] == "Human":
-                user_input_values["chosen_database"] = HUMAN_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Mouse":
-                user_input_values["chosen_database"] = MOUSE_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Drosophilla (fly)":
-                user_input_values["chosen_database"] = FLY_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "E.coli (Bacterium)":
-                user_input_values["chosen_database"] = ECOLI_DATABASE_OPTION_
-            elif user_input_values["chosen_database"] == "Jaspar":
-                user_input_values["chosen_database"] = JASPAR_DATABASE_OPTION_
-
         # temporarily putting it on, on anyway because the tool won't work otherwise for now
         else:
             user_input_values["motif_database_option"] = "on" 
