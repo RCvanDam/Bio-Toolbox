@@ -99,7 +99,6 @@ def html_render_fimo():
             "minsize": request.form["minsize"],
             }
         
-        print("|", request.form["chosen_database"], "|")
 
         motif_file_option = request.form.get("motif_file_option")
         motif_database_option = request.form.get("motif_database_option")
@@ -150,10 +149,7 @@ def html_render_fimo():
             if user_input_values["chosen_database"] == "PLease select a database to use":
                 flash("please select a database to use")
                 return render_template("fimopage.html")
-            
-        # temporarily putting it on, on anyway because the tool won't work otherwise for now
-        else:
-            user_input_values["motif_database_option"] = "on" 
+
 
         # here we define the files the user submitted.
         input_fasta_file = request.files["input_fasta_file"]
