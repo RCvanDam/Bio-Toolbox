@@ -118,6 +118,7 @@ class Fimo:
             p_value = 0.0001 # The default p_value
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, self.input_motif_file, self.input_sequence_path_fimo)
 
+
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
         print(output_fimo) # should be redirected to the ouput display in the website.
@@ -168,11 +169,11 @@ class Meme:
 
     def run(self): # add commandline execution using the user given parameters.
         if is_multifasta(input_sequence_path_meme):
-            # meme_command_test = "meme '/home/floris/Documenten/Data_set/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
+            # meme_command_test = "meme '/home/floris/Documenten/Data_semax_amount_of_motifst/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
             meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
-            input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
+            self.input_sequence_path_meme, self.alphabet.lower(), self.output_path_meme, self.max_amount_of_motifs)
             # print(f"Running command: {meme_command_test}\nwith PATH: {self.new_env['PATH']}\n")godverdomme ruben
-
+            
             meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True, env=self.new_env)
             output_meme = meme_output.stdout
             print(output_meme) # should be redirected to the ouput display in the website.
@@ -229,7 +230,7 @@ def html_output_file_mover():
     """
     try: # Try to move the generated meme output to the template dir to dispaly, if the content exists.
         shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
-        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
+        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/static/placeholder.png")
     except:
         print("Meme not used, quitting...")
 
