@@ -3,7 +3,7 @@
 import os
 import flask
 import sys
-from FIMO_MEME_Commandline import Meme, Fimo
+from .FIMO_MEME_Commandline import Meme, Fimo
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from flask import Flask, render_template, flash, request, redirect, url_for, helpers
 
@@ -166,6 +166,7 @@ def html_render_fimo():
 
         # here we define the files the user submitted.
         input_fasta_file = request.files["input_fasta_file"]
+
         input_motif_file = request.files["input_motif_file"]
 
         output_path_fimo = "{}/User_ouput/fimo".format(WORKING_DIR)
@@ -176,8 +177,13 @@ def html_render_fimo():
         if input_fasta_file.filename == "" or input_motif_file.filename == "":
             flash("submitted filename(s) must contain atleast 1 character!")
             return render_template("fimopage.html")
+        
 
+        # with open(input_motif_file) as motifs:
+        #     for i in motifs:
+        #         print(i)
         # execute Fimo with user parameters
+        print(f"motif file: {input_motif_file}")
         fimo = Fimo(user_input_values["motif_database_option"], 
                     user_input_values["default_pvalue"], 
                     user_input_values["custom_pvalue"], 
@@ -190,7 +196,7 @@ def html_render_fimo():
         fimo.run()
 
         # confirmation for front end that the files have been received
-        flash(f"file: {input_fasta_file.filename} received!!")
+        # flash(f"file: {input_fasta_file.filename} received!!")
         
         # redirects to the path for fimo's html output
         return redirect(url_for("render_fimo_output_html"))
