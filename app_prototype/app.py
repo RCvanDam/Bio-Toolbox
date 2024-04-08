@@ -105,6 +105,11 @@ def html_render_fimo():
         default_pvalue = request.form.get("default_pvalue")
         custom_pvalue = request.form.get("custom_pvalue")
 
+        # checking if the input is actually a number
+        if user_input_values["input_custom_pvalue"].replace(".", "").isnumeric() is False:
+            flash("the custom")
+
+
         # checking if neither of the motif options have been chosen.
         if motif_file_option is None and motif_database_option is None:
             flash("a motif option must be chosen")
@@ -141,6 +146,11 @@ def html_render_fimo():
 
         if custom_pvalue is not None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
+
+            # checking if the input is actually a number
+            if user_input_values["input_custom_pvalue"].replace(".", "").isnumeric() is False:
+                flash("the custom pvalue has to be a float(0.0)")
+                return render_template("fimopage.html")
 
         else:
             user_input_values["custom_pvalue"] = False
