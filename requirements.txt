@@ -1,8 +1,8 @@
-tarfile
-shutil
+#tarfile
+#shutil
 flask ~= 3.0.2
 werkzeug
 html5lib
 matplotlib
-shutil
-tarfile
+#shutil
+#tarfile
