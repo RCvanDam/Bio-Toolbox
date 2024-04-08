@@ -84,22 +84,23 @@ class Fimo:
         Using the ".run()" method, the Fimo tool will be run. No parameters needed because they were already given when the class was initialized.
         """
 
+        # input_motif_file = WORKING_DIR + "/Motif_databases/SwissRegulon_human_and_mouse.meme"
 
         if database_to_use: # If the user selected one of the databases instead of a motif file.
             if database_to_use == "Human":
-                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
+                input_motif_file = WORKING_DIR + "/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
 
             elif database_to_use == "Mouse":
-                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
+                input_motif_file = WORKING_DIR + "/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
 
             elif database_to_use == "Drosophilla (fly)":
-                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/OnTheFly_2014_Drosophila.meme"
+                input_motif_file = WORKING_DIR + "/Motif_databases/OnTheFly_2014_Drosophila.meme"
 
             elif database_to_use == "E.coli (Bacterium)":
-                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_e_coli.meme"
+                input_motif_file = WORKING_DIR + "/Motif_databases/SwissRegulon_e_coli.meme"
 
             elif database_to_use == "Jaspar":
-                input_motif_file = WORKING_DIR + "/app_prototype/Motif_databases/SwissRegulon_human_and_mouse.meme"
+                input_motif_file = WORKING_DIR + "/Motif_databases/SwissRegulon_human_and_mouse.meme"
             
             # Run the tool with the selected database:
 
@@ -110,13 +111,13 @@ class Fimo:
             # print(output_fimo)
             # return
 
-
         else: # if not: use a given motif file.
             fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh 0.001 {} {}".format(output_path_fimo, self.input_motif_file, self.input_sequence_path_fimo)
 
         if use_default_p_value == True: # if the user chooses the default P-value:
             p_value = 0.0001 # The default p_value
-            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, self.input_motif_file, self.input_sequence_path_fimo)
+            # fimo_command = "fimo --oc WORKING_DIR +/User_output/meme --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(p_value, input_motif_file, self.input_sequence_path_fimo)
+            fimo_command = "fimo --oc {} --verbosity 2 --bgfile --nrdb-- --thresh {} {} {}".format(output_path_fimo, p_value, input_motif_file, input_sequence_path_fimo)
 
 
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
@@ -128,7 +129,6 @@ class Meme:
     """
     Meme class to use user input with the meme-tool.
     :param: # to-do fill in params
-
     """
 
     def __init__(self, max_amount_of_motifs, max_motif_size, min_motif_size, alphabet, input_sequence_path_meme, output_path_meme):
