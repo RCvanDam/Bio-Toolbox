@@ -3,7 +3,8 @@
 import os
 import flask
 import sys
-from .FIMO_MEME_Commandline import Meme, Fimo
+from pathlib import Path
+from FIMO_MEME_Commandline import Meme, Fimo
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from flask import Flask, render_template, flash, request, redirect, url_for, helpers
 
@@ -15,7 +16,9 @@ CORRECT_OS = True
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = r"/app_prototype/user_input_files"
-WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
+
+#WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
+WORKING_DIR = Path.cwd()
 
 app = Flask(__name__)
 

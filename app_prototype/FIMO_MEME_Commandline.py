@@ -12,6 +12,7 @@ Version: 0.16
 import subprocess # To execute terminal command's on the computer.
 import os
 import tarfile
+from pathlib import Path
 import shutil
 import matplotlib.pyplot as plt
 
