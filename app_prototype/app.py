@@ -142,6 +142,9 @@ def html_render_fimo():
         if custom_pvalue is not None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
+        elif custom_pvalue is None:
+            user_input_values["custom_pvalue"] = False
+
         if motif_database_option is not None:
             user_input_values["motif_database_option"] = motif_database_option
 
