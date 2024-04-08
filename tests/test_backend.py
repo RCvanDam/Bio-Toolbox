@@ -10,11 +10,14 @@ import pytest
 import html5lib # for testing the website
 import os # for the working_dir path
 from app_prototype.FIMO_MEME_Commandline import is_multifasta, extension_check
+# from app_prototype.FIMO_MEME_Commandline import is_multifasta, extension_check
+
 from app_prototype.app import app
 from pathlib import Path
 
 # WORKING_DIR = Path(os.path.dirname(os.path.realpath(__file__))) # to check current dir
 WORKING_DIR = Path.cwd()
+print(type(WORKING_DIR))
 # print(WORKING_DIR)
 
 
@@ -32,7 +35,7 @@ def test_extention():
     extentions like .fasta or .faa.
     """
     # .fasta extention
-    assert extension_check(WORKING_DIR / "app_prototype" / "eme_sample_sequences.fasta") == True 
+    assert extension_check(WORKING_DIR / "app_prototype" / "meme_sample_sequences.fasta") == True 
     # wrong extention
     assert extension_check(WORKING_DIR / "unit_tests" / "test_fasta_wrong_extention.fastaaa") == False
 
@@ -73,6 +76,8 @@ def test_fimo(client):
      '/',
     '/form',
     '/fimo'
+    '/meme'
+
 ])
 
 def test_html_parse_meme(client, uri):
@@ -86,7 +91,7 @@ def test_html_parse_meme(client, uri):
 
 
 
-def test_html_parse_fimo(client):
+def test_html_parse_fimo(client, uri):
     response = client.get("/fimo")
     assert response.status_code == 200
     try:
