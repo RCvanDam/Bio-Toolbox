@@ -3,9 +3,9 @@
 MemeSuite backend for website
 Author: Tai Vo, Floris M, Jarno Duiker, Ruben van Dam
 Date: 7-03-2024
-Last updated: 04-04-2024
+Last updated: 08-04-2024
 
-Version: 0.15
+Version: 0.16
 
 """
 
