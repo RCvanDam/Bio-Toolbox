@@ -137,21 +137,21 @@ def html_render_fimo():
             user_input_values["default_pvalue"] = request.form["default_pvalue"]
 
         else:
-            user_input_values["default_pvalue"] = True
+            user_input_values["default_pvalue"] = False
 
         if custom_pvalue is not None:
             user_input_values["custom_pvalue"] = request.form["custom_pvalue"]
 
-        elif custom_pvalue is None:
+        else:
             user_input_values["custom_pvalue"] = False
 
-        if motif_database_option is not None:
-            user_input_values["motif_database_option"] = motif_database_option
 
-            # checking to see if a database has been chosen if the database option is on
-            if user_input_values["chosen_database"] == "PLease select a database to use":
-                flash("please select a database to use")
-                return render_template("fimopage.html")
+        user_input_values["motif_database_option"] = motif_database_option
+
+        # checking to see if a database has been chosen if the database option is on
+        if user_input_values["chosen_database"] == "PLease select a database to use":
+            flash("please select a database to use")
+            return render_template("fimopage.html")
 
 
         # here we define the files the user submitted.
@@ -233,32 +233,38 @@ def html_render_meme():
 
             else:
                 user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
+        else:
+            user_input_values["seq_type_dna"] = False
 
         # checking if radio button is present in request.form
         if request.form.get("seq_type_rna") is not None:
 
             # checking if the other buttons aren't on
             if request.form.get("seq_type_protein") is not None or\
-                  request.form.get("seq_type_dna") is not None:
+                  request.form.get("seq_type_dna") is not False:
                 
                 flash("Only 1 sequence type can be chosen!")
                 return render_template("memePage.html")
 
             else:
                 user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
+        else:
+            user_input_values["seq_type_rna"] = False
 
         # checking if radio button is present in request.form
         if request.form.get("seq_type_protein") is not None:
 
             # checking if the other buttons aren't on
-            if request.form.get("seq_type_rna") is not None or\
-                  request.form.get("seq_type_dna") is not None:
+            if request.form.get("seq_type_rna") is not False or\
+                  request.form.get("seq_type_dna") is not False:
                 
                 flash("Only 1 sequence type can be chosen!")
                 return render_template("memePage.html")
              
             else:
                 user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
+        else:
+            user_input_values["seq_type_protein"] = False
 
         # here we define the file the user submitted as input_fasta_file
         input_sequence_path_meme = request.files["input_user_file"] 
