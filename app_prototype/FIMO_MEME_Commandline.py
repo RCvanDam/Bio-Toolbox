@@ -121,6 +121,7 @@ class Fimo:
         fimo_output = subprocess.run([fimo_command], executable="/bin/sh", shell=True, text=True)
         output_fimo = fimo_output.stdout
         print(output_fimo) # should be redirected to the ouput display in the website.
+        html_output_file_mover()
 
 
 class Meme:
@@ -229,13 +230,13 @@ def html_output_file_mover():
     """
     try: # Try to move the generated meme output to the template dir to dispaly, if the content exists.
         shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
-        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/logo1.png")
+        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"static/raplace.png")
     except:
         print("Meme not used, quitting...")
 
     try: # Try to move the generated Fimo output to the template dir to dispaly, if the content exists.
         shutil.move(WORKING_DIR + r"/User_output/fimo/fimo.html", WORKING_DIR + r"/templates/fimo.html")
-        shutil.move(WORKING_DIR + r"/User_output/fimo/logo1.png", WORKING_DIR + r"/logo1.png")
+        shutil.move(WORKING_DIR + r"/User_output/fimo/logo1.png", WORKING_DIR + r"static/logo1.png")
     except:
         print("Fimo not used, quitting...")
         
