@@ -5,6 +5,7 @@ import flask
 import sys
 from pathlib import Path
 from FIMO_MEME_Commandline import Meme, Fimo
+from werkzeug.utils import secure_filename
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from flask import Flask, render_template, flash, request, redirect, url_for, helpers
 
@@ -19,20 +20,16 @@ UPLOAD_FOLDER = r"/app_prototype/user_input_files"
 
 #WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
 WORKING_DIR = Path.cwd()
+print(f"woring dir::: {WORKING_DIR}")
 
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = "poep"
+app.secret_key = "AMOGUS"
 
-OUTPUT_FOLDER = WORKING_DIR + r"/user_output"
-UPLOAD_FOLDER = WORKING_DIR + r"/user_input_files"
+OUTPUT_FOLDER = WORKING_DIR / r"/user_output"
+UPLOAD_FOLDER = WORKING_DIR / r"/user_input_files"
 
-HUMAN_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme"
-MOUSE_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme"
-FLY_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/OnTheFly_2014_Drosophila.meme"
-ECOLI_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_e_coli.meme"
-JASPAR_DATABASE_OPTION_ = WORKING_DIR + r"/Motif_databases/SwissRegulon_human_and_mouse.meme"
 
 def correct_os():
 
@@ -73,7 +70,7 @@ def download():
     download_file_name = "test_output_delete_this.txt"
 
     # generate a variable absolute path, so it works on anyone's pc
-    outputs = WORKING_DIR + r"/output_files/" + download_file_name
+    outputs = WORKING_DIR / r"/output_files/" / download_file_name
 
     return flask.send_file(outputs, as_attachment=True)
 
@@ -218,10 +215,23 @@ def html_render_meme():
     elif request.method == "POST":
         # here I save all the input button values as variables
         # request.form refers to the input's name in html
+    
+        if request.form["seq_type_dna"]:
+            alphabet = "dna"
+        elif request.form["seq_type_rna"]:
+            alphabet = "rna"
+        elif request.form["seq_type_protein"]:
+            alphabet = "protein"
+
+
+
+
         user_input_values = {
             "max_amount_of_motifs": request.form["max_amount_of_motifs"],
             "max_motif_size": request.form["max_motif_size"],
             "min_motif_size": request.form["min_motif_size"],
+            "alphabet": alphabet
+
             }
 
         # checks if max_motif_size field isn't left empty
@@ -300,7 +310,8 @@ def html_render_meme():
         meme = Meme(user_input_values["max_amount_of_motifs"], 
                     user_input_values["max_motif_size"], 
                     user_input_values["min_motif_size"], 
-                    "dna", input_sequence_path_meme, 
+                    user_input_values["alphabet"],
+                    input_sequence_path_meme, 
                     output_path_meme)
 
         # meme output for commandline terminal to check input variables
