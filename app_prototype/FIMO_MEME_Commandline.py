@@ -170,6 +170,7 @@ class Meme:
 
     def run(self): # add commandline execution using the user given parameters.
         #print(f"Het gebruitke alphabet is:: .self: {self.alphabet} en {alphabet}")
+        print(f"Alphabet: {self.alphabet}")
         if is_multifasta(input_sequence_path_meme):
             # meme_command_test = "meme '/home/floris/Documenten/Data_semax_amount_of_motifst/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
             meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(

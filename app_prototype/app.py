@@ -14,13 +14,16 @@ os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
 CORRECT_OS = True
 
+WORKING_DIR = Path.cwd()
+print(f"Working dir: {WORKING_DIR}")
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-UPLOAD_FOLDER = r"/app_prototype/user_input_files"
+UPLOAD_FOLDER = WORKING_DIR / "user_input_files"
+
+print(f"UPload folder: {UPLOAD_FOLDER}")
 
 #WORKING_DIR = os.path.dirname(os.path.realpath(__file__))  # to check current dir
-WORKING_DIR = Path.cwd()
-print(f"woring dir::: {WORKING_DIR}")
+
 
 app = Flask(__name__)
 
@@ -28,7 +31,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "AMOGUS"
 
 OUTPUT_FOLDER = WORKING_DIR / r"/user_output"
-UPLOAD_FOLDER = WORKING_DIR / r"/user_input_files"
+# UPLOAD_FOLDER = WORKING_DIR / r"/user_input_files"
 
 
 def correct_os():
@@ -70,7 +73,7 @@ def download():
     download_file_name = "test_output_delete_this.txt"
 
     # generate a variable absolute path, so it works on anyone's pc
-    outputs = WORKING_DIR / r"/output_files/" / download_file_name
+    outputs = WORKING_DIR / r"output_files/" / download_file_name
 
     return flask.send_file(outputs, as_attachment=True)
 
@@ -169,7 +172,7 @@ def html_render_fimo():
 
         input_motif_file = request.files["input_motif_file"]
 
-        output_path_fimo = "{}/User_ouput/fimo".format(WORKING_DIR)
+        output_path_fimo = WORKING_DIR / "User_ouput/fimo"
 
         # if the user submits no file,
         # a file without a name will be submitted anyway
@@ -218,12 +221,18 @@ def html_render_meme():
     
         if request.form["seq_type_dna"]:
             alphabet = "dna"
+            print("aaaaaaaaaaaaaaaaaaaaa")
         elif request.form["seq_type_rna"]:
             alphabet = "rna"
+            print("bbbbbbbbbbbbbbbbbbbbbbbbbbbb")
         elif request.form["seq_type_protein"]:
             alphabet = "protein"
+            print("cccccccccccccccccccccccccc")
+        else:
+            alphabet = "dna" # backup 
 
-
+        #alphabet = "dna"
+        print(f"Selected alphabet: {alphabet}")
 
 
         user_input_values = {
@@ -233,6 +242,8 @@ def html_render_meme():
             "alphabet": alphabet
 
             }
+ 
+
 
         # checks if max_motif_size field isn't left empty
         if user_input_values["max_motif_size"] == "":
@@ -251,58 +262,69 @@ def html_render_meme():
 
         # radio buttons aren't present if they're turned off, so I have to check if they are before storing them
         # checking if radio button is present in request.form
-        if request.form.get("seq_type_dna") is not None:
+        # if request.form.get("seq_type_dna") is not None:
 
-            # checking if the other buttons aren't on
-            if request.form.get("seq_type_rna") is not None or\
-                  request.form.get("seq_type_protein") is not None:
+        #     # checking if the other buttons aren't on
+        #     if request.form.get("seq_type_rna") is not None or\
+        #           request.form.get("seq_type_protein") is not None:
                 
-                flash("Only 1 sequence type can be chosen!")
-                return render_template("memePage.html")
+        #         flash("Only 1 sequence type can be chosen!")
+        #         return render_template("memePage.html")
 
-            else:
-                user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
-        else:
-            user_input_values["seq_type_dna"] = False
+        #     else:
+        #         user_input_values["seq_type_dna"] = request.form["seq_type_dna"]
+        # else:
+        #     user_input_values["seq_type_dna"] = False
 
-        # checking if radio button is present in request.form
-        if request.form.get("seq_type_rna") is not None:
+        # # checking if radio button is present in request.form
+        # if request.form.get("seq_type_rna") is not None:
 
-            # checking if the other buttons aren't on
-            if request.form.get("seq_type_protein") is not None or\
-                  request.form.get("seq_type_dna") is not False:
+        #     # checking if the other buttons aren't on
+        #     if request.form.get("seq_type_protein") is not None or\
+        #           request.form.get("seq_type_dna") is not False:
                 
-                flash("Only 1 sequence type can be chosen!")
-                return render_template("memePage.html")
+        #         flash("Only 1 sequence type can be chosen!")
+        #         return render_template("memePage.html")
 
-            else:
-                user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
-        else:
-            user_input_values["seq_type_rna"] = False
+        #     else:
+        #         user_input_values["seq_type_rna"] = request.form["seq_type_rna"]
+        # else:
+        #     user_input_values["seq_type_rna"] = False
 
-        # checking if radio button is present in request.form
-        if request.form.get("seq_type_protein") is not None:
+        # # checking if radio button is present in request.form
+        # if request.form.get("seq_type_protein") is not None:
 
-            # checking if the other buttons aren't on
-            if request.form.get("seq_type_rna") is not False or\
-                  request.form.get("seq_type_dna") is not False:
+        #     # checking if the other buttons aren't on
+        #     if request.form.get("seq_type_rna") is not False or\
+        #           request.form.get("seq_type_dna") is not False:
                 
-                flash("Only 1 sequence type can be chosen!")
-                return render_template("memePage.html")
+        #         flash("Only 1 sequence type can be chosen!")
+        #         return render_template("memePage.html")
              
-            else:
-                user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
-        else:
-            user_input_values["seq_type_protein"] = False
+        #     else:
+        #         user_input_values["seq_type_protein"] = request.form["seq_type_protein"]
+        # else:
+        #     user_input_values["seq_type_protein"] = False
+
+
+
+        # path to give the MEME class to refer to the input file. 
+        input_sequence_meme_path = UPLOAD_FOLDER / request.files["input_user_file"].filename
+        print(f"input sequence path meme: {input_sequence_meme_path}")
 
         # here we define the file the user submitted as input_fasta_file
-        input_sequence_path_meme = request.files["input_user_file"] 
-        output_path_meme = "{}/User_ouput/meme".format(WORKING_DIR)
+        input_sequence_meme = request.files["input_user_file"] 
+        output_path_meme = WORKING_DIR / "User_output/meme/"
+        print(f"Output path meme: {output_path_meme}")
+
+        # Save the uploaded file to the upload folder.
+        input_sequence_meme.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(input_sequence_meme.filename)))
+
 
         # if the user submits no file,
         # a file without a name will be submitted anyway
         # so this checks against that
-        if input_sequence_path_meme.filename == "":
+        if input_sequence_meme.filename == "":
             flash("submitted filename(s) must contain atleast 1 character!")
             return render_template("memePage.html")
 
@@ -311,7 +333,7 @@ def html_render_meme():
                     user_input_values["max_motif_size"], 
                     user_input_values["min_motif_size"], 
                     user_input_values["alphabet"],
-                    input_sequence_path_meme, 
+                    input_sequence_meme_path, 
                     output_path_meme)
 
         # meme output for commandline terminal to check input variables
