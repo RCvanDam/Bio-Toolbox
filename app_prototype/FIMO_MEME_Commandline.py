@@ -171,7 +171,7 @@ class Meme:
         if is_multifasta(input_sequence_path_meme):
             # meme_command_test = "meme '/home/floris/Documenten/Data_semax_amount_of_motifst/DATA/meme_sample_sequences' -dna -oc ~/Documenten/OUTPUT_DATA/MEME/ -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0"
             meme_command_test = "meme {} -{} -oc {} -time 14400 -mod zoops -nmotifs {} -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0".format(
-            input_sequence_path_meme, alphabet.lower(), output_path_meme, max_amount_of_motifs)
+            input_sequence_path_meme, alphabet.lower(), output_path_meme, self.max_amount_of_motifs)
             # print(f"Running command: {meme_command_test}\nwith PATH: {self.new_env['PATH']}\n")godverdomme ruben
             
             meme_output = subprocess.run([meme_command_test],  executable="/bin/sh", shell=True, text=True, env=self.new_env)
@@ -244,7 +244,7 @@ def extension_check(fastafile):
     """made this path checker again re test if it works
     :param: fastafile
     :return: True or false"""
-    if os.path.splitext(fastafile.name())[1] == ".fasta":
+    if os.path.splitext(fastafile.name)[1] == ".fasta":
         return True
     else:
         return False
