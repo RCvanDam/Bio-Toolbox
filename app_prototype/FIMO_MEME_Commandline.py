@@ -264,6 +264,16 @@ def memelogo_mover():
         shutil.move(WORKING_DIR / r"User_output/meme/logo9.png", WORKING_DIR / r"static/logo9.png")
         shutil.move(WORKING_DIR / r"User_output/meme/logo10.png", WORKING_DIR / r"static/logo10.png")
         shutil.move(WORKING_DIR / r"User_output/meme/logo11.png", WORKING_DIR / r"static/logo11.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo12.png", WORKING_DIR / r"static/logo12.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo13.png", WORKING_DIR / r"static/logo13.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo14.png", WORKING_DIR / r"static/logo14.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo15.png", WORKING_DIR / r"static/logo15.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo16.png", WORKING_DIR / r"static/logo16.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo17.png", WORKING_DIR / r"static/logo17.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo18.png", WORKING_DIR / r"static/logo18.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo19.png", WORKING_DIR / r"static/logo19.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo20.png", WORKING_DIR / r"static/logo20.png")
+
 
     except:
         print("Meme not used, quitting...")
