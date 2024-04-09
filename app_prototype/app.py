@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from flask import Flask, render_template, flash, request, redirect, url_for, helpers, session
 
-MOTIF_DICT_PLACEHOLDER = {"test":"MEME has not run"}
+MOTIF_DICT_PLACEHOLDER = {"test":"this shouldn't be visible"}
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
@@ -426,6 +426,6 @@ def gateway_error(e):
 if __name__ == '__main__':
     if not sys.platform.startswith("linux"):
         CORRECT_OS = False
-
+        
     # run() method of Flask class runs the application on the local development server
     app.run()

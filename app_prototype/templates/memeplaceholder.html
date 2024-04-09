@@ -2,4 +2,13 @@
 {% block content %}
 
 
+<h1>Dictionary from Flask to HTML</h1>
+<ul>
+    
+    {% for key, value in motif_dict.items() %}
+        <li>{{ key }}: {{ value }}</li>
+    {% endfor %}
+</ul>
+
+
 {% endblock %}
