@@ -66,6 +66,7 @@ class Fimo:
         self.input_motif_file = input_motif_file
         self.input_sequence_path_fimo = input_sequence_path_fimo
         self.output_path_fimo = output_path_fimo
+        self.motif_dict = ""
         # self.is_multifasta()
 
     def __str__(self):
@@ -189,7 +190,7 @@ class Meme:
             self.generate_tarfile()
             html_output_file_mover()
             memelogo_mover()
-            xml_parser()
+            self.motif_dict = xml_parser()
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
 
@@ -285,9 +286,9 @@ def xml_parser():
     meme_version = (root.attrib["version"]) # meme version used.
     for motifs in root.findall("motifs"):
         for motif in motifs:
-            print(f"{motif.attrib['id']} with a P-value of {motif.attrib['p_value']} motif width: {motif.attrib['width']}") # print-f with same information as the motif_dict.
-            motif_dict[motif.attrib["id"]] = (motif.attrib['p_value'], motif.attrib['width'], motif.attrib['sites'], motif.attrib["e_value"]) # Dict with as key the motif id (number) and p-value as value.
-            print("all motif attributes :", motif.attrib)
+            print(f"{motif.attrib["id"]} with a P-value of {motif.attrib["p_value"]} motif width: {motif.attrib["width"]}") # print-f with same information as the motif_dict.
+            motif_dict[motif.attrib["id"]] = (motif.attrib["p_value"], motif.attrib["width"], motif.attrib["sites"], motif.attrib["e_value"]) # Dict with as key the motif id (number) and p-value as value.
+        
     for index, i in enumerate(motif_dict, start=1): # demo how to get the data from the dict
         # motif_dict: first position: motif number. second position: motif width. third position: sites
         print(f"motif number {index} p-value and width: {motif_dict[i]}")
