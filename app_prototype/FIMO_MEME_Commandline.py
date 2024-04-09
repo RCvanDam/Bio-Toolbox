@@ -253,17 +253,17 @@ def html_output_file_mover():
 def memelogo_mover():
     # was totatally jarno
     try:
-        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo2.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo3.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo4.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo5.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo6.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo7.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo8.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo9.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo10.png", WORKING_DIR / r"static/")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo11.png", WORKING_DIR / r"static/")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/logo1.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo2.png", WORKING_DIR / r"static/logo2.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo3.png", WORKING_DIR / r"static/logo3.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo4.png", WORKING_DIR / r"static/logo4.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo5.png", WORKING_DIR / r"static/logo5.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo6.png", WORKING_DIR / r"static/logo6.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo7.png", WORKING_DIR / r"static/logo7.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo8.png", WORKING_DIR / r"static/logo8.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo9.png", WORKING_DIR / r"static/logo9.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo10.png", WORKING_DIR / r"static/logo10.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo11.png", WORKING_DIR / r"static/logo11.png")
 
     except:
         print("Meme not used, quitting...")
