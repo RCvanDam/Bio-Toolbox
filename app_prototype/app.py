@@ -7,8 +7,9 @@ from pathlib import Path
 from FIMO_MEME_Commandline import Meme, Fimo
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.profiler import ProfilerMiddleware
-from flask import Flask, render_template, flash, request, redirect, url_for, helpers
+from flask import Flask, render_template, flash, request, redirect, url_for, helpers, session
 
+MOTIF_DICT_PLACEHOLDER = {"test":"MEME has not run"}
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
@@ -343,7 +344,8 @@ def html_render_meme():
         # meme output for commandline terminal to check input variables
         print(str(meme)) 
         meme.run() # execute meme with the user given parameters.
-
+        motif_dict = meme.motif_dict
+        session["motif_dict"] = motif_dict
         flash("file received!!")
         return redirect(url_for("render_meme_output_html"))
 
@@ -358,8 +360,12 @@ def render_fimo_output_html():
 @app.route('/meme_output')
 def render_meme_output_html():
     """ Route to show the MEME output"""
+    motif_dict = MOTIF_DICT_PLACEHOLDER
 
-    return render_template("meme.html")
+    if session.get["motif_dict"]is not None:
+        motif_dict = session["motif_dict"]
+
+    return render_template("memeplaceholder.html", motif_dict=motif_dict)
 
 
 
