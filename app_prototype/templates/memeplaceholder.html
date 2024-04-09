@@ -8,7 +8,7 @@
             {% for key, value in motif_dict.items() %}
                 <img class="img-thumbnail" src="/static/{{ value[-1] }}">
                 <br>
-                <li class="alert alert-primary" role="alert">{{ key }}: {{ value }}</li>
+                <li class="alert alert-primary" role="alert">{{ key[] }}: {{ value }}</li>
                 <br>
             {% endfor %}
         </ul>

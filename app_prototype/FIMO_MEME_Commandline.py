@@ -253,7 +253,7 @@ def html_output_file_mover():
 def memelogo_mover():
     # was totatally jarno
     try:
-        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/raplace.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/")
         shutil.move(WORKING_DIR / r"User_output/meme/logo2.png", WORKING_DIR / r"static/")
         shutil.move(WORKING_DIR / r"User_output/meme/logo3.png", WORKING_DIR / r"static/")
         shutil.move(WORKING_DIR / r"User_output/meme/logo4.png", WORKING_DIR / r"static/")
