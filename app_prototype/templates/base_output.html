@@ -1,75 +1,87 @@
-<!DOCTYPE html>
-<!-- version 27 march -->
-<html lang="en">
-    <head>
+{% extends "base.html" %}
+{% block content %}
 
-        <meta charset="utf-8">
-        <title>Hoofdpagina</title>
-        <link rel="stylesheet" href="{{url_for("static" ,filename="stylesheet.css")}}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    </head>
-    <body id="background_color">
 
-        <h1 class="logo_mefim_findr" style="dicolor: #c8a2c8;">MEFIM- FindR</h1>
-
-        <div class="container mb-5 p-0">
-            <div class="row">
-                <div class="col-sm-4">
-                    <ul class="unordered_list_nav_bar">
-                        <li id="left_border"><a class="hover_over_nav_bar" href="about">HOME</a></li>
-                        <li><a class="hover_over_nav_bar" href="meme">MEME</a></li>
-                        <li id="right_border"><a class="hover_over_nav_bar" href="fimo">FIMO</a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="prog_logo big">
+            <img src="data:image/png;base64,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" alt="MEME Logo">
+            <h1>MEME</h1>
+            <h2>Multiple Em for Motif Elicitation</h2>
+        </div>
+        <div>
+            <p>
+                For further information on how to interpret these results please access
+                <a href="https://meme-suite.org/meme/doc/meme.html">https://meme-suite.org/meme/doc/meme.html</a>. <br>
+                To get a copy of the MEME software please access
+                <a href="https://meme-suite.org">https://meme-suite.org</a>.
+            </p>
+            <p id="citation"> <script>print_citation("citation", "MEME");</script>If you use MEME in your research, please cite the following paper:<br>
+                <span class="citation">
+                  Timothy L. Bailey and Charles Elkan,
+                  "Fitting a mixture model by expectation maximization to
+                  discover motifs in biopolymers",
+                  <em>Proceedings of the Second International Conference on Intelligent Systems
+                  for Molecular Biology</em>, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+                  <a href="http://www.aaai.org/Papers/ISMB/1994/ISMB94-004.pdf">[full text]</a>
+                </span>
+            </p>
+        </div>
+        <div class="pad2">
+          <a class="jump" href="#motifs_sec">Discovered Motifs</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a class="jump" href="#sites_sec">Motif Locations</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a class="jump" href="#inputs_sec">Inputs &amp; Settings</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a class="jump" href="#info_sec">Program Information</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a class="jump" href="meme.txt">Results in Text Format</a>&nbsp;<span id="results_txt_help"><div class="help active" data-topic="pop_results_txt" tabindex="0"></div></span>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a class="jump" href="meme.xml">Results in XML Format</a>&nbsp;<span id="results_xml_help"><div class="help active" data-topic="pop_results_xml" tabindex="0"></div></span>
+          <script>
+            make_help_button($("results_txt_help"), "pop_results_txt");
+            make_help_button($("results_xml_help"), "pop_results_xml");
+          </script>
+        </div>
+        <div id="info_sec" class="bar">
+          <div class="subsection">
+            <h5 id="version">MEME version</h5>
+            <span id="ins_version">5.5.3</span>
+            (Release date: <span id="ins_release">Sat Jun 10 16:19:38 2023 -0700</span>)<br>
+          </div>
+          <script>
+            $("ins_version").innerHTML = data["version"];
+            $("ins_release").innerHTML = data["release"];
+          </script>
+          <div class="subsection" id="reference"> <script>print_citation("reference", "MEME");</script><h5>Reference</h5>
+            <span class="citation">
+              Timothy L. Bailey and Charles Elkan,
+              "Fitting a mixture model by expectation maximization to
+              discover motifs in biopolymers",
+              <em>Proceedings of the Second International Conference on Intelligent Systems
+              for Molecular Biology</em>, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+              <a href="http://www.aaai.org/Papers/ISMB/1994/ISMB94-004.pdf">[full text]</a>
+            </span>
+          </div>
+          <div class="subsection">
+            <h5 id="command">Command line</h5>
+            <textarea id="cmd" rows="5" style="width:100%;" readonly="readonly">        </textarea>
+            <script>$("cmd").value = data["cmd"].join(" ");</script>
+          </div>
         </div>
 
-        {% block content %}
-
-
-            
 
 
 
-        {% endblock %}
-
-        <div id="background_color_lower_frame">
-            <div class="container-fluid">
-                <div class="row pt-5">
-                    <div class="col-sm-4">
-                            <h2 class="text_centered">Feedback</H2>
-                            <p class="text_centered">
-                                For feedback, bugs and other problems. Contact us! <br>
-                            </p>
-                    </div>
 
 
 
-                    <div class="col-sm-4">
-                            <h2 class="text_centered">Contact</H2>
-                            <p class="line_height_200 text_centered" >
-                                For feedback, bugs and other problems. Contact us! <br>
-                                Tai Vo git: MoonCake98 <br>
-                                Jarno Duiker git: azzipxonraj <br>
-                                Ruben van Dam git: RCvanDam <br>
-                                Floris Menninga git: Fl-ris
-                            </p>
-                    </div>
 
 
 
-                    <div class="col-sm-4">
-                        <div class="frame_bottom_info">
-                            <h2 class="text_centered">Refrences</H2>
-                            <p class="text_centered  line_height_200">
-                                MEME Suite. (z.d.). https://meme-suite.org/meme/doc/overview.html
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    </div>
+
+
+
+
+{% endblock %}
