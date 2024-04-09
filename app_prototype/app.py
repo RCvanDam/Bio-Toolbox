@@ -363,7 +363,7 @@ def render_meme_output_html():
     motif_dict = MOTIF_DICT_PLACEHOLDER
 
     if session.get["motif_dict"]is not None:
-        motif_dict = session["motif_dict"]
+        motif_dict = session("motif_dict")
 
     return render_template("memeplaceholder.html", motif_dict=motif_dict)
 
