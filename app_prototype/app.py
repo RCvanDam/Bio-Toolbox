@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from flask import Flask, render_template, flash, request, redirect, url_for, helpers, session
 
-MOTIF_DICT_PLACEHOLDER = {"test":"this shouldn't be visible"}
+MOTIF_DICT_PLACEHOLDER = {"test":"this shouldn't be visible","test1":"poep"}
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
