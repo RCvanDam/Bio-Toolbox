@@ -1,5 +1,5 @@
 """
-Python unit-test for the Homepage, Memepage and Fimopage. 
+Python unit-test for the Homepage, Memepage, Fimopage and various other functions used in the "FIMO_MEME_Commandline.py" file.
 Date: 25-03-2024
 Author: Floris M
 

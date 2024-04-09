@@ -1,18 +1,16 @@
 """
-Python unit-test for the Homepage, Memepage and Fimopage. 
+Python unit-test for the Homepage, Memepage, Fimopage and various other functions used in the "FIMO_MEME_Commandline.py" file.
 Date: 25-03-2024
 Author: Floris M
 
 """
 
-
 import pytest
 import html5lib # for testing the website
-import os # for the working_dir path
-from app_prototype.FIMO_MEME_Commandline import is_multifasta, extension_check
+from FIMO_MEME_Commandline import is_multifasta, extension_check
 # from app_prototype.FIMO_MEME_Commandline import is_multifasta, extension_check
 
-from app_prototype.app import app
+from app import app
 from pathlib import Path
 
 # WORKING_DIR = Path(os.path.dirname(os.path.realpath(__file__))) # to check current dir
@@ -58,25 +56,35 @@ def client():
     return app.test_client()
 
 
-def test_root(client):
-    response = client.get('/about')
-    assert response.status_code == 200
-    # assert "Hello World" in response.text
+@pytest.mark.parametrize('web_status_code', [
+    #  '/' # gets redirected to "/about"
+     '/fimo',
+     '/meme',
+     '/about'
 
-def test_meme(client):
-    response = client.get("/meme")
+])
+# test for http status code:
+def test_status_code(client, web_status_code):
+    response = client.get(web_status_code)
     assert response.status_code == 200
+    
 
-def test_fimo(client):
-    response = client.get("/fimo")
-    assert response.status_code == 200
+# Old tests from before parametrization.
+# def test_meme(client):
+#     response = client.get("/meme")
+#     assert response.status_code == 200
+
+# def test_fimo(client):
+#     response = client.get("/fimo")
+#     assert response.status_code == 200
 
 
 @pytest.mark.parametrize('uri', [
      '/',
     '/form',
-    '/fimo'
-    '/meme'
+    '/fimo',
+    '/meme',
+    '/about'
 
 ])
 
@@ -90,6 +98,13 @@ def test_html_parse_meme(client, uri):
         pytest.fail(f'{error.__class__.__name__}: {str(error)}', pytrace=False)
 
 
+@pytest.mark.parametrize('uri', [
+     '/',
+    '/form',
+    '/fimo'
+    '/meme'
+
+])
 
 def test_html_parse_fimo(client, uri):
     response = client.get("/fimo")
