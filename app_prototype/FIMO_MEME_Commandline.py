@@ -12,9 +12,10 @@ Version: 0.16
 import subprocess # To execute terminal command's on the computer.
 import os
 import tarfile
-from pathlib import Path
-import shutil
+from pathlib import Path # to use the working dir variable.
+import shutil # to move around output files.
 import matplotlib.pyplot as plt
+import xml.etree.ElementTree as ET # for parsing the output .xml files from MEME and Fimo.
 
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
@@ -188,6 +189,7 @@ class Meme:
             self.generate_tarfile()
             html_output_file_mover()
             memelogo_mover()
+            xml_parser()
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
 
@@ -275,7 +277,24 @@ def is_multifasta(fastafile):
     """
     with open(fastafile, "r") as fasta:
         return len(list(filter(is_id,fasta))) >= 2
+    
+def xml_parser():
+    motif_dict = {}
+    tree = ET.parse(WORKING_DIR / "User_output/meme/meme.xml")
+    root = tree.getroot()
+    meme_version = (root.attrib["version"]) # meme version used.
+    for motifs in root.findall("motifs"):
+        for motif in motifs:
+            print(f"{motif.attrib["id"]} with a P-value of {motif.attrib["p_value"]} motif width: {motif.attrib["width"]}") # print-f with same information as the motif_dict.
+            motif_dict[motif.attrib["id"]] = (motif.attrib["p_value"], motif.attrib["width"], motif.attrib["sites"]) # Dict with as key the motif id (number) and p-value as value.
+        
+    for index, i in enumerate(motif_dict, start=1): # demo how to get the data from the dict
+        # motif_dict: first position: motif number. second position: motif width. third position: sites
+        print(f"motif number {index} p-value and width: {motif_dict[i]}")
+    return motif_dict
 
+
+    # print(motif_dict)
 
 
 

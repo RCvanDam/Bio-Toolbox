@@ -1,2 +1,2 @@
 from .app import app
-from . import FIMO_MEME_Commandline
+from .FIMO_MEME_Commandline import *
