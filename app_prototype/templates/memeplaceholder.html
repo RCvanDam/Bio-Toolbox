@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-center">
         <ul>
             {% for key, value in motif_dict.items() %}
-                <img class="img-thumbnail mt-2 mb-2" src="/static/{{ value[-1] }}">
+                <img height="80%" width="80%" class="img-thumbnail mt-2 mb-2" src="/static/{{ value[-1] }}">
                 <br>
                 <li class="alert alert-primary mt-2 mb-2" role="alert">{{ key[0] }}: {{ value }}</li>
                 <br>
