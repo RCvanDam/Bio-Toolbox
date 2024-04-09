@@ -18,7 +18,12 @@ import matplotlib.pyplot as plt
 
 
 # Global test variables (should be replaced by the ones given back by the webserver.)
-WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+# WORKING_DIR = os.path.dirname(os.path.realpath(__file__)) # to check current dir
+
+WORKING_DIR = Path.cwd()
+if "/app_prototype" not in str(WORKING_DIR): # If the working dir is in the root of the project.
+    WORKING_DIR = WORKING_DIR / "app_prototype/"
+
 print(WORKING_DIR)
 
 
@@ -233,19 +238,19 @@ def html_output_file_mover():
     Also it moves the generated sequence logo to 
     """
     try: # Try to move the generated meme output to the template dir to dispaly, if the content exists.
-        shutil.move(WORKING_DIR + r"/User_output/meme/meme.html", WORKING_DIR + r"/templates/meme.html")
+        shutil.move(WORKING_DIR / r"User_output/meme/meme.html", WORKING_DIR / r"templates/meme.html")
     except:
         print("Meme not used, quitting...")
 
     try: # Try to move the generated Fimo output to the template dir to dispaly, if the content exists.
-        shutil.move(WORKING_DIR + r"/User_output/fimo/fimo.html", WORKING_DIR + r"/templates/fimo.html")
+        shutil.move(WORKING_DIR / r"User_output/fimo/fimo.html", WORKING_DIR / r"templates/fimo.html")
     except:
         print("Fimo not used, quitting...")
 
 def memelogo_mover():
     # was totatally jarno
     try:
-        shutil.move(WORKING_DIR + r"/User_output/meme/logo1.png", WORKING_DIR + r"/static/raplace.png")
+        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/raplace.png")
     except:
         print("Meme not used, quitting...")
     return

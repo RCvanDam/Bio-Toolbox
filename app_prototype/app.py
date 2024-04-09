@@ -15,7 +15,11 @@ os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 CORRECT_OS = True
 
 WORKING_DIR = Path.cwd()
+if "/app_prototype" not in str(WORKING_DIR): # If the working dir is in the root of the project.
+    WORKING_DIR = WORKING_DIR / "app_prototype/"
+
 print(f"Working dir: {WORKING_DIR}")
+
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 UPLOAD_FOLDER = WORKING_DIR / "user_input_files"
