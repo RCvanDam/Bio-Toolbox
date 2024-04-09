@@ -285,8 +285,9 @@ def xml_parser():
     meme_version = (root.attrib["version"]) # meme version used.
     for motifs in root.findall("motifs"):
         for motif in motifs:
+            print(motif.attrib)
             print(f"{motif.attrib["id"]} with a P-value of {motif.attrib["p_value"]} motif width: {motif.attrib["width"]}") # print-f with same information as the motif_dict.
-            motif_dict[motif.attrib["id"]] = (motif.attrib["p_value"], motif.attrib["width"], motif.attrib["sites"]) # Dict with as key the motif id (number) and p-value as value.
+            motif_dict[motif.attrib["id"]] = (motif.attrib["p_value"], motif.attrib["e_value"], motif.attrib["width"], motif.attrib["sites"]) # Dict with as key the motif id (number) and p-value, e-value, width and sites as values.
         
     for index, i in enumerate(motif_dict, start=1): # demo how to get the data from the dict
         # motif_dict: first position: motif number. second position: motif width. third position: sites
