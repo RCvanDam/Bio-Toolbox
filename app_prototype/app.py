@@ -225,13 +225,13 @@ def html_render_meme():
         # here I save all the input button values as variables
         # request.form refers to the input's name in html
     
-        if request.form["seq_type_dna"]:
+        if request.form.get("seq_type_dna"):
             alphabet = "dna"
             print("aaaaaaaaaaaaaaaaaaaaa")
-        elif request.form["seq_type_rna"]:
+        elif request.form.get("seq_type_rna"):
             alphabet = "rna"
             print("bbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-        elif request.form["seq_type_protein"]:
+        elif request.form.get("seq_type_protein"):
             alphabet = "protein"
             print("cccccccccccccccccccccccccc")
         else:
