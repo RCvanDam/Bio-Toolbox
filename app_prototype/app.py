@@ -76,10 +76,10 @@ def home_about_page():
 def download():
     # temporary variable so the concept works
     # make this a global variable later
-    download_file_name = "test_output_delete_this.txt"
+    download_file_name = "meme.tar"
 
     # generate a variable absolute path, so it works on anyone's pc
-    outputs = WORKING_DIR / r"output_files/" / download_file_name
+    outputs = WORKING_DIR / r"User_output/" / download_file_name
 
     return flask.send_file(outputs, as_attachment=True)
 
