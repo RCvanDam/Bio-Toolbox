@@ -333,19 +333,19 @@ def html_render_meme():
             return render_template("memePage.html")
 
         # execute Meme with user parameters
-        meme = Meme(user_input_values["max_amount_of_motifs"], 
-                    user_input_values["max_motif_size"], 
-                    user_input_values["min_motif_size"], 
+        meme = Meme(user_input_values["max_amount_of_motifs"],
+                    user_input_values["max_motif_size"],
+                    user_input_values["min_motif_size"],
                     user_input_values["alphabet"],
-                    input_sequence_meme_path, 
+                    input_sequence_meme_path,
                     output_path_meme)
 
         # meme output for commandline terminal to check input variables
         print(str(meme)) 
-        meme.run() # execute meme with the user given parameters.
+        meme.run()  # execute meme with the user given parameters.
 
-        flash("file received!!")
-        return redirect(url_for("render_meme_output_html"))
+        flash("results generated!")
+        return render_template("memePage.html")
 
 
 @app.route('/fimo_output')
