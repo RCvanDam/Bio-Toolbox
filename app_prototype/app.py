@@ -347,8 +347,9 @@ def html_render_meme():
         meme.run() # execute meme with the user given parameters.
         motif_dict = meme.motif_dict
         session["motif_dict"] = motif_dict
-        flash("file received!!")
-        return redirect(url_for("render_meme_output_html"))
+        flash("Output Generated!")
+        flash("(press show output to view your output!)")
+        return render_template("memePage.html")
 
 
 @app.route('/fimo_output')
