@@ -38,7 +38,7 @@ output_path_fimo = "{}/User_output/fimo".format(WORKING_DIR) # (Temporary) stora
 
 
 # Test variables for MEME
-max_amount_of_motifs = 20 # max abount of motif to look for, program stops looking if the number is exceeded.
+max_amount_of_motifs = 2 # max abount of motif to look for, program stops looking if the number is exceeded.
 max_motif_size = 8 # max length of the motifs.
 min_motif_size = 3
 alphabet = "dna" # Nucleotide alphabet to use: RNA, DNA or protein.
@@ -189,7 +189,7 @@ class Meme:
             print(output_meme) # should be redirected to the ouput display in the website.
             self.generate_tarfile()
             html_output_file_mover()
-            memelogo_mover()
+            self.memelogo_mover()
             self.motif_dict = xml_parser()
         else:
             print("To use the MEME command, please use a multi-fasta file as input")
@@ -227,11 +227,26 @@ class Meme:
         for filename in files:
             file.add(f"{output_path_meme}/{filename}", filename)
     
+
     def plot_graph(self):
         """
         Function to make a plot with the gathered data from the meme.html or meme.xml files.
         """
         pass
+
+
+    def memelogo_mover(self):
+
+        try:
+            for picture in range(1, int(self.max_amount_of_motifs) + 1):
+                print((WORKING_DIR / "User_output/meme/logo{}.png".format(picture), WORKING_DIR / "static/logo{}.png".format(picture)))
+                shutil.move(WORKING_DIR / "User_output/meme/logo{}.png".format(picture), WORKING_DIR / "static/logo{}.png".format(picture))
+        
+
+        except:
+            print("Meme not used, quitting...")
+        return
+
 
 
 
@@ -250,34 +265,6 @@ def html_output_file_mover():
     except:
         print("Fimo not used, quitting...")
 
-def memelogo_mover():
-    # was totatally jarno
-    try:
-        shutil.move(WORKING_DIR / r"User_output/meme/logo1.png", WORKING_DIR / r"static/logo1.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo2.png", WORKING_DIR / r"static/logo2.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo3.png", WORKING_DIR / r"static/logo3.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo4.png", WORKING_DIR / r"static/logo4.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo5.png", WORKING_DIR / r"static/logo5.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo6.png", WORKING_DIR / r"static/logo6.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo7.png", WORKING_DIR / r"static/logo7.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo8.png", WORKING_DIR / r"static/logo8.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo9.png", WORKING_DIR / r"static/logo9.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo10.png", WORKING_DIR / r"static/logo10.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo11.png", WORKING_DIR / r"static/logo11.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo12.png", WORKING_DIR / r"static/logo12.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo13.png", WORKING_DIR / r"static/logo13.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo14.png", WORKING_DIR / r"static/logo14.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo15.png", WORKING_DIR / r"static/logo15.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo16.png", WORKING_DIR / r"static/logo16.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo17.png", WORKING_DIR / r"static/logo17.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo18.png", WORKING_DIR / r"static/logo18.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo19.png", WORKING_DIR / r"static/logo19.png")
-        shutil.move(WORKING_DIR / r"User_output/meme/logo20.png", WORKING_DIR / r"static/logo20.png")
-
-
-    except:
-        print("Meme not used, quitting...")
-    return
 
         
 def extension_check(fastafile):
@@ -306,13 +293,15 @@ def xml_parser():
     root = tree.getroot()
     meme_version = (root.attrib["version"]) # meme version used.
     for motifs in root.findall("motifs"):
-        for index,motif in enumerate(motifs):
+        for index,motif in enumerate(motifs, start=1):
             print(f'{motif.attrib["id"]} with a P-value of {motif.attrib["p_value"]} motif width: {motif.attrib["width"]}') # print-f with same information as the motif_dict.
             motif_dict[motif.attrib["id"]] = (motif.attrib["p_value"], motif.attrib["width"], motif.attrib["sites"], motif.attrib["e_value"], f"logo{index}.png") # Dict with as key the motif id (number) and p-value as value.
         
     for index, i in enumerate(motif_dict, start=1): # demo how to get the data from the dict
         # motif_dict: first position: motif number. second position: motif width. third position: sites
         print(f"motif number {index} p-value and width: {motif_dict[i]}")
+    
+    print(motif_dict.values())
     
     return motif_dict
 
