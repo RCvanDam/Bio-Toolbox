@@ -13,7 +13,7 @@
         </span>
 </div>
 
-    <h1 class="d-flex justify-content-center">Dictionary from Flask to HTML</h1>
+    <h1 class="d-flex justify-content-center">Found motifs:</h1>
     <div class="d-flex justify-content-center">
         <ul>
             {% for key, value in motif_dict.items() %}
@@ -22,10 +22,10 @@
                 <li class="alert alert-primary mt-2" role="alert">
 
                 <br><class="alert alert-primary mt-2 mb-2" role="alert">
-                <p>P-Value: </p>{{ key[0][:-1] }} . {{ value[0] }} 
-                <p>Width: </p>{{ key[0][:-1] }} . {{ value[1] }} 
-                <p>Sites: </p1>{{ key[0][:-1] }} . {{ value[2] }}
-                <p>E-Value: </p1>{{ key[0][:-1] }} . {{ value[3] }}
+                <p>P-Value: {{ key[0][:-1] }}  {{ value[0] }} </p>
+                <p>Motif width: {{ key[0][:-1] }}  {{ value[1] }} </p>
+                <p>Sites (amount of occurences): {{ key[0][:-1] }}  {{ value[2] }} </p1>
+                <p>E-Value: {{ key[0][:-1] }}  {{ value[3] }} </p1>
             
             </li><br>
                 <br>
