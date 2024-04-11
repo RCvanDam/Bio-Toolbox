@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+</div>
+<h5 class="d-flex justify-content-center" >Reference</h5>
+<div class="d-flex justify-content-center">
+        <span class="citation">
+          Timothy L. Bailey and Charles Elkan,
+          "Fitting a mixture model by expectation maximization to
+          discover motifs in biopolymers",
+          <em>Proceedings of the Second International Conference on Intelligent Systems
+          for Molecular Biology</em>, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+          <a href="http://www.aaai.org/Papers/ISMB/1994/ISMB94-004.pdf">[full text]</a>
+        </span>
+</div>
+
+    <h1 class="d-flex justify-content-center">Found motifs:</h1>
+    <div class="d-flex justify-content-center">
+        <ul>
+            {% for key, value in motif_dict.items() %}
+                <img height="80%" width="80%" class="img-thumbnail mt-2 mb-2" src="/static/{{ value[-1] }}">
+                <br>
+                
+
+                <br><class="alert alert-primary mt-2" role="alert">
+                    <li class="alert alert-primary mt-2" role="alert"> <p>P-Value: {{ key[0][:-1] }}  {{ value[0] }} </p></li>
+                    <li class="alert alert-primary mt-2" role="alert"> <p>Motif width: {{ key[0][:-1] }}  {{ value[1] }} </p></li>
+                    <li class="alert alert-primary mt-2" role="alert"><p>Sites (amount of occurences): {{ key[0][:-1] }}  {{ value[2] }} </p1></li>
+                    <li class="alert alert-primary mt-2" role="alert"> <p>E-Value: {{ key[0][:-1] }}  {{ value[3] }} </p1></li>
+            
+            </li><br>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+    <h5 class="d-flex justify-content-center" >Reference</h5>
+    <div class="d-flex justify-content-center">
+            <span class="citation">
+              Timothy L. Bailey and Charles Elkan,
+              "Fitting a mixture model by expectation maximization to
+              discover motifs in biopolymers",
+              <em>Proceedings of the Second International Conference on Intelligent Systems
+              for Molecular Biology</em>, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+              <a href="http://www.aaai.org/Papers/ISMB/1994/ISMB94-004.pdf">[full text]</a>
+            </span>
+    </div>
+
+{% endblock %}

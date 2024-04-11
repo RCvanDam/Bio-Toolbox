@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- 5 april 2024-->
-
+s
         <!-- The display box-->
+        <ul class=flashes>
+            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+                        {% endwith %}
+        </ul>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-4">
@@ -20,7 +32,7 @@
                                 </a>
                                 <dialog id="maxmotif-modal">
                                     <h2>Maximum motif amount</h2>
-                                    <p>The max motif amount ....</p>
+                                    <p>The max motif amount currently supported is 20</p>
                                     <button type="button" onclick="closeModal('maxmotif-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
@@ -34,7 +46,7 @@
                                 </a>
                                 <dialog id="motifsize-modal">
                                     <h2>Maximum motif Size</h2>
-                                    <p>Setting the maximum motif size ....</p>
+                                    <p>the maximum recommended motif size is 8</p>
                                     <button type="button" onclick="closeModal('motifsize-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
@@ -48,8 +60,8 @@
                                     <label for="minsize">Min motif size:</label>
                                 </a>
                                 <dialog id="minmotifs-modal">
-                                    <h2>Maximum motif Size</h2>
-                                    <p>Setting the maximum motif size ....</p>
+                                    <h2>Minimum motif Size</h2>
+                                    <p>the minimum recommended motif size is 3</p>
                                     <button type="button" onclick="closeModal('minmotifs-modal')" class="btn btn-light">Close</button>
                                 </dialog>
                                 <div class="input-group input-group-ml mb-3">
@@ -92,11 +104,13 @@
                           <p>Here's an example of what image this tool will return. The output image will be displayed underneath.</p>
                         </div>
                         <div>
-                            <img id="raplace_img" src="static/raplace.png"  alt="tool output" title="tool output" class="img-thumbnail">
+                            <img id="raplace_img" src="static/logo1.png"  alt="tool output" title="tool output" class="img-thumbnail">
                         </div>
-                        <a title="press the download button to download the generate sequence logo like seen in the example">
-                            <button type="button" class="btn btn-outline-success">Download SequenceLogo</button></a>
+                        <a href="meme_output" target="_blank" title="press the download button to download the generate sequence logo like seen in the example">
+                            <button type="button" class="btn btn-outline-success">Show Output</button></a>
+                            <a href="download" target="_blank"><button type="button" class="btn btn-outline-success">Download Output</button></a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -121,30 +135,17 @@
                     <div class="frame_tool">
                         <h2 class="center_text">Progress</h2>
                         <hr class="hr_border">
-                        <p class="center_text" >
-                        Display commandline output here if possible</p>
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <ul class=flashes>
-                                    {% for message in messages %}
-                                        <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                            {{ message }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endwith %}
+                        <p class="center_text" >Notifications and errors:</p>
 
                     </div>
                 </div>
 
                 <div class="col-sm-4"> 
                     <div class="frame_tool">
-                        <h2 class="center_text" >Optional arguments:</h2>
+                        <h2 class="center_text" >Tool parameters:</h2>
                         <hr class="hr_border">
                         <p class="center_text">
-                        <i>Explanation of the (optional) parameters for using MEME:</i><br>
+                        <i>Explanation of the parameters for using MEME:</i><br>
                         Max amount of motifs to look for corresponds to the "-nmotifs" command argument in the commandline version of MEME.<br>
                         Max motif size: max nucleotide lenght of motif -maxw<br>
                         Min motif size: Minimum nucleotide lenght of motif -minw<br>

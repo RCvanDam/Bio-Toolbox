@@ -7,8 +7,10 @@ from pathlib import Path
 from FIMO_MEME_Commandline import Meme, Fimo
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.profiler import ProfilerMiddleware
-from flask import Flask, render_template, flash, request, redirect, url_for, helpers
+from flask import Flask, render_template, flash, request, redirect, url_for, helpers, session
 
+MOTIF_DICT_PLACEHOLDER = {"test":"this shouldn't be visible","test1":"poep","example_motif": ('2.0e-049', '19', '18', '4.3e-009', 'logo0.png')
+}
 
 os.environ["FLASK_DEBUG"] = "1"  # turn on debug mode
 
@@ -74,10 +76,10 @@ def home_about_page():
 def download():
     # temporary variable so the concept works
     # make this a global variable later
-    download_file_name = "test_output_delete_this.txt"
+    download_file_name = "meme.tar"
 
     # generate a variable absolute path, so it works on anyone's pc
-    outputs = WORKING_DIR / r"output_files/" / download_file_name
+    outputs = WORKING_DIR / r"User_output/" / download_file_name
 
     return flask.send_file(outputs, as_attachment=True)
 
@@ -223,13 +225,13 @@ def html_render_meme():
         # here I save all the input button values as variables
         # request.form refers to the input's name in html
     
-        if request.form["seq_type_dna"]:
+        if request.form.get("seq_type_dna"):
             alphabet = "dna"
             print("aaaaaaaaaaaaaaaaaaaaa")
-        elif request.form["seq_type_rna"]:
+        elif request.form.get("seq_type_rna"):
             alphabet = "rna"
             print("bbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-        elif request.form["seq_type_protein"]:
+        elif request.form.get("seq_type_protein"):
             alphabet = "protein"
             print("cccccccccccccccccccccccccc")
         else:
@@ -342,9 +344,11 @@ def html_render_meme():
 
         # meme output for commandline terminal to check input variables
         print(str(meme)) 
-        meme.run()  # execute meme with the user given parameters.
-
-        flash("results generated!")
+        meme.run() # execute meme with the user given parameters.
+        motif_dict = meme.motif_dict
+        session["motif_dict"] = motif_dict
+        flash("Output Generated!")
+        flash("(press show output to view your output!)")
         return render_template("memePage.html")
 
 
@@ -358,8 +362,12 @@ def render_fimo_output_html():
 @app.route('/meme_output')
 def render_meme_output_html():
     """ Route to show the MEME output"""
+    motif_dict = MOTIF_DICT_PLACEHOLDER
 
-    return render_template("meme.html")
+    if session.get("motif_dict")is not None:
+        motif_dict = session["motif_dict"]
+
+    return render_template("memeplaceholder.html", motif_dict=motif_dict)
 
 
 
@@ -420,6 +428,6 @@ def gateway_error(e):
 if __name__ == '__main__':
     if not sys.platform.startswith("linux"):
         CORRECT_OS = False
-
+        
     # run() method of Flask class runs the application on the local development server
     app.run()
