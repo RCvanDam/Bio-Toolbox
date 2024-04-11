@@ -318,7 +318,6 @@ def xml_parser():
 
 
 
-
 # Test functions below:
 
 def receive_input():
