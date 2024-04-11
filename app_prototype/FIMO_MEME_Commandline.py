@@ -288,6 +288,9 @@ def is_multifasta(fastafile):
         return len(list(filter(is_id,fasta))) >= 2
     
 def xml_parser():
+    """
+    Function to gather the following data from the meme output xml file: P-value, motif widht, sites and E-value.
+    """
     motif_dict = {}
     tree = ET.parse(WORKING_DIR / "User_output/meme/meme.xml")
     root = tree.getroot()
@@ -301,7 +304,9 @@ def xml_parser():
         # motif_dict: first position: motif number. second position: motif width. third position: sites
         print(f"motif number {index} p-value and width: {motif_dict[i]}")
     
-    print(motif_dict.values())
+    print("Contents of motif_dict")
+    for key, value in motif_dict.items():
+        print(key, value)
     
     return motif_dict
 
